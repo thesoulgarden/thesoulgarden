@@ -1,0 +1,78 @@
+# Panel de administración de El Jardín de los Ángeles
+# IMPORTANTE: cambia USUARIO_GITHUB/NOMBRE_REPO por el tuyo (ej.: omar123/thesoulgarden)
+backend:
+  name: github
+  repo: USUARIO_GITHUB/NOMBRE_REPO
+  branch: main
+  commit_messages:
+    update: "Actualizar {{collection}}: {{slug}}"
+
+locale: es
+site_url: https://thesoulgarden.netlify.app
+display_url: https://thesoulgarden.netlify.app
+logo_url: /img/logo.png
+
+media_folder: img/productos
+public_folder: /img/productos
+
+collections:
+  - name: catalogo
+    label: Catálogo
+    editor: { preview: false }
+    files:
+      - name: productos
+        label: Productos
+        file: data/products.json
+        format: json
+        fields:
+          - label: Productos
+            name: products
+            widget: list
+            label_singular: producto
+            summary: "{{fields.name_es}} · ${{fields.price}} · {{fields.status}}"
+            fields:
+              - { label: "ID (número del artículo en Etsy o un código único)", name: id, widget: string, hint: "No lo cambies en productos existentes: el carrito lo usa." }
+              - { label: "Nombre (español)", name: name_es, widget: string }
+              - { label: "Nombre (inglés)", name: name_en, widget: string }
+              - { label: "Descripción (español)", name: desc_es, widget: text }
+              - { label: "Descripción (inglés)", name: desc_en, widget: text }
+              - label: Categoría
+                name: cat
+                widget: select
+                options:
+                  - { label: Rosarios, value: rosarios }
+                  - { label: Pulseras, value: pulseras }
+                  - { label: Agua de Lourdes, value: agua }
+                  - { label: Sets, value: sets }
+                  - { label: Bolsos y accesorios, value: bolsos }
+              - { label: "Precio (USD)", name: price, widget: number, value_type: float, min: 0, step: 0.5 }
+              - label: Disponibilidad
+                name: status
+                widget: select
+                default: disponible
+                options:
+                  - { label: "Disponible", value: disponible }
+                  - { label: "Últimas unidades", value: ultimas }
+                  - { label: "Agotado", value: agotado }
+              - { label: "Foto", name: img, widget: image, hint: "Foto cuadrada, idealmente de 800 a 1200 px." }
+              - { label: "Enlace en Etsy (opcional)", name: etsy_url, widget: string, required: false }
+              - label: "Opciones con precio distinto (opcional)"
+                name: variants
+                widget: list
+                required: false
+                summary: "{{fields.label_es}} · ${{fields.price}}"
+                fields:
+                  - { label: "Opción (español)", name: label_es, widget: string }
+                  - { label: "Opción (inglés)", name: label_en, widget: string }
+                  - { label: "Precio (USD)", name: price, widget: number, value_type: float, min: 0, step: 0.5 }
+
+  - name: ajustes
+    label: Ajustes
+    editor: { preview: false }
+    files:
+      - name: tienda
+        label: Datos de contacto
+        file: data/settings.json
+        format: json
+        fields:
+          - { label: "WhatsApp (con código de país, ej.: +19294133312)", name: whatsapp, widget: string, required: false }

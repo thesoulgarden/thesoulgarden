@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://thesoulgarden.netlify.app/sitemap.xml

@@ -1,0 +1,262 @@
+{
+  "products": [
+    {
+      "id": "4424756906",
+      "name_es": "Agua bendita de Lourdes, 0.5 oz",
+      "name_en": "Lourdes holy water, 0.5 oz",
+      "desc_es": "De la Gruta de Massabielle, Francia. Un frasco para tu devoción mariana.",
+      "desc_en": "From the Grotto of Massabielle, France. A bottle for your Marian devotion.",
+      "cat": "agua",
+      "price": 10.0,
+      "img": "/img/productos/agua-lourdes.jpg",
+      "etsy_url": "https://www.etsy.com/listing/4424756906",
+      "status": "disponible"
+    },
+    {
+      "id": "4442229720",
+      "name_es": "Llavero rosario con agua de Lourdes",
+      "name_en": "Rosary keychain with Lourdes water",
+      "desc_es": "Frasco portátil en varios colores con cuentas y cruz plateada.",
+      "desc_en": "Portable bottle in several colors with beads and a silver-tone cross.",
+      "cat": "rosarios",
+      "price": 21.0,
+      "img": "/img/productos/llavero-agua-lourdes.jpg",
+      "etsy_url": "https://www.etsy.com/listing/4442229720",
+      "status": "disponible",
+      "variants": [
+        {
+          "label_es": "Blanco y morado",
+          "label_en": "White & purple",
+          "price": 28
+        },
+        {
+          "label_es": "Flor, pompón morado",
+          "label_en": "Flower, purple pom-pom",
+          "price": 30
+        },
+        {
+          "label_es": "Solo rosario rojo",
+          "label_en": "Red rosary only",
+          "price": 21
+        },
+        {
+          "label_es": "Solo rosario azul",
+          "label_en": "Blue rosary only",
+          "price": 24
+        },
+        {
+          "label_es": "Solo rosario blanco",
+          "label_en": "White rosary only",
+          "price": 21
+        },
+        {
+          "label_es": "Llavero rosario rojo",
+          "label_en": "Red rosary keychain",
+          "price": 28
+        },
+        {
+          "label_es": "Rosario blanco",
+          "label_en": "White rosary",
+          "price": 28
+        },
+        {
+          "label_es": "Rosario azul",
+          "label_en": "Blue rosary",
+          "price": 30
+        }
+      ]
+    },
+    {
+      "id": "4444608989",
+      "name_es": "Llavero rosario de cristal",
+      "name_en": "Crystal rosary keychain",
+      "desc_es": "Cuentas rojas de cristal con medalla y crucifijo. Ideal para Primera Comunión o bautizo.",
+      "desc_en": "Red crystal beads with medal and crucifix. Perfect for First Communion or baptism.",
+      "cat": "rosarios",
+      "price": 28.0,
+      "img": "/img/productos/llavero-cristal.jpg",
+      "etsy_url": "https://www.etsy.com/listing/4444608989",
+      "status": "disponible"
+    },
+    {
+      "id": "4405676612",
+      "name_es": "Rosario con la Virgen María y la Cruz",
+      "name_en": "Rosary with the Virgin Mary and the Cross",
+      "desc_es": "Hecho a mano para la oración diaria.",
+      "desc_en": "Handmade for daily prayer.",
+      "cat": "rosarios",
+      "price": 25.0,
+      "img": "/img/productos/rosario-virgen.jpg",
+      "etsy_url": "https://www.etsy.com/listing/4405676612",
+      "status": "disponible"
+    },
+    {
+      "id": "4424729455",
+      "name_es": "Rosario de bolsillo con Medalla Milagrosa",
+      "name_en": "Pocket rosary with Miraculous Medal",
+      "desc_es": "Hecho a mano, con opción de agua bendita de Lourdes.",
+      "desc_en": "Handmade, with optional Lourdes holy water.",
+      "cat": "rosarios",
+      "price": 10.0,
+      "img": "/img/productos/rosario-bolsillo.jpg",
+      "etsy_url": "https://www.etsy.com/listing/4424729455",
+      "status": "disponible"
+    },
+    {
+      "id": "4444395672",
+      "name_es": "Llavero rosario de cuentas con pompón",
+      "name_en": "Beaded rosary keychain with pom-pom",
+      "desc_es": "Cuentas en tonos pastel con dijes religiosos.",
+      "desc_en": "Pastel beads with religious charms.",
+      "cat": "rosarios",
+      "price": 20.0,
+      "img": "/img/productos/llavero-cuentas.jpg",
+      "etsy_url": "https://www.etsy.com/listing/4444395672",
+      "status": "disponible"
+    },
+    {
+      "id": "4421914416",
+      "name_es": "Pulsera rosario Medalla Milagrosa",
+      "name_en": "Miraculous Medal rosary bracelet",
+      "desc_es": "Con agua bendita de Lourdes, para llevar tu devoción contigo.",
+      "desc_en": "With Lourdes holy water, to carry your devotion with you.",
+      "cat": "pulseras",
+      "price": 18.0,
+      "img": "/img/productos/pulsera-medalla.jpg",
+      "etsy_url": "https://www.etsy.com/listing/4421914416",
+      "status": "disponible"
+    },
+    {
+      "id": "4574686237",
+      "name_es": "Pulsera de San Benito tricolor",
+      "name_en": "Tri-color St. Benedict bracelet",
+      "desc_es": "Cordón ajustable en dorado, plateado y oro rosa.",
+      "desc_en": "Adjustable cord in gold, silver and rose gold.",
+      "cat": "pulseras",
+      "price": 20.0,
+      "img": "/img/productos/pulsera-san-benito.jpg",
+      "etsy_url": "https://www.etsy.com/listing/4574686237",
+      "status": "disponible"
+    },
+    {
+      "id": "4445423792",
+      "name_es": "Pulsera y aretes de loto azul",
+      "name_en": "Blue lotus bracelet and earrings",
+      "desc_es": "Cuentas de cristal azul con dije de loto, en set con aretes.",
+      "desc_en": "Blue crystal beads with a lotus charm, set with earrings.",
+      "cat": "pulseras",
+      "price": 20.0,
+      "img": "/img/productos/pulsera-loto.jpg",
+      "etsy_url": "https://www.etsy.com/listing/4445423792",
+      "status": "disponible"
+    },
+    {
+      "id": "4426166615",
+      "name_es": "Pulsera 7 chakras con cruz",
+      "name_en": "7 chakra bracelet with cross",
+      "desc_es": "Piedras de colores con dijes de cruz y elefante.",
+      "desc_en": "Colorful stones with cross and elephant charms.",
+      "cat": "pulseras",
+      "price": 15.0,
+      "img": "/img/productos/pulsera-chakras.jpg",
+      "etsy_url": "https://www.etsy.com/listing/4426166615",
+      "status": "disponible"
+    },
+    {
+      "id": "4400042886",
+      "name_es": "Set de regalo: agua de Lourdes y rosario",
+      "name_en": "Gift set: Lourdes water and rosary",
+      "desc_es": "Agua bendita de Lourdes, rosario y velas de devoción.",
+      "desc_en": "Lourdes holy water, a rosary and devotional candles.",
+      "cat": "sets",
+      "price": 10.0,
+      "img": "/img/productos/set-agua-rosario.jpg",
+      "etsy_url": "https://www.etsy.com/listing/4400042886",
+      "status": "disponible"
+    },
+    {
+      "id": "4405526793",
+      "name_es": "Set de limpieza espiritual",
+      "name_en": "Spiritual cleansing set",
+      "desc_es": "Velas de ritual, incienso, jabón, palo santo y portavelas.",
+      "desc_en": "Ritual candles, incense, soap, palo santo and candle holder.",
+      "cat": "sets",
+      "price": 12.0,
+      "img": "/img/productos/set-limpieza.jpg",
+      "etsy_url": "https://www.etsy.com/listing/4405526793",
+      "status": "disponible"
+    },
+    {
+      "id": "4382698371",
+      "name_es": "Bolso Wayuu con la Virgen",
+      "name_en": "Wayuu bag with the Virgin Mary",
+      "desc_es": "Bolso de hombro tejido a mano con imagen de la Virgen. Incluye agua bendita de Lourdes de 0.5 oz.",
+      "desc_en": "Hand-woven shoulder bag with an image of the Virgin. Includes 0.5 oz Lourdes holy water.",
+      "cat": "bolsos",
+      "price": 85.0,
+      "img": "/img/productos/bolso-wayuu-virgen.jpg",
+      "etsy_url": "https://www.etsy.com/listing/4382698371",
+      "status": "disponible"
+    },
+    {
+      "id": "4383655823",
+      "name_es": "Bolso Wayuu colombiano con Frida",
+      "name_en": "Colombian Wayuu bag with Frida",
+      "desc_es": "Bolso cruzado artesanal con apliques de pedrería y borlas. Talla M.",
+      "desc_en": "Artisan crossbody bag with rhinestone appliqués and tassels. Size M.",
+      "cat": "bolsos",
+      "price": 80.0,
+      "img": "/img/productos/bolso-wayuu-frida.jpg",
+      "etsy_url": "https://www.etsy.com/listing/4383655823",
+      "status": "disponible"
+    },
+    {
+      "id": "4479161090",
+      "name_es": "Set de devoción mariana con bolso Wayuu",
+      "name_en": "Marian devotion set with Wayuu bag",
+      "desc_es": "Bolso Wayuu, rosario aromático, agua bendita de Lourdes y velas.",
+      "desc_en": "Wayuu bag, scented rosary, Lourdes holy water and candles.",
+      "cat": "bolsos",
+      "price": 115.0,
+      "img": "/img/productos/set-wayuu.jpg",
+      "etsy_url": "https://www.etsy.com/listing/4479161090",
+      "status": "disponible"
+    },
+    {
+      "id": "4401013827",
+      "name_es": "Mochila roja bordada con flores",
+      "name_en": "Red floral embroidered backpack",
+      "desc_es": "Gamuza artesanal: úsala como mochila, al hombro o de mano.",
+      "desc_en": "Artisan suede: wear it as a backpack, over one shoulder or by the handle.",
+      "cat": "bolsos",
+      "price": 50.0,
+      "img": "/img/productos/mochila-roja.jpg",
+      "etsy_url": "https://www.etsy.com/listing/4401013827",
+      "status": "disponible"
+    },
+    {
+      "id": "4416656995",
+      "name_es": "Bolso cruzado verde oliva",
+      "name_en": "Olive green crossbody bag",
+      "desc_es": "Gamuza con bordado tribal y correa ajustable.",
+      "desc_en": "Suede with tribal embroidery and an adjustable strap.",
+      "cat": "bolsos",
+      "price": 40.0,
+      "img": "/img/productos/bolso-verde.jpg",
+      "etsy_url": "https://www.etsy.com/listing/4416656995",
+      "status": "disponible"
+    },
+    {
+      "id": "4382483359",
+      "name_es": "Poncho de mezcla de lana",
+      "name_en": "Wool blend poncho",
+      "desc_es": "Hecho a mano, cuello alto y diseño geométrico boho. Talla única.",
+      "desc_en": "Handmade, high neck and boho geometric design. One size.",
+      "cat": "bolsos",
+      "price": 50.0,
+      "img": "/img/productos/poncho.jpg",
+      "etsy_url": "https://www.etsy.com/listing/4382483359",
+      "status": "disponible"
+    }
+  ]
+}
