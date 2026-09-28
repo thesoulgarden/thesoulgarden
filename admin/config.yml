@@ -2,7 +2,7 @@
 # IMPORTANTE: cambia USUARIO_GITHUB/NOMBRE_REPO por el tuyo (ej.: omar123/thesoulgarden)
 backend:
   name: github
-  repo: USUARIO_GITHUB/NOMBRE_REPO
+  repo: thesoulgarden/thesoulgarden
   branch: main
   commit_messages:
     update: "Actualizar {{collection}}: {{slug}}"
