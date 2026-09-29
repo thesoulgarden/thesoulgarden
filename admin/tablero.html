@@ -87,9 +87,21 @@ h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:24px;margin:28px
     var code=String(st.goatcounter||'').trim().toLowerCase();
     if(/^[a-z0-9-]{2,50}$/.test(code)){
       document.getElementById('t-stats').href='https://'+code+'.goatcounter.com/';
-      fetch('https://'+code+'.goatcounter.com/counter/TOTAL.json').then(function(x){if(!x.ok) throw 0;return x.json();}).then(function(c){
-        document.getElementById('k-visits').textContent=c.count||'0';
-      }).catch(function(){document.getElementById('k-visits-note').textContent='Activa "visitor counter" en GoatCounter para ver el número aquí.';});
+      var base='https://'+code+'.goatcounter.com/counter/TOTAL';
+      var ctrl=window.AbortController?new AbortController():null; var tmo=setTimeout(function(){if(ctrl) ctrl.abort();},6000);
+      fetch(base+'.json',{mode:'cors',credentials:'omit',cache:'no-store',signal:ctrl?ctrl.signal:undefined}).then(function(x){if(!x.ok) throw new Error('HTTP '+x.status);return x.json();}).then(function(c){
+        clearTimeout(tmo);
+        document.getElementById('k-visits').textContent=(c&&c.count!=null)?String(c.count):'0';
+        if(c&&c.count_unique!=null) document.getElementById('k-visits-note').textContent=c.count_unique+' visitantes únicos';
+      }).catch(function(err){
+        clearTimeout(tmo); console.warn('GoatCounter JSON no disponible, uso el contador incrustado:',err);
+        // Plan B: el contador oficial de GoatCounter dentro de un marco (no depende de permisos entre sitios)
+        var k=document.getElementById('k-visits'); k.textContent='';
+        var f=document.createElement('iframe'); f.src=base+'.html?no_branding=1'; f.title='Visitas totales';
+        f.style.cssText='border:0;width:100%;height:40px;display:block;background:transparent'; f.setAttribute('loading','lazy');
+        k.appendChild(f);
+        document.getElementById('k-visits-note').textContent='Si no ves el número, desactiva el bloqueador de anuncios en esta página.';
+      });
     } else { document.getElementById('t-stats-p').textContent='Falta el código de GoatCounter en Editar la tienda → Ajustes.'; document.getElementById('t-stats').classList.add('off'); document.getElementById('k-visits-note').textContent='Sin configurar'; }
     var inv=String(st.inventory_url||'').trim(), t=document.getElementById('t-inv');
     if(/^https:\/\/docs\.google\.com\//.test(inv)) t.href=inv; else { t.classList.add('off'); t.removeAttribute('target'); t.href='/admin/'; document.getElementById('t-inv-p').textContent='Pega el enlace de tu Google Sheet en Editar la tienda → Ajustes.'; }
