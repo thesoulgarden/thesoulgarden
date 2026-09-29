@@ -1,0 +1,182 @@
+{
+  "portada": {
+    "hero_eyebrow": {
+      "es": "Inspirado en Nuestra Señora de Lourdes · hecho a mano",
+      "en": "Inspired by Our Lady of Lourdes · handmade"
+    },
+    "hero_h1": {
+      "es": "Rosarios hechos a mano y agua bendita de Lourdes",
+      "en": "Handmade rosaries and Lourdes holy water"
+    },
+    "hero_p": {
+      "es": "Piezas de devoción mariana para tu oración diaria o para regalar en bautizos, Primeras Comuniones y cumpleaños.",
+      "en": "Marian devotional pieces for your daily prayer, or to give as gifts for baptisms, First Communions and birthdays."
+    },
+    "hero_cta1": {
+      "es": "Ver la colección",
+      "en": "Shop the collection"
+    },
+    "hero_cta2": {
+      "es": "Síguenos en Instagram",
+      "en": "Follow us on Instagram"
+    }
+  },
+  "beneficios": {
+    "v1b": {
+      "es": "4.9 de 5 en Etsy",
+      "en": "Rated 4.9 of 5 on Etsy"
+    },
+    "v1s": {
+      "es": "25 reseñas · más de 90 ventas",
+      "en": "25 reviews · 90+ sales"
+    },
+    "v2b": {
+      "es": "Envíos desde Woodhaven, NY",
+      "en": "Ships from Woodhaven, NY"
+    },
+    "v2s": {
+      "es": "Empaque cuidadoso, listo para regalar",
+      "en": "Carefully packed, ready to gift"
+    },
+    "v3b": {
+      "es": "Hecho a mano con fe",
+      "en": "Handmade with faith"
+    },
+    "v3s": {
+      "es": "Cada pieza se arma con cuidado",
+      "en": "Every piece is assembled with care"
+    }
+  },
+  "coleccion": {
+    "cat_eyebrow": {
+      "es": "La colección",
+      "en": "The collection"
+    },
+    "cat_h2": {
+      "es": "Piezas para acompañar tu fe",
+      "en": "Pieces to accompany your faith"
+    },
+    "see_all": {
+      "es": "Ver los 34 artículos en Etsy",
+      "en": "See all 34 items on Etsy"
+    }
+  },
+  "set_destacado": {
+    "kit_eyebrow": {
+      "es": "Set de regalo destacado",
+      "en": "Featured gift set"
+    },
+    "kit_h2": {
+      "es": "Set de devoción mariana con bolso Wayuu",
+      "en": "Marian devotion gift set with Wayuu bag"
+    },
+    "kit_p": {
+      "es": "Un bolso Wayuu tejido a mano, un rosario aromático, agua bendita de Lourdes y velas. Un regalo completo para alguien especial.",
+      "en": "A hand-woven Wayuu bag, a scented rosary, Lourdes holy water and candles. A complete gift for someone special."
+    },
+    "kit_cta": {
+      "es": "Ver el set en Etsy",
+      "en": "View the set on Etsy"
+    },
+    "kit_price": "$115",
+    "kit_url": "https://www.etsy.com/listing/4479161090"
+  },
+  "resenas": {
+    "rev_eyebrow": {
+      "es": "Reseñas en Etsy",
+      "en": "Etsy reviews"
+    },
+    "rev_h2": {
+      "es": "Lo que dicen nuestros clientes",
+      "en": "What our customers say"
+    },
+    "rev_all": {
+      "es": "Leer las 25 reseñas en Etsy",
+      "en": "Read all 25 reviews on Etsy"
+    }
+  },
+  "como_comprar": {
+    "how_h2": {
+      "es": "De nuestras manos a las tuyas",
+      "en": "From our hands to yours"
+    },
+    "s1h": {
+      "es": "Elige tu pieza",
+      "en": "Choose your piece"
+    },
+    "s1p": {
+      "es": "Explora la colección y abre el artículo en Etsy para ver fotos, opciones de color y la fecha estimada de entrega.",
+      "en": "Browse the collection and open the item on Etsy to see photos, color options and the estimated delivery date."
+    },
+    "s2h": {
+      "es": "La preparamos a mano",
+      "en": "We make it by hand"
+    },
+    "s2p": {
+      "es": "Cada rosario y pulsera se arma a mano. Muchas piezas pueden llevar agua bendita de Lourdes como opción.",
+      "en": "Every rosary and bracelet is assembled by hand. Many pieces can include Lourdes holy water as an option."
+    },
+    "s3h": {
+      "es": "Recíbela lista para regalar",
+      "en": "Receive it ready to gift"
+    },
+    "s3p": {
+      "es": "Enviamos desde Woodhaven, NY, con empaque cuidadoso, ideal para bautizos, Primeras Comuniones y cumpleaños.",
+      "en": "We ship from Woodhaven, NY, carefully packed and perfect for baptisms, First Communions and birthdays."
+    }
+  },
+  "preguntas": {
+    "faq_h2": {
+      "es": "Lo que suelen preguntarnos",
+      "en": "What people often ask us"
+    },
+    "q1": {
+      "es": "¿De dónde viene el agua bendita?",
+      "en": "Where does the holy water come from?"
+    },
+    "a1": {
+      "es": "Proviene de la Gruta de Massabielle, en Lourdes, Francia. Se ofrece en frascos de 0.5 oz y como opción en varios rosarios y pulseras.",
+      "en": "It comes from the Grotto of Massabielle in Lourdes, France. It is offered in 0.5 oz bottles and as an option on several rosaries and bracelets."
+    },
+    "q2": {
+      "es": "¿Puedo elegir colores o diseños?",
+      "en": "Can I choose colors or designs?"
+    },
+    "a2": {
+      "es": "Sí. Los llaveros con frasco vienen en plata, azul, amarillo, verde, morado y negro, y cada artículo muestra sus opciones en Etsy.",
+      "en": "Yes. The bottle keychains come in silver, blue, yellow, green, purple and black, and each item shows its options on Etsy."
+    },
+    "q3": {
+      "es": "¿Aceptan devoluciones?",
+      "en": "Do you accept returns?"
+    },
+    "a3": {
+      "es": "Sí, en los artículos que lo indican. Revisa la sección de envíos y devoluciones de cada producto en Etsy.",
+      "en": "Yes, on items that say so. Check the shipping and returns section of each product on Etsy."
+    },
+    "q4": {
+      "es": "¿Hacen pedidos especiales?",
+      "en": "Do you take custom orders?"
+    },
+    "a4": {
+      "es": "Escríbenos por mensaje en Etsy o por Instagram y con gusto te ayudamos con recuerdos para bautizos, comuniones o eventos.",
+      "en": "Send us a message on Etsy or Instagram and we will gladly help with keepsakes for baptisms, communions or events."
+    }
+  },
+  "instagram": {
+    "ig_h2": {
+      "es": "Mira las piezas nuevas primero en Instagram",
+      "en": "See new pieces first on Instagram"
+    },
+    "ig_p": {
+      "es": "Compartimos cada rosario recién terminado, detrás de cámaras y novedades de la tienda.",
+      "en": "We share every newly finished rosary, behind the scenes and shop news."
+    }
+  },
+  "pie": {
+    "foot_p": {
+      "es": "Rosarios, pulseras y regalos de devoción mariana hechos a mano.",
+      "en": "Handmade rosaries, bracelets and Marian devotional gifts."
+    }
+  }
+}

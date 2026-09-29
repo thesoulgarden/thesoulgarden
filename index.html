@@ -349,7 +349,7 @@ body.noscroll{overflow:hidden}
     <div class="eyebrow" data-i18n="kit_eyebrow">Featured gift set</div>
     <h2 data-i18n="kit_h2">Marian devotion gift set with Wayuu bag</h2>
     <p data-i18n="kit_p">A hand-woven Wayuu bag, a scented rosary, Lourdes holy water and candles. A complete gift for someone special.</p>
-    <div class="kit-buy"><span class="kit-price">$115</span><a class="btn btn-light" href="https://www.etsy.com/listing/4479161090" target="_blank" rel="noopener" data-i18n="kit_cta">View the set on Etsy</a></div>
+    <div class="kit-buy"><span class="kit-price" id="kit-price">$115</span><a class="btn btn-light" id="kit-link" href="https://www.etsy.com/listing/4479161090" target="_blank" rel="noopener" data-i18n="kit_cta">View the set on Etsy</a></div>
   </div>
   <img src="img/cascada.jpg" alt="Paradise garden with waterfalls, lotus flowers and an arch of light" data-i18n-alt="alt_kit" loading="lazy">
 </section>
@@ -678,7 +678,22 @@ body.noscroll{overflow:hidden}
     var s=document.createElement('script');s.type='application/ld+json';s.textContent=JSON.stringify(data);document.head.appendChild(s);
   }
   function getJSON(u){return fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok) throw new Error(u+' '+r.status);return r.json();});}
-  Promise.all([getJSON('data/products.json'),getJSON('data/settings.json').catch(function(){return {};})]).then(function(res){
+  function applyTexts(tx){ // textos editables desde el panel: sobrescriben los predeterminados
+    if(!tx||typeof tx!=='object') return;
+    Object.keys(tx).forEach(function(sec){
+      var s=tx[sec]; if(!s||typeof s!=='object') return;
+      Object.keys(s).forEach(function(k){
+        var v=s[k];
+        if(v&&typeof v==='object'){ if(v.es) I18N.es[k]=String(v.es); if(v.en) I18N.en[k]=String(v.en); }
+      });
+      if(sec==='set_destacado'){
+        if(s.kit_price) document.getElementById('kit-price').textContent=String(s.kit_price);
+        if(s.kit_url&&/^https?:\/\//.test(s.kit_url)) document.getElementById('kit-link').href=s.kit_url;
+      }
+    });
+  }
+  Promise.all([getJSON('data/products.json'),getJSON('data/settings.json').catch(function(){return {};}),getJSON('data/texts.json').catch(function(){return null;})]).then(function(res){
+    applyTexts(res[2]);
     products=normalize(res[0].products); byId={}; products.forEach(function(p){byId[p.id]=p;});
     WHATSAPP=String((res[1]&&res[1].whatsapp)||'').replace(/\D/g,'');
     cart=cart.filter(function(l){var p=byId[l.id];return p&&p.status!=='agotado'&&l.q>0&&(l.v==null||(p.variants&&p.variants[l.v]));}); saveCart();

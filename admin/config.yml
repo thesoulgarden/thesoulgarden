@@ -1,5 +1,5 @@
 # Panel de administración de El Jardín de los Ángeles
-# IMPORTANTE: cambia USUARIO_GITHUB/NOMBRE_REPO por el tuyo (ej.: omar123/thesoulgarden)
+# Repositorio: github.com/thesoulgarden/thesoulgarden
 backend:
   name: github
   repo: thesoulgarden/thesoulgarden
@@ -65,6 +65,303 @@ collections:
                   - { label: "Opción (español)", name: label_es, widget: string }
                   - { label: "Opción (inglés)", name: label_en, widget: string }
                   - { label: "Precio (USD)", name: price, widget: number, value_type: float, min: 0, step: 0.5 }
+
+  - name: textos
+    label: Textos de la página
+    editor: { preview: false }
+    files:
+      - name: textos
+        label: Textos (español e inglés)
+        file: data/texts.json
+        format: json
+        fields:
+          - label: "Portada"
+            name: portada
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Texto pequeño de arriba"
+                name: hero_eyebrow
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Título principal"
+                name: hero_h1
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Descripción"
+                name: hero_p
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: text }
+                  - { label: "Inglés", name: en, widget: text }
+              - label: "Botón 1"
+                name: hero_cta1
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Botón 2"
+                name: hero_cta2
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+          - label: "Franja de beneficios"
+            name: beneficios
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Beneficio 1: título"
+                name: v1b
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Beneficio 1: detalle"
+                name: v1s
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Beneficio 2: título"
+                name: v2b
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Beneficio 2: detalle"
+                name: v2s
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Beneficio 3: título"
+                name: v3b
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Beneficio 3: detalle"
+                name: v3s
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+          - label: "Colección"
+            name: coleccion
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Texto pequeño"
+                name: cat_eyebrow
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Título"
+                name: cat_h2
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Enlace a Etsy al final"
+                name: see_all
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+          - label: "Set destacado"
+            name: set_destacado
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Texto pequeño"
+                name: kit_eyebrow
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Título"
+                name: kit_h2
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Descripción"
+                name: kit_p
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: text }
+                  - { label: "Inglés", name: en, widget: text }
+              - label: "Texto del botón"
+                name: kit_cta
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - { label: "Precio que se muestra (ej.: $115)", name: kit_price, widget: string }
+              - { label: "Enlace del botón", name: kit_url, widget: string }
+          - label: "Reseñas"
+            name: resenas
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Texto pequeño"
+                name: rev_eyebrow
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Título"
+                name: rev_h2
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Enlace a todas las reseñas"
+                name: rev_all
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+          - label: "Cómo comprar"
+            name: como_comprar
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Título"
+                name: how_h2
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Paso 1: título"
+                name: s1h
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Paso 1: texto"
+                name: s1p
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: text }
+                  - { label: "Inglés", name: en, widget: text }
+              - label: "Paso 2: título"
+                name: s2h
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Paso 2: texto"
+                name: s2p
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: text }
+                  - { label: "Inglés", name: en, widget: text }
+              - label: "Paso 3: título"
+                name: s3h
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Paso 3: texto"
+                name: s3p
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: text }
+                  - { label: "Inglés", name: en, widget: text }
+          - label: "Preguntas frecuentes"
+            name: preguntas
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Título"
+                name: faq_h2
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Pregunta 1"
+                name: q1
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Respuesta 1"
+                name: a1
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: text }
+                  - { label: "Inglés", name: en, widget: text }
+              - label: "Pregunta 2"
+                name: q2
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Respuesta 2"
+                name: a2
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: text }
+                  - { label: "Inglés", name: en, widget: text }
+              - label: "Pregunta 3"
+                name: q3
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Respuesta 3"
+                name: a3
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: text }
+                  - { label: "Inglés", name: en, widget: text }
+              - label: "Pregunta 4"
+                name: q4
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Respuesta 4"
+                name: a4
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: text }
+                  - { label: "Inglés", name: en, widget: text }
+          - label: "Sección de Instagram"
+            name: instagram
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Título"
+                name: ig_h2
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Texto"
+                name: ig_p
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: text }
+                  - { label: "Inglés", name: en, widget: text }
+          - label: "Pie de página"
+            name: pie
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Descripción de la tienda"
+                name: foot_p
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: text }
+                  - { label: "Inglés", name: en, widget: text }
 
   - name: ajustes
     label: Ajustes
