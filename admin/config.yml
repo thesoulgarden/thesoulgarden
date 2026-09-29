@@ -428,3 +428,4 @@ collections:
         fields:
           - { label: "WhatsApp (con código de país, ej.: +19294133312)", name: whatsapp, widget: string, required: false }
           - { label: "Costo de envío en EE. UU. (USD, 0 = gratis)", name: shipping_cost, widget: number, value_type: float, min: 0, step: 0.5, default: 5, required: false }
+          - { label: "Código de GoatCounter (estadísticas)", name: goatcounter, widget: string, required: false, hint: "Solo el código, por ejemplo thesoulgarden (de thesoulgarden.goatcounter.com). Déjalo vacío para desactivar." }
