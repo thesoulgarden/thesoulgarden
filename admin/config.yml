@@ -54,6 +54,7 @@ collections:
                   - { label: "Disponible", value: disponible }
                   - { label: "Últimas unidades", value: ultimas }
                   - { label: "Agotado", value: agotado }
+              - { label: "Mostrar etiqueta \"Nuevo\"", name: nuevo, widget: boolean, default: false, required: false }
               - { label: "Foto", name: img, widget: image, hint: "Foto cuadrada, idealmente de 800 a 1200 px." }
               - { label: "Enlace en Etsy (opcional)", name: etsy_url, widget: string, required: false }
               - label: "Opciones con precio distinto (opcional)"
@@ -373,3 +374,4 @@ collections:
         format: json
         fields:
           - { label: "WhatsApp (con código de país, ej.: +19294133312)", name: whatsapp, widget: string, required: false }
+          - { label: "Costo de envío en EE. UU. (USD, 0 = gratis)", name: shipping_cost, widget: number, value_type: float, min: 0, step: 0.5, default: 5, required: false }
