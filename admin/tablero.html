@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Tablero · El Jardín de los Ángeles</title>
+<link rel="icon" type="image/png" href="/img/favicon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Karla:wght@400;500;700&display=swap">
+<style>
+:root{--ink:#1E2333;--muted:#4F5566;--accent:#2F4A7A;--line:#DCD5C8;--paper:#FBF9F4}
+*{box-sizing:border-box}
+body{margin:0;font-family:Karla,"Helvetica Neue",Helvetica,Arial,sans-serif;color:var(--ink);background:#F4F0E8;line-height:1.5;padding-bottom:env(safe-area-inset-bottom,0px)}
+header{background:var(--ink);color:#F4F0E8;padding:calc(18px + env(safe-area-inset-top,0px)) 20px 18px}
+.hin{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:14px}
+.hin img{width:48px;height:48px;border-radius:12px}
+h1{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:clamp(24px,4vw,32px);margin:0}
+.sub{color:#C9C3B3;font-size:14px}
+main{max-width:1100px;margin:0 auto;padding:28px 20px 60px}
+h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:24px;margin:28px 0 14px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px}
+.kpi{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.kpi b{display:block;font-size:30px;font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.1}
+.kpi span{font-size:13px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.kpi small{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.tile{display:flex;gap:14px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;color:var(--ink);text-decoration:none;min-height:96px}
+.tile:hover{border-color:var(--accent);box-shadow:0 6px 18px rgba(30,35,51,.08)}
+.tile .ic{width:44px;height:44px;flex-shrink:0;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;background:#E3E8F1}
+.tile b{display:block;font-size:17px}
+.tile p{margin:2px 0 0;color:var(--muted);font-size:14px}
+.tile.main{background:var(--ink);color:#F4F0E8;border-color:var(--ink)}
+.tile.main p{color:#C9C3B3}.tile.main .ic{background:#F2D48A}
+.tile.off{opacity:.6}
+.lists{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.box{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px}
+.box h3{margin:0 0 8px;font-size:16px}
+.box ul{margin:0;padding-left:18px}.box li{margin:4px 0}
+.empty{color:var(--muted);font-style:italic}
+.note{color:var(--muted);font-size:13px;margin-top:24px}
+</style>
+</head>
+<body>
+<header><div class="hin">
+  <img src="/img/logo.png" alt="" width="48" height="48">
+  <div><h1>Tablero de la tienda</h1><div class="sub">Todo lo de El Jardín de los Ángeles en un solo lugar</div></div>
+</div></header>
+<main>
+  <h2>Resumen</h2>
+  <div class="kpis">
+    <div class="kpi"><span>Visitas totales</span><b id="k-visits">—</b><small id="k-visits-note">Desde que activaste GoatCounter</small></div>
+    <div class="kpi"><span>Productos</span><b id="k-prod">—</b><small>En la página</small></div>
+    <div class="kpi"><span>Agotados</span><b id="k-out">—</b><small>Marcados en el catálogo</small></div>
+    <div class="kpi"><span>Últimas unidades</span><b id="k-last">—</b><small>Marcados en el catálogo</small></div>
+    <div class="kpi"><span>Ofertas activas</span><b id="k-offers">—</b><small id="k-offers-note">Ahora mismo</small></div>
+  </div>
+
+  <h2>Accesos</h2>
+  <div class="grid">
+    <a class="tile main" href="/admin/"><div class="ic">✏️</div><div><b>Editar la tienda</b><p>Productos, fotos, precios, textos, ofertas y ajustes.</p></div></a>
+    <a class="tile" id="t-stats" href="https://www.goatcounter.com/" target="_blank" rel="noopener"><div class="ic">📈</div><div><b>Estadísticas</b><p id="t-stats-p">Visitas, productos vistos, carritos y pedidos.</p></div></a>
+    <a class="tile" id="t-inv" href="#" target="_blank" rel="noopener"><div class="ic">📦</div><div><b>Inventario</b><p id="t-inv-p">Tu Google Sheet de stock, ventas y proyecciones.</p></div></a>
+    <a class="tile" href="/" target="_blank" rel="noopener"><div class="ic">🌸</div><div><b>Ver la tienda</b><p>thesoulgarden.netlify.app</p></div></a>
+    <a class="tile" href="https://www.etsy.com/your/shops/me/dashboard" target="_blank" rel="noopener"><div class="ic">🛍️</div><div><b>Etsy</b><p>Pedidos y mensajes de Etsy.</p></div></a>
+    <a class="tile" href="https://web.whatsapp.com/" target="_blank" rel="noopener"><div class="ic">💬</div><div><b>WhatsApp</b><p>Pedidos que llegan desde la página.</p></div></a>
+    <a class="tile" href="https://www.instagram.com/soul_garden147/" target="_blank" rel="noopener"><div class="ic">📷</div><div><b>Instagram</b><p>@soul_garden147</p></div></a>
+    <a class="tile" href="https://search.google.com/search-console" target="_blank" rel="noopener"><div class="ic">🔎</div><div><b>Google</b><p>Search Console: cómo te encuentran.</p></div></a>
+    <a class="tile" href="https://app.netlify.com/" target="_blank" rel="noopener"><div class="ic">🚀</div><div><b>Netlify</b><p>Publicaciones de la página.</p></div></a>
+    <a class="tile" href="https://github.com/thesoulgarden/thesoulgarden" target="_blank" rel="noopener"><div class="ic">🗂️</div><div><b>GitHub</b><p>Archivos y colaboradores.</p></div></a>
+  </div>
+
+  <h2>Qué atender</h2>
+  <div class="lists">
+    <div class="box"><h3>Agotados</h3><ul id="l-out"><li class="empty">Cargando…</li></ul></div>
+    <div class="box"><h3>Últimas unidades</h3><ul id="l-last"><li class="empty">Cargando…</li></ul></div>
+    <div class="box"><h3>Ofertas</h3><ul id="l-offers"><li class="empty">Cargando…</li></ul></div>
+  </div>
+  <p class="note">Esta página solo muestra enlaces y datos que ya son públicos en tu tienda. Para editar, siempre se pide tu cuenta de GitHub.</p>
+</main>
+<script>
+(function(){
+  function j(u){return fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok) throw 0; return r.json();});}
+  function li(ul,items,empty){ul.innerHTML=items.length?items.map(function(x){var e=document.createElement('li');e.textContent=x;return e.outerHTML;}).join(''):'<li class="empty">'+empty+'</li>';}
+  function d(s){var x=new Date(String(s||''));return isNaN(x)?null:x;}
+  Promise.all([j('/data/settings.json').catch(function(){return {};}),j('/data/products.json').catch(function(){return {products:[]};}),j('/data/offers.json').catch(function(){return {campaigns:[]};})]).then(function(r){
+    var st=r[0]||{}, ps=(r[1]&&r[1].products)||[], cs=(r[2]&&r[2].campaigns)||[];
+    var code=String(st.goatcounter||'').trim().toLowerCase();
+    if(/^[a-z0-9-]{2,50}$/.test(code)){
+      document.getElementById('t-stats').href='https://'+code+'.goatcounter.com/';
+      fetch('https://'+code+'.goatcounter.com/counter/TOTAL.json').then(function(x){if(!x.ok) throw 0;return x.json();}).then(function(c){
+        document.getElementById('k-visits').textContent=c.count||'0';
+      }).catch(function(){document.getElementById('k-visits-note').textContent='Activa "visitor counter" en GoatCounter para ver el número aquí.';});
+    } else { document.getElementById('t-stats-p').textContent='Falta el código de GoatCounter en Editar la tienda → Ajustes.'; document.getElementById('t-stats').classList.add('off'); document.getElementById('k-visits-note').textContent='Sin configurar'; }
+    var inv=String(st.inventory_url||'').trim(), t=document.getElementById('t-inv');
+    if(/^https:\/\/docs\.google\.com\//.test(inv)) t.href=inv; else { t.classList.add('off'); t.removeAttribute('target'); t.href='/admin/'; document.getElementById('t-inv-p').textContent='Pega el enlace de tu Google Sheet en Editar la tienda → Ajustes.'; }
+    document.getElementById('k-prod').textContent=ps.length;
+    var out=ps.filter(function(p){return p.status==='agotado';}), last=ps.filter(function(p){return p.status==='ultimas';});
+    document.getElementById('k-out').textContent=out.length; document.getElementById('k-last').textContent=last.length;
+    li(document.getElementById('l-out'),out.map(function(p){return p.name_es;}),'Ninguno 🎉');
+    li(document.getElementById('l-last'),last.map(function(p){return p.name_es;}),'Ninguno');
+    var now=Date.now();
+    var act=cs.filter(function(c){var s=d(c.start),e=d(c.end);return c.active&&(!s||now>=s)&&(!e||now<=e);});
+    document.getElementById('k-offers').textContent=act.length;
+    li(document.getElementById('l-offers'),cs.map(function(c){
+      var s=d(c.start),e=d(c.end),state=!c.active?'desactivada':(s&&now<s?'programada':(e&&now>e?'terminada':'ACTIVA'));
+      return (c.name_es||c.id)+' · '+(c.discount||0)+'% · '+state+(e?' (hasta '+e.toLocaleDateString('es')+')':'');
+    }),'No hay campañas');
+  });
+})();
+</script>
+</body>
+</html>

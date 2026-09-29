@@ -7,7 +7,23 @@
   <title>Administrador · El Jardín de los Ángeles</title>
 </head>
 <body>
+  <a href="/admin/tablero.html" style="position:fixed;right:16px;bottom:16px;z-index:9999;background:#1E2333;color:#F4F0E8;padding:10px 16px;border-radius:999px;font:700 14px Karla,Arial,sans-serif;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.25)">← Tablero</a>
   <!-- Panel de administración (Decap CMS). El acceso se valida con GitHub en el servidor, no en esta página. -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    // Marca este navegador como administrador cuando hay sesión iniciada en el panel,
+    // para mostrar el atajo dorado en la tienda. Es solo un atajo: el acceso real lo valida GitHub.
+    (function(){
+      function check(){
+        try{
+          for(var i=0;i<localStorage.length;i++){
+            if(/cms[-_]?user/i.test(localStorage.key(i)||'')){ localStorage.setItem('jda_admin','1'); return true; }
+          }
+        }catch(e){}
+        return false;
+      }
+      if(!check()){ var n=0, t=setInterval(function(){ if(check()||++n>600) clearInterval(t); },1000); }
+    })();
+  </script>
 </body>
 </html>
