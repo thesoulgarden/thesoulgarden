@@ -67,6 +67,59 @@ collections:
                   - { label: "Opción (inglés)", name: label_en, widget: string }
                   - { label: "Precio (USD)", name: price, widget: number, value_type: float, min: 0, step: 0.5 }
 
+  - name: ofertas
+    label: Ofertas
+    editor: { preview: false }
+    files:
+      - name: campanas
+        label: Campañas por temporada
+        file: data/offers.json
+        format: json
+        fields:
+          - label: Campañas
+            name: campaigns
+            widget: list
+            label_singular: campaña
+            summary: "{{fields.name_es}} · {{fields.discount}}% · activa: {{fields.active}}"
+            fields:
+              - { label: "ID (código único, sin espacios, ej.: navidad-2026)", name: id, widget: string }
+              - { label: "Nombre (español)", name: name_es, widget: string }
+              - { label: "Nombre (inglés)", name: name_en, widget: string }
+              - { label: "Activar campaña", name: active, widget: boolean, default: false, hint: "Aunque esté activada, solo se aplica entre la fecha de inicio y la de fin." }
+              - { label: "Inicio", name: start, widget: datetime, format: "YYYY-MM-DDTHH:mm", date_format: "DD/MM/YYYY", time_format: "HH:mm", picker_utc: false }
+              - { label: "Fin", name: end, widget: datetime, format: "YYYY-MM-DDTHH:mm", date_format: "DD/MM/YYYY", time_format: "HH:mm", picker_utc: false }
+              - { label: "Descuento (%)", name: discount, widget: number, value_type: int, min: 1, max: 90 }
+              - label: "¿A qué se aplica?"
+                name: applies_to
+                widget: select
+                default: all
+                options:
+                  - { label: "Toda la tienda", value: all }
+                  - { label: "Una categoría", value: category }
+                  - { label: "Productos que yo elija", value: products }
+              - label: "Categoría (si elegiste 'Una categoría')"
+                name: category
+                widget: select
+                required: false
+                options:
+                  - { label: Rosarios, value: rosarios }
+                  - { label: Pulseras, value: pulseras }
+                  - { label: Agua de Lourdes, value: agua }
+                  - { label: Sets, value: sets }
+                  - { label: Bolsos y accesorios, value: bolsos }
+              - label: "Productos (si elegiste 'Productos que yo elija')"
+                name: products
+                widget: relation
+                collection: catalogo
+                file: productos
+                value_field: "products.*.id"
+                search_fields: ["products.*.name_es"]
+                display_fields: ["products.*.name_es"]
+                multiple: true
+                required: false
+              - { label: "Mensaje del anuncio (español)", name: banner_es, widget: string, required: false, hint: "Se muestra en la franja de arriba. Ej.: Navidad: 20% en sets de regalo" }
+              - { label: "Mensaje del anuncio (inglés)", name: banner_en, widget: string, required: false }
+
   - name: textos
     label: Textos de la página
     editor: { preview: false }

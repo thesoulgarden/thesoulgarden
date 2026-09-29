@@ -275,6 +275,19 @@ body.noscroll{overflow:hidden}
 .gift-l input{width:20px;height:20px;accent-color:var(--accent)}
 .cart-note-l[hidden]{display:none}
 .badge.new{background:#2F4A7A;color:#fff}
+/* Offers */
+.promo-bar{position:relative;z-index:21;background:#7A1F2B;color:#FFF6E8;display:flex;align-items:center;justify-content:center;gap:10px 16px;flex-wrap:wrap;padding:10px 56px 10px 20px;padding-top:calc(10px + env(safe-area-inset-top,0px));font-size:15px;text-align:center}
+.promo-bar[hidden]{display:none}
+.promo-text{font-weight:700}
+.promo-left{opacity:.85}
+.promo-go{color:#FFF6E8;font-weight:700;text-decoration:underline}
+.promo-x{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:40px;height:40px;border:0;background:transparent;color:#FFF6E8;font-size:24px;cursor:pointer}
+.badge.promo{left:auto;right:10px;background:#7A1F2B;color:#fff}
+.badge.promo.inline{position:static;display:inline-block;vertical-align:middle;margin-left:8px;font-size:12px}
+.was{color:var(--muted);font-weight:500;margin-right:4px}
+.now{color:#7A1F2B}
+.pill-promo{border-color:#7A1F2B;color:#7A1F2B}
+.pill-promo[aria-pressed="true"]{background:#7A1F2B;border-color:#7A1F2B;color:#fff}
 /* Contact button */
 .contact-fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
 .fab{min-height:56px;padding:0 22px 0 18px;border:0;border-radius:999px;background:var(--accent);color:#fff;font:700 16px var(--sans);display:flex;align-items:center;gap:10px;cursor:pointer;box-shadow:0 10px 30px rgba(30,35,51,.28)}
@@ -300,6 +313,12 @@ body.noscroll{overflow:hidden}
 </head>
 <body>
 
+<div class="promo-bar" id="promo-bar" role="region" aria-label="Oferta" data-i18n-aria="aria_promo" hidden>
+  <span class="promo-text" id="promo-text"></span>
+  <span class="promo-left" id="promo-left"></span>
+  <a href="#catalogo" class="promo-go" id="promo-go">Ver ofertas</a>
+  <button type="button" class="promo-x" id="promo-x" aria-label="Cerrar aviso" data-i18n-aria="aria_promo_close">×</button>
+</div>
 <header class="header">
   <div class="header-in">
     <a class="logo" href="#inicio">
@@ -486,10 +505,42 @@ body.noscroll{overflow:hidden}
 
 <script>
 (function(){
-  var I18N={"es": {"nav_col": "Colección", "nav_sets": "Sets de regalo", "nav_rev": "Reseñas", "nav_how": "Cómo comprar", "nav_faq": "Preguntas", "etsy_shop": "Tienda en Etsy", "hero_eyebrow": "Inspirado en Nuestra Señora de Lourdes · hecho a mano", "hero_h1": "Rosarios hechos a mano y agua bendita de Lourdes", "hero_p": "Piezas de devoción mariana para tu oración diaria o para regalar en bautizos, Primeras Comuniones y cumpleaños.", "hero_cta1": "Ver la colección", "hero_cta2": "Síguenos en Instagram", "v1b": "4.9 de 5 en Etsy", "v1s": "25 reseñas · más de 90 ventas", "v2b": "Envíos desde Woodhaven, NY", "v2s": "Empaque cuidadoso, listo para regalar", "v3b": "Hecho a mano con fe", "v3s": "Cada pieza se arma con cuidado", "cat_eyebrow": "La colección", "cat_h2": "Piezas para acompañar tu fe", "see_all": "Ver los 34 artículos en Etsy", "kit_eyebrow": "Set de regalo destacado", "kit_h2": "Set de devoción mariana con bolso Wayuu", "kit_p": "Un bolso Wayuu tejido a mano, un rosario aromático, agua bendita de Lourdes y velas. Un regalo completo para alguien especial.", "kit_cta": "Ver el set en Etsy", "rev_eyebrow": "Reseñas en Etsy", "rev_h2": "Lo que dicen nuestros clientes", "rev_all": "Leer las 25 reseñas en Etsy", "how_h2": "De nuestras manos a las tuyas", "s1h": "Elige tu pieza", "s1p": "Explora la colección y abre el artículo en Etsy para ver fotos, opciones de color y la fecha estimada de entrega.", "s2h": "La preparamos a mano", "s2p": "Cada rosario y pulsera se arma a mano. Muchas piezas pueden llevar agua bendita de Lourdes como opción.", "s3h": "Recíbela lista para regalar", "s3p": "Enviamos desde Woodhaven, NY, con empaque cuidadoso, ideal para bautizos, Primeras Comuniones y cumpleaños.", "faq_eyebrow": "Preguntas frecuentes", "faq_h2": "Lo que suelen preguntarnos", "q1": "¿De dónde viene el agua bendita?", "a1": "Proviene de la Gruta de Massabielle, en Lourdes, Francia. Se ofrece en frascos de 0.5 oz y como opción en varios rosarios y pulseras.", "q2": "¿Puedo elegir colores o diseños?", "a2": "Sí. Los llaveros con frasco vienen en plata, azul, amarillo, verde, morado y negro, y cada artículo muestra sus opciones en Etsy.", "q3": "¿Aceptan devoluciones?", "a3": "Sí, en los artículos que lo indican. Revisa la sección de envíos y devoluciones de cada producto en Etsy.", "q4": "¿Hacen pedidos especiales?", "a4": "Escríbenos por mensaje en Etsy o por Instagram y con gusto te ayudamos con recuerdos para bautizos, comuniones o eventos.", "ig_h2": "Mira las piezas nuevas primero en Instagram", "ig_p": "Compartimos cada rosario recién terminado, detrás de cámaras y novedades de la tienda.", "foot_p": "Rosarios, pulseras y regalos de devoción mariana hechos a mano.", "foot_shop": "Tienda", "foot_help": "Ayuda", "fab_label": "Escríbenos", "cart_title": "Tu carrito", "cart_note_l": "Nota para tu pedido (colores, personalización…)", "cart_ship": "Envío", "gift_l": "Es para regalo", "gift_msg_l": "Mensaje para la tarjeta (opcional)", "ship_note": "Envío dentro de EE. UU. Despacho en 1–2 días hábiles.", "foot_pol": "Envíos, devoluciones y privacidad", "cart_wa": "Enviar pedido por WhatsApp", "cart_soon": "Pronto: pago con PayPal, Venmo, tarjeta y Zelle.", "cart_keep": "Seguir comprando", "foot_admin": "Acceso de administrador", "admin_chip": "Panel de administración", "foot_msg": "Escríbenos en Etsy", "foot_follow": "Síguenos", "alt_hero": "Jardín celestial con ángeles, cascadas y flores bajo un cielo estrellado", "alt_kit": "Jardín paradisíaco con cascadas, flores de loto y un arco de luz", "alt_faq": "Río tranquilo bajo un arco de piedra cubierto de flores", "alt_ig": "Sendero de jardín bajo arcos de flores con luz entre los árboles", "aria_menu": "Abrir menú", "aria_filter": "Filtrar por categoría", "aria_nav": "Menú", "aria_values": "Por qué comprar con nosotros", "aria_main": "Principal", "ph_gift": "Ej.: Felicidades en tu Primera Comunión", "ph_note": "Ej.: frasco color azul", "aria_cart_close": "Cerrar carrito", "aria_pd_close": "Cerrar", "alt_logo": "Logo de El Jardín de los Ángeles", "rev_meta0": "Mayo 2026 · Agua bendita de Lourdes", "stars": "5 de 5 estrellas", "rev_meta1": "Agosto 2026 · Agua bendita de Lourdes", "rev_meta2": "Julio 2026 · Agua bendita de Lourdes", "rev_meta3": "Septiembre 2026 · Agua bendita de Lourdes", "menu_close": "Cerrar menú", "view": "Ver en Etsy", "from": "Desde", "title": "El Jardín de los Ángeles — rosarios y devoción mariana", "desc": "Rosarios hechos a mano, pulseras y agua bendita de Lourdes. Regalos de devoción mariana para bautizos, Primeras Comuniones y cumpleaños.", "wa_msg": "Hola, vi la página de El Jardín de los Ángeles y tengo una pregunta.", "add": "Agregar al carrito", "added": "Agregado", "added_short": "✓ Agregado", "option": "Opción", "empty": "Tu carrito está vacío.", "less": "Quitar uno", "more": "Agregar uno", "remove": "Quitar", "subtotal": "Subtotal", "cart": "Carrito", "note": "Nota", "wa_order": "Hola, quiero hacer este pedido desde la página:", "ship_line": "Envío", "aria_cart": "Carrito", "sold_out": "Agotado", "last_units": "Últimas unidades", "load_error": "No pudimos cargar el catálogo. Recarga la página o visítanos en Etsy.", "details": "Ver detalles", "ask_wa": "Preguntar por WhatsApp", "ask_wa_msg": "Hola, tengo una pregunta sobre:", "share": "Compartir", "copied": "Enlace copiado", "new": "Nuevo", "gift_line": "Es para regalo", "gift_card": "Mensaje para la tarjeta", "total": "Total", "aria_menu_open": "Abrir menú"}, "en": {"nav_col": "Collection", "nav_sets": "Gift sets", "nav_rev": "Reviews", "nav_how": "How to buy", "nav_faq": "FAQ", "etsy_shop": "Etsy shop", "hero_eyebrow": "Inspired by Our Lady of Lourdes · handmade", "hero_h1": "Handmade rosaries and Lourdes holy water", "hero_p": "Marian devotional pieces for your daily prayer, or to give as gifts for baptisms, First Communions and birthdays.", "hero_cta1": "Shop the collection", "hero_cta2": "Follow us on Instagram", "v1b": "Rated 4.9 of 5 on Etsy", "v1s": "25 reviews · 90+ sales", "v2b": "Ships from Woodhaven, NY", "v2s": "Carefully packed, ready to gift", "v3b": "Handmade with faith", "v3s": "Every piece is assembled with care", "cat_eyebrow": "The collection", "cat_h2": "Pieces to accompany your faith", "see_all": "See all 34 items on Etsy", "kit_eyebrow": "Featured gift set", "kit_h2": "Marian devotion gift set with Wayuu bag", "kit_p": "A hand-woven Wayuu bag, a scented rosary, Lourdes holy water and candles. A complete gift for someone special.", "kit_cta": "View the set on Etsy", "rev_eyebrow": "Etsy reviews", "rev_h2": "What our customers say", "rev_all": "Read all 25 reviews on Etsy", "how_h2": "From our hands to yours", "s1h": "Choose your piece", "s1p": "Browse the collection and open the item on Etsy to see photos, color options and the estimated delivery date.", "s2h": "We make it by hand", "s2p": "Every rosary and bracelet is assembled by hand. Many pieces can include Lourdes holy water as an option.", "s3h": "Receive it ready to gift", "s3p": "We ship from Woodhaven, NY, carefully packed and perfect for baptisms, First Communions and birthdays.", "faq_eyebrow": "Frequently asked questions", "faq_h2": "What people often ask us", "q1": "Where does the holy water come from?", "a1": "It comes from the Grotto of Massabielle in Lourdes, France. It is offered in 0.5 oz bottles and as an option on several rosaries and bracelets.", "q2": "Can I choose colors or designs?", "a2": "Yes. The bottle keychains come in silver, blue, yellow, green, purple and black, and each item shows its options on Etsy.", "q3": "Do you accept returns?", "a3": "Yes, on items that say so. Check the shipping and returns section of each product on Etsy.", "q4": "Do you take custom orders?", "a4": "Send us a message on Etsy or Instagram and we will gladly help with keepsakes for baptisms, communions or events.", "ig_h2": "See new pieces first on Instagram", "ig_p": "We share every newly finished rosary, behind the scenes and shop news.", "foot_p": "Handmade rosaries, bracelets and Marian devotional gifts.", "foot_shop": "Shop", "foot_help": "Help", "fab_label": "Message us", "cart_title": "Your cart", "cart_note_l": "Note for your order (colors, personalization…)", "cart_ship": "Shipping", "gift_l": "This is a gift", "gift_msg_l": "Gift card message (optional)", "ship_note": "Shipping within the U.S. Ships in 1–2 business days.", "foot_pol": "Shipping, returns & privacy", "cart_wa": "Send order via WhatsApp", "cart_soon": "Coming soon: pay with PayPal, Venmo, card and Zelle.", "cart_keep": "Keep shopping", "foot_admin": "Admin login", "admin_chip": "Admin panel", "foot_msg": "Message us on Etsy", "foot_follow": "Follow us", "alt_hero": "Heavenly garden with angels, waterfalls and flowers under a starry sky", "alt_kit": "Paradise garden with waterfalls, lotus flowers and an arch of light", "alt_faq": "Calm river under a stone arch covered in flowers", "alt_ig": "Garden path under flower arches with light through the trees", "aria_menu": "Open menu", "aria_filter": "Filter by category", "aria_nav": "Menu", "aria_values": "Why shop with us", "aria_main": "Main", "ph_gift": "E.g. Congratulations on your First Communion", "ph_note": "E.g. blue bottle", "aria_cart_close": "Close cart", "aria_pd_close": "Close", "alt_logo": "El Jardín de los Ángeles logo", "rev_meta0": "May 2026 · Lourdes holy water", "stars": "5 out of 5 stars", "rev_meta1": "August 2026 · Lourdes holy water", "rev_meta2": "July 2026 · Lourdes holy water", "rev_meta3": "September 2026 · Lourdes holy water", "menu_close": "Close menu", "view": "View on Etsy", "from": "From", "title": "El Jardín de los Ángeles — handmade rosaries & Marian devotion", "desc": "Handmade rosaries, bracelets and Lourdes holy water. Marian devotional gifts for baptisms, First Communions and birthdays.", "wa_msg": "Hi! I saw the El Jardín de los Ángeles website and I have a question.", "add": "Add to cart", "added": "Added", "added_short": "✓ Added", "option": "Option", "empty": "Your cart is empty.", "less": "Remove one", "more": "Add one", "remove": "Remove", "subtotal": "Subtotal", "cart": "Cart", "note": "Note", "wa_order": "Hi! I would like to place this order from the website:", "ship_line": "Shipping", "aria_cart": "Cart", "sold_out": "Sold out", "last_units": "Last few left", "load_error": "We could not load the catalog. Please reload the page or visit us on Etsy.", "details": "View details", "ask_wa": "Ask on WhatsApp", "ask_wa_msg": "Hi! I have a question about:", "share": "Share", "copied": "Link copied", "new": "New", "gift_line": "This is a gift", "gift_card": "Card message", "total": "Total", "aria_menu_open": "Open menu"}};
+  var I18N={"es": {"nav_col": "Colección", "nav_sets": "Sets de regalo", "nav_rev": "Reseñas", "nav_how": "Cómo comprar", "nav_faq": "Preguntas", "etsy_shop": "Tienda en Etsy", "hero_eyebrow": "Inspirado en Nuestra Señora de Lourdes · hecho a mano", "hero_h1": "Rosarios hechos a mano y agua bendita de Lourdes", "hero_p": "Piezas de devoción mariana para tu oración diaria o para regalar en bautizos, Primeras Comuniones y cumpleaños.", "hero_cta1": "Ver la colección", "hero_cta2": "Síguenos en Instagram", "v1b": "4.9 de 5 en Etsy", "v1s": "25 reseñas · más de 90 ventas", "v2b": "Envíos desde Woodhaven, NY", "v2s": "Empaque cuidadoso, listo para regalar", "v3b": "Hecho a mano con fe", "v3s": "Cada pieza se arma con cuidado", "cat_eyebrow": "La colección", "cat_h2": "Piezas para acompañar tu fe", "see_all": "Ver los 34 artículos en Etsy", "kit_eyebrow": "Set de regalo destacado", "kit_h2": "Set de devoción mariana con bolso Wayuu", "kit_p": "Un bolso Wayuu tejido a mano, un rosario aromático, agua bendita de Lourdes y velas. Un regalo completo para alguien especial.", "kit_cta": "Ver el set en Etsy", "rev_eyebrow": "Reseñas en Etsy", "rev_h2": "Lo que dicen nuestros clientes", "rev_all": "Leer las 25 reseñas en Etsy", "how_h2": "De nuestras manos a las tuyas", "s1h": "Elige tu pieza", "s1p": "Explora la colección y abre el artículo en Etsy para ver fotos, opciones de color y la fecha estimada de entrega.", "s2h": "La preparamos a mano", "s2p": "Cada rosario y pulsera se arma a mano. Muchas piezas pueden llevar agua bendita de Lourdes como opción.", "s3h": "Recíbela lista para regalar", "s3p": "Enviamos desde Woodhaven, NY, con empaque cuidadoso, ideal para bautizos, Primeras Comuniones y cumpleaños.", "faq_eyebrow": "Preguntas frecuentes", "faq_h2": "Lo que suelen preguntarnos", "q1": "¿De dónde viene el agua bendita?", "a1": "Proviene de la Gruta de Massabielle, en Lourdes, Francia. Se ofrece en frascos de 0.5 oz y como opción en varios rosarios y pulseras.", "q2": "¿Puedo elegir colores o diseños?", "a2": "Sí. Los llaveros con frasco vienen en plata, azul, amarillo, verde, morado y negro, y cada artículo muestra sus opciones en Etsy.", "q3": "¿Aceptan devoluciones?", "a3": "Sí, en los artículos que lo indican. Revisa la sección de envíos y devoluciones de cada producto en Etsy.", "q4": "¿Hacen pedidos especiales?", "a4": "Escríbenos por mensaje en Etsy o por Instagram y con gusto te ayudamos con recuerdos para bautizos, comuniones o eventos.", "ig_h2": "Mira las piezas nuevas primero en Instagram", "ig_p": "Compartimos cada rosario recién terminado, detrás de cámaras y novedades de la tienda.", "foot_p": "Rosarios, pulseras y regalos de devoción mariana hechos a mano.", "foot_shop": "Tienda", "foot_help": "Ayuda", "fab_label": "Escríbenos", "cart_title": "Tu carrito", "cart_note_l": "Nota para tu pedido (colores, personalización…)", "cart_ship": "Envío", "gift_l": "Es para regalo", "gift_msg_l": "Mensaje para la tarjeta (opcional)", "ship_note": "Envío dentro de EE. UU. Despacho en 1–2 días hábiles.", "foot_pol": "Envíos, devoluciones y privacidad", "cart_wa": "Enviar pedido por WhatsApp", "cart_soon": "Pronto: pago con PayPal, Venmo, tarjeta y Zelle.", "cart_keep": "Seguir comprando", "foot_admin": "Acceso de administrador", "admin_chip": "Panel de administración", "foot_msg": "Escríbenos en Etsy", "foot_follow": "Síguenos", "alt_hero": "Jardín celestial con ángeles, cascadas y flores bajo un cielo estrellado", "alt_kit": "Jardín paradisíaco con cascadas, flores de loto y un arco de luz", "alt_faq": "Río tranquilo bajo un arco de piedra cubierto de flores", "alt_ig": "Sendero de jardín bajo arcos de flores con luz entre los árboles", "aria_menu": "Abrir menú", "aria_filter": "Filtrar por categoría", "aria_nav": "Menú", "aria_values": "Por qué comprar con nosotros", "aria_main": "Principal", "ph_gift": "Ej.: Felicidades en tu Primera Comunión", "ph_note": "Ej.: frasco color azul", "aria_cart_close": "Cerrar carrito", "aria_pd_close": "Cerrar", "alt_logo": "Logo de El Jardín de los Ángeles", "rev_meta0": "Mayo 2026 · Agua bendita de Lourdes", "stars": "5 de 5 estrellas", "rev_meta1": "Agosto 2026 · Agua bendita de Lourdes", "rev_meta2": "Julio 2026 · Agua bendita de Lourdes", "rev_meta3": "Septiembre 2026 · Agua bendita de Lourdes", "menu_close": "Cerrar menú", "view": "Ver en Etsy", "from": "Desde", "title": "El Jardín de los Ángeles — rosarios y devoción mariana", "desc": "Rosarios hechos a mano, pulseras y agua bendita de Lourdes. Regalos de devoción mariana para bautizos, Primeras Comuniones y cumpleaños.", "wa_msg": "Hola, vi la página de El Jardín de los Ángeles y tengo una pregunta.", "add": "Agregar al carrito", "added": "Agregado", "added_short": "✓ Agregado", "option": "Opción", "empty": "Tu carrito está vacío.", "less": "Quitar uno", "more": "Agregar uno", "remove": "Quitar", "subtotal": "Subtotal", "cart": "Carrito", "note": "Nota", "wa_order": "Hola, quiero hacer este pedido desde la página:", "ship_line": "Envío", "aria_cart": "Carrito", "sold_out": "Agotado", "last_units": "Últimas unidades", "load_error": "No pudimos cargar el catálogo. Recarga la página o visítanos en Etsy.", "details": "Ver detalles", "ask_wa": "Preguntar por WhatsApp", "ask_wa_msg": "Hola, tengo una pregunta sobre:", "share": "Compartir", "copied": "Enlace copiado", "new": "Nuevo", "gift_line": "Es para regalo", "gift_card": "Mensaje para la tarjeta", "total": "Total", "offers": "Ofertas", "ends_in": "Termina en", "days": "días", "ends_today": "Termina hoy", "see_offers": "Ver ofertas", "offer_word": "oferta", "aria_promo": "Oferta", "aria_promo_close": "Cerrar aviso", "aria_menu_open": "Abrir menú"}, "en": {"nav_col": "Collection", "nav_sets": "Gift sets", "nav_rev": "Reviews", "nav_how": "How to buy", "nav_faq": "FAQ", "etsy_shop": "Etsy shop", "hero_eyebrow": "Inspired by Our Lady of Lourdes · handmade", "hero_h1": "Handmade rosaries and Lourdes holy water", "hero_p": "Marian devotional pieces for your daily prayer, or to give as gifts for baptisms, First Communions and birthdays.", "hero_cta1": "Shop the collection", "hero_cta2": "Follow us on Instagram", "v1b": "Rated 4.9 of 5 on Etsy", "v1s": "25 reviews · 90+ sales", "v2b": "Ships from Woodhaven, NY", "v2s": "Carefully packed, ready to gift", "v3b": "Handmade with faith", "v3s": "Every piece is assembled with care", "cat_eyebrow": "The collection", "cat_h2": "Pieces to accompany your faith", "see_all": "See all 34 items on Etsy", "kit_eyebrow": "Featured gift set", "kit_h2": "Marian devotion gift set with Wayuu bag", "kit_p": "A hand-woven Wayuu bag, a scented rosary, Lourdes holy water and candles. A complete gift for someone special.", "kit_cta": "View the set on Etsy", "rev_eyebrow": "Etsy reviews", "rev_h2": "What our customers say", "rev_all": "Read all 25 reviews on Etsy", "how_h2": "From our hands to yours", "s1h": "Choose your piece", "s1p": "Browse the collection and open the item on Etsy to see photos, color options and the estimated delivery date.", "s2h": "We make it by hand", "s2p": "Every rosary and bracelet is assembled by hand. Many pieces can include Lourdes holy water as an option.", "s3h": "Receive it ready to gift", "s3p": "We ship from Woodhaven, NY, carefully packed and perfect for baptisms, First Communions and birthdays.", "faq_eyebrow": "Frequently asked questions", "faq_h2": "What people often ask us", "q1": "Where does the holy water come from?", "a1": "It comes from the Grotto of Massabielle in Lourdes, France. It is offered in 0.5 oz bottles and as an option on several rosaries and bracelets.", "q2": "Can I choose colors or designs?", "a2": "Yes. The bottle keychains come in silver, blue, yellow, green, purple and black, and each item shows its options on Etsy.", "q3": "Do you accept returns?", "a3": "Yes, on items that say so. Check the shipping and returns section of each product on Etsy.", "q4": "Do you take custom orders?", "a4": "Send us a message on Etsy or Instagram and we will gladly help with keepsakes for baptisms, communions or events.", "ig_h2": "See new pieces first on Instagram", "ig_p": "We share every newly finished rosary, behind the scenes and shop news.", "foot_p": "Handmade rosaries, bracelets and Marian devotional gifts.", "foot_shop": "Shop", "foot_help": "Help", "fab_label": "Message us", "cart_title": "Your cart", "cart_note_l": "Note for your order (colors, personalization…)", "cart_ship": "Shipping", "gift_l": "This is a gift", "gift_msg_l": "Gift card message (optional)", "ship_note": "Shipping within the U.S. Ships in 1–2 business days.", "foot_pol": "Shipping, returns & privacy", "cart_wa": "Send order via WhatsApp", "cart_soon": "Coming soon: pay with PayPal, Venmo, card and Zelle.", "cart_keep": "Keep shopping", "foot_admin": "Admin login", "admin_chip": "Admin panel", "foot_msg": "Message us on Etsy", "foot_follow": "Follow us", "alt_hero": "Heavenly garden with angels, waterfalls and flowers under a starry sky", "alt_kit": "Paradise garden with waterfalls, lotus flowers and an arch of light", "alt_faq": "Calm river under a stone arch covered in flowers", "alt_ig": "Garden path under flower arches with light through the trees", "aria_menu": "Open menu", "aria_filter": "Filter by category", "aria_nav": "Menu", "aria_values": "Why shop with us", "aria_main": "Main", "ph_gift": "E.g. Congratulations on your First Communion", "ph_note": "E.g. blue bottle", "aria_cart_close": "Close cart", "aria_pd_close": "Close", "alt_logo": "El Jardín de los Ángeles logo", "rev_meta0": "May 2026 · Lourdes holy water", "stars": "5 out of 5 stars", "rev_meta1": "August 2026 · Lourdes holy water", "rev_meta2": "July 2026 · Lourdes holy water", "rev_meta3": "September 2026 · Lourdes holy water", "menu_close": "Close menu", "view": "View on Etsy", "from": "From", "title": "El Jardín de los Ángeles — handmade rosaries & Marian devotion", "desc": "Handmade rosaries, bracelets and Lourdes holy water. Marian devotional gifts for baptisms, First Communions and birthdays.", "wa_msg": "Hi! I saw the El Jardín de los Ángeles website and I have a question.", "add": "Add to cart", "added": "Added", "added_short": "✓ Added", "option": "Option", "empty": "Your cart is empty.", "less": "Remove one", "more": "Add one", "remove": "Remove", "subtotal": "Subtotal", "cart": "Cart", "note": "Note", "wa_order": "Hi! I would like to place this order from the website:", "ship_line": "Shipping", "aria_cart": "Cart", "sold_out": "Sold out", "last_units": "Last few left", "load_error": "We could not load the catalog. Please reload the page or visit us on Etsy.", "details": "View details", "ask_wa": "Ask on WhatsApp", "ask_wa_msg": "Hi! I have a question about:", "share": "Share", "copied": "Link copied", "new": "New", "gift_line": "This is a gift", "gift_card": "Card message", "total": "Total", "offers": "Offers", "ends_in": "Ends in", "days": "days", "ends_today": "Ends today", "see_offers": "See offers", "offer_word": "offer", "aria_promo": "Offer", "aria_promo_close": "Close banner", "aria_menu_open": "Open menu"}};
   var CATS={"todo": {"es": "Todo", "en": "All"}, "rosarios": {"es": "Rosarios", "en": "Rosaries"}, "pulseras": {"es": "Pulseras", "en": "Bracelets"}, "agua": {"es": "Agua de Lourdes", "en": "Lourdes water"}, "sets": {"es": "Sets", "en": "Sets"}, "bolsos": {"es": "Bolsos y accesorios", "en": "Bags & accessories"}};
   // Los productos y ajustes se editan desde el panel /admin (data/products.json y data/settings.json)
-  var products=[], byId={}, WHATSAPP='', SHIPPING=5;
+  var products=[], byId={}, WHATSAPP='', SHIPPING=5, CAMPAIGNS=[];
+  /* ---------- Ofertas por temporada (data/offers.json, editable en /admin) ---------- */
+  function parseDate(s){ if(!s) return null; var d=new Date(String(s)); return isNaN(d)?null:d.getTime(); }
+  function activeCampaigns(){
+    var now=Date.now();
+    return CAMPAIGNS.filter(function(c){
+      if(!c||!c.active) return false;
+      var st=parseDate(c.start), en=parseDate(c.end);
+      return (st==null||now>=st)&&(en==null||now<=en)&&num(c.discount)>0&&num(c.discount)<100;
+    });
+  }
+  function campaignApplies(c,p){
+    var to=c.applies_to||'all';
+    if(to==='all') return true;
+    if(to==='category') return c.category===p.cat;
+    if(to==='products') return (c.products||[]).map(String).indexOf(String(p.id))>=0;
+    return false;
+  }
+  function assignPromos(){
+    var act=activeCampaigns();
+    products.forEach(function(p){
+      var best=null;
+      act.forEach(function(c){ if(campaignApplies(c,p)&&(!best||num(c.discount)>num(best.discount))) best=c; });
+      p.promo=best?{pct:num(best.discount),name:{es:best.name_es||'',en:best.name_en||best.name_es||''},end:best.end,id:best.id}:null;
+    });
+    return act;
+  }
+  function basePrice(p,v){return (v!=null&&p.variants)?p.variants[v].price:p.price;}
+  function effPrice(p,v){var b=basePrice(p,v);return p.promo?Math.round(b*(100-p.promo.pct))/100:b;}
+  function priceHtml(p,v){
+    var b=basePrice(p,v), e=effPrice(p,v);
+    return p.promo?'<s class="was">'+money(b)+'</s> <span class="now">'+money(e)+'</span>':money(b);
+  }
   var lang='en', cur='todo';
   function num(x){var n=parseFloat(x);return isNaN(n)?0:n;}
   function normalize(raw){
@@ -510,8 +561,8 @@ body.noscroll{overflow:hidden}
   var cart=[];
   try{var saved=JSON.parse(localStorage.getItem('cart_v1')||'[]'); if(Array.isArray(saved)) cart=saved;}catch(e){}
   function saveCart(){try{localStorage.setItem('cart_v1',JSON.stringify(cart));}catch(e){}}
-  function linePrice(l){var p=byId[l.id];return (l.v!=null&&p.variants)?p.variants[l.v].price:p.price;}
-  function lineName(l){var p=byId[l.id];return p.name[lang]+(l.v!=null&&p.variants?' — '+p.variants[l.v].label[lang]:'');}
+  function linePrice(l){var p=byId[l.id];return effPrice(p,(l.v!=null&&p.variants)?l.v:null);}
+  function lineName(l){var p=byId[l.id];return p.name[lang]+(l.v!=null&&p.variants?' — '+p.variants[l.v].label[lang]:'')+(p.promo?' ['+t('offer_word')+' '+p.promo.name[lang]+' -'+p.promo.pct+'%]':'');}
   function count(){return cart.reduce(function(s,l){return s+l.q;},0);}
   function subtotal(){return cart.reduce(function(s,l){return s+linePrice(l)*l.q;},0);}
   function addToCart(id,v){
@@ -524,18 +575,21 @@ body.noscroll{overflow:hidden}
 
   /* ---------- Catalog ---------- */
   function render(){
-    var order=['todo','rosarios','pulseras','agua','sets','bolsos'];
+    var hasPromo=products.some(function(p){return p.promo;});
+    if(!hasPromo&&cur==='ofertas') cur='todo';
+    var order=(hasPromo?['todo','ofertas']:['todo']).concat(['rosarios','pulseras','agua','sets','bolsos']);
     document.getElementById('cats').innerHTML=order.map(function(c){
-      return '<button type="button" class="pill" data-c="'+c+'" aria-pressed="'+(c===cur)+'">'+CATS[c][lang]+'</button>';
+      return '<button type="button" class="pill'+(c==='ofertas'?' pill-promo':'')+'" data-c="'+c+'" aria-pressed="'+(c===cur)+'">'+(c==='ofertas'?t('offers'):CATS[c][lang])+'</button>';
     }).join('');
-    document.getElementById('items').innerHTML=products.filter(function(p){return cur==='todo'||p.cat===cur;}).map(function(p){
+    document.getElementById('items').innerHTML=products.filter(function(p){return cur==='todo'||(cur==='ofertas'?!!p.promo:p.cat===cur);}).map(function(p){
       var n=p.name[lang], sel='';
       if(p.variants){
         sel='<label class="vlabel"><span>'+t('option')+'</span><select class="vsel" data-id="'+p.id+'">'+
           p.variants.map(function(v,i){return '<option value="'+i+'">'+esc(v.label[lang])+'</option>';}).join('')+'</select></label>';
       }
-      var price=p.variants?money(p.variants[0].price):money(p.price);
+      var price=priceHtml(p,p.variants?0:null);
       var out=p.status==='agotado', badge=out?'<span class="badge out">'+t('sold_out')+'</span>':(p.status==='ultimas'?'<span class="badge last">'+t('last_units')+'</span>':(p.isNew?'<span class="badge new">'+t('new')+'</span>':''));
+      if(p.promo&&!out) badge+='<span class="badge promo">-'+p.promo.pct+'%</span>';
       var href='#p='+encodeURIComponent(p.id);
       return '<article class="card'+(out?' is-out':'')+'"><a class="open" href="'+href+'" data-open="'+esc(p.id)+'" aria-label="'+esc(t('details')+': '+n)+'"><div class="tile">'+badge+(p.img?'<img src="'+esc(p.img)+'" alt="'+esc(n)+'" loading="lazy" width="360" height="360">':'')+'</div></a>'+
         '<div><div class="kind">'+CATS[p.cat][lang]+'</div><h3><a class="open" href="'+href+'" data-open="'+esc(p.id)+'">'+esc(n)+'</a></h3><p>'+esc(p.desc[lang])+'</p></div>'+
@@ -545,7 +599,7 @@ body.noscroll{overflow:hidden}
     }).join('');
     qsa('#cats .pill').forEach(function(b){b.addEventListener('click',function(){cur=b.getAttribute('data-c');render();});});
     qsa('#items .vsel').forEach(function(s){s.addEventListener('change',function(){
-      var p=byId[s.getAttribute('data-id')]; s.closest('.card-foot').querySelector('.price').textContent=money(p.variants[+s.value].price);});});
+      var p=byId[s.getAttribute('data-id')]; s.closest('.card-foot').querySelector('.price').innerHTML=priceHtml(p,+s.value);});});
     qsa('#items .add[data-id]').forEach(function(b){b.addEventListener('click',function(){
       var id=b.getAttribute('data-id'), s=b.closest('.card-foot').querySelector('.vsel');
       addToCart(id, s?parseInt(s.value,10):null);
@@ -567,11 +621,11 @@ body.noscroll{overflow:hidden}
     document.getElementById('pd-cat').textContent=CATS[p.cat][lang];
     document.getElementById('pd-name').textContent=p.name[lang];
     document.getElementById('pd-desc').textContent=p.desc[lang];
-    document.getElementById('pd-price').textContent=money(pdPrice(p,v));
+    document.getElementById('pd-price').innerHTML=priceHtml(p,p.variants?v:null)+(p.promo&&!out?' <span class="badge promo inline">-'+p.promo.pct+'% · '+esc(p.promo.name[lang])+'</span>':'');
     var vw=document.getElementById('pd-vwrap'), vs=document.getElementById('pd-vsel');
     vw.hidden=!p.variants;
     if(p.variants){document.getElementById('pd-vlabel').textContent=t('option');
-      vs.innerHTML=p.variants.map(function(x,i){return '<option value="'+i+'"'+(i===v?' selected':'')+'>'+esc(x.label[lang])+' · '+money(x.price)+'</option>';}).join('');}
+      vs.innerHTML=p.variants.map(function(x,i){return '<option value="'+i+'"'+(i===v?' selected':'')+'>'+esc(x.label[lang])+' · '+money(effPrice(p,i))+'</option>';}).join('');}
     var add=document.getElementById('pd-add'); add.disabled=out; add.textContent=out?t('sold_out'):t('add');
     var e=document.getElementById('pd-etsy'); e.hidden=!p.url; e.href=p.url||'#'; e.textContent=t('view');
     var w=document.getElementById('pd-wa'); w.hidden=!WHATSAPP; w.textContent=t('ask_wa');
@@ -681,7 +735,7 @@ body.noscroll{overflow:hidden}
     var wa=document.getElementById('fab-wa');
     if(WHATSAPP){wa.hidden=false;wa.href='https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(t('wa_msg'));}
     var pl=document.getElementById('pol-link'); if(pl) pl.href='/politicas.html'+(lang==='es'?'?lang=es':'');
-    render(); renderCart(); if(!pd.hidden) fillPd();
+    render(); renderCart(); if(!pd.hidden) fillPd(); fillPromoBar();
     if(save){try{localStorage.setItem('lang',lang);}catch(e){}}
   }
   var start='en';
@@ -690,9 +744,10 @@ body.noscroll{overflow:hidden}
   function ld(){ // datos estructurados para Google, generados desde el catálogo
     var SITE='https://thesoulgarden.netlify.app/';
     var data={'@context':'https://schema.org','@type':'ItemList','name':'Collection','itemListElement':products.map(function(p,i){
-      var price=p.variants?Math.min.apply(null,p.variants.map(function(v){return v.price;})):p.price;
+      var price=p.variants?Math.min.apply(null,p.variants.map(function(v,i){return effPrice(p,i);})):effPrice(p,null);
+      var until=p.promo&&parseDate(p.promo.end)?new Date(parseDate(p.promo.end)).toISOString().slice(0,10):undefined;
       return {'@type':'ListItem','position':i+1,'item':{'@type':'Product','name':p.name.en,'description':p.desc.en,'image':p.img?SITE+p.img.replace(/^\//,''):undefined,
-        'brand':{'@type':'Brand','name':'El Jardín de los Ángeles'},'offers':{'@type':'Offer','priceCurrency':'USD','price':price.toFixed(2),
+        'brand':{'@type':'Brand','name':'El Jardín de los Ángeles'},'offers':{'@type':'Offer','priceCurrency':'USD','price':price.toFixed(2),'priceValidUntil':until,
         'availability':'https://schema.org/'+(p.status==='agotado'?'OutOfStock':(p.status==='ultimas'?'LimitedAvailability':'InStock')),'url':SITE+'#p='+encodeURIComponent(p.id),
         'shippingDetails':{'@type':'OfferShippingDetails','shippingRate':{'@type':'MonetaryAmount','value':SHIPPING.toFixed(2),'currency':'USD'},
           'shippingDestination':{'@type':'DefinedRegion','addressCountry':'US'},
@@ -701,6 +756,22 @@ body.noscroll{overflow:hidden}
         'hasMerchantReturnPolicy':{'@type':'MerchantReturnPolicy','applicableCountry':'US','returnPolicyCategory':'https://schema.org/MerchantReturnFiniteReturnWindow',
           'merchantReturnDays':30,'returnMethod':'https://schema.org/ReturnByMail','returnFees':'https://schema.org/ReturnShippingFees'}}}};})};
     var s=document.createElement('script');s.type='application/ld+json';s.textContent=JSON.stringify(data);document.head.appendChild(s);
+  }
+  function promoBar(act){
+    var bar=document.getElementById('promo-bar'); if(!bar||!act.length) return;
+    var c=act.slice().sort(function(x,y){return num(y.discount)-num(x.discount);})[0];
+    try{ if(sessionStorage.getItem('promo_closed')===String(c.id||c.name_es)) return; }catch(e){}
+    bar._c=c; bar.hidden=false; document.body.classList.add('has-promo'); fillPromoBar();
+    document.getElementById('promo-go').onclick=function(e){e.preventDefault();cur='ofertas';render();document.getElementById('catalogo').scrollIntoView({behavior:'smooth'});};
+    document.getElementById('promo-x').onclick=function(){bar.hidden=true;document.body.classList.remove('has-promo');try{sessionStorage.setItem('promo_closed',String(c.id||c.name_es));}catch(e){}};
+  }
+  function fillPromoBar(){
+    var bar=document.getElementById('promo-bar'); if(!bar||bar.hidden||!bar._c) return; var c=bar._c;
+    var txt=(lang==='es'?c.banner_es:c.banner_en)||c.banner_es||(lang==='es'?c.name_es:(c.name_en||c.name_es))+' · -'+num(c.discount)+'%';
+    var en=parseDate(c.end), left='';
+    if(en){var d=Math.ceil((en-Date.now())/86400000); left=d<=1?t('ends_today'):t('ends_in')+' '+d+' '+t('days');}
+    document.getElementById('promo-text').textContent=txt; document.getElementById('promo-left').textContent=left;
+    document.getElementById('promo-go').textContent=t('see_offers');
   }
   function getJSON(u){return fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok) throw new Error(u+' '+r.status);return r.json();});}
   function applyTexts(tx){ // textos editables desde el panel: sobrescriben los predeterminados
@@ -717,9 +788,11 @@ body.noscroll{overflow:hidden}
       }
     });
   }
-  Promise.all([getJSON('data/products.json'),getJSON('data/settings.json').catch(function(){return {};}),getJSON('data/texts.json').catch(function(){return null;})]).then(function(res){
+  Promise.all([getJSON('data/products.json'),getJSON('data/settings.json').catch(function(){return {};}),getJSON('data/texts.json').catch(function(){return null;}),getJSON('data/offers.json').catch(function(){return {};})]).then(function(res){
+    CAMPAIGNS=(res[3]&&res[3].campaigns)||[];
     applyTexts(res[2]);
     products=normalize(res[0].products); byId={}; products.forEach(function(p){byId[p.id]=p;});
+    promoBar(assignPromos());
     WHATSAPP=String((res[1]&&res[1].whatsapp)||'').replace(/\D/g,'');
     if(res[1]&&res[1].shipping_cost!=null&&!isNaN(parseFloat(res[1].shipping_cost))) SHIPPING=Math.max(0,parseFloat(res[1].shipping_cost));
     cart=cart.filter(function(l){var p=byId[l.id];return p&&p.status!=='agotado'&&l.q>0&&(l.v==null||(p.variants&&p.variants[l.v]));}); saveCart();
