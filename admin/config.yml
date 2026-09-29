@@ -267,6 +267,45 @@ collections:
                 fields:
                   - { label: "Español", name: es, widget: string, required: false }
                   - { label: "Inglés", name: en, widget: string, required: false }
+          - label: "Video de Lourdes"
+            name: lourdes
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Texto pequeño"
+                name: lv_eyebrow
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Título"
+                name: lv_h2
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Párrafo 1"
+                name: lv_p1
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: text }
+                  - { label: "Inglés", name: en, widget: text }
+              - label: "Párrafo 2"
+                name: lv_p2
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: text }
+                  - { label: "Inglés", name: en, widget: text }
+              - label: "Botón del producto"
+                name: lv_cta
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - { label: "ID del producto que abre el botón", name: product_id, widget: string, required: false, hint: "Por defecto: 4424756906 (agua bendita de Lourdes)." }
+              - { label: "Enlace de Instagram", name: instagram_url, widget: string, required: false }
+              - { label: "Video (MP4, máx. ~20 MB)", name: video_url, widget: file, required: false, media_folder: "/video", public_folder: "/video", hint: "Opcional: sube un video nuevo para reemplazar el actual. Vertical y corto funciona mejor." }
+              - { label: "Imagen de portada del video", name: poster, widget: image, required: false }
           - label: "Reseñas"
             name: resenas
             widget: object
