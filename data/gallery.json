@@ -1,0 +1,64 @@
+{
+  "items": [
+    {
+      "id": "gruta-massabielle",
+      "type": "fotografia",
+      "img": "/img/galeria/gruta-massabielle.jpg",
+      "title_es": "La Gruta de Massabielle",
+      "title_en": "The Grotto of Massabielle",
+      "desc_es": "Peregrinos en oración frente a la gruta donde la Virgen se apareció a Santa Bernardita, en Lourdes, Francia.",
+      "desc_en": "Pilgrims praying before the grotto where the Virgin appeared to Saint Bernadette in Lourdes, France.",
+      "for_sale": false,
+      "price": 0,
+      "featured": true
+    },
+    {
+      "id": "virgen-coronada",
+      "type": "fotografia",
+      "img": "/img/galeria/virgen-coronada-atardecer.jpg",
+      "title_es": "La Virgen Coronada al atardecer",
+      "title_en": "The Crowned Virgin at sunset",
+      "desc_es": "La estatua de la Virgen Coronada en la explanada del Santuario de Lourdes.",
+      "desc_en": "The statue of the Crowned Virgin on the esplanade of the Sanctuary of Lourdes.",
+      "for_sale": false,
+      "price": 0,
+      "featured": true
+    },
+    {
+      "id": "velas",
+      "type": "fotografia",
+      "img": "/img/galeria/velas-peregrinos.jpg",
+      "title_es": "Las velas de los peregrinos",
+      "title_en": "The pilgrims' candles",
+      "desc_es": "Candeleros donde los peregrinos encienden velas por sus intenciones.",
+      "desc_en": "Candle stands where pilgrims light candles for their intentions.",
+      "for_sale": false,
+      "price": 0,
+      "featured": true
+    },
+    {
+      "id": "fuentes",
+      "type": "fotografia",
+      "img": "/img/galeria/fuentes-agua-lourdes.jpg",
+      "title_es": "Las fuentes de agua de Lourdes",
+      "title_en": "The Lourdes water fountains",
+      "desc_es": "Las fuentes donde se recoge el agua de la Gruta.",
+      "desc_en": "The fountains where water from the Grotto is collected.",
+      "for_sale": false,
+      "price": 0,
+      "featured": false
+    },
+    {
+      "id": "explanada",
+      "type": "fotografia",
+      "img": "/img/galeria/explanada-atardecer.jpg",
+      "title_es": "Atardecer en el Santuario",
+      "title_en": "Sunset at the Sanctuary",
+      "desc_es": "El cielo de Lourdes al caer la tarde.",
+      "desc_en": "The Lourdes sky as evening falls.",
+      "for_sale": false,
+      "price": 0,
+      "featured": false
+    }
+  ]
+}

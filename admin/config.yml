@@ -120,6 +120,42 @@ collections:
               - { label: "Mensaje del anuncio (español)", name: banner_es, widget: string, required: false, hint: "Se muestra en la franja de arriba. Ej.: Navidad: 20% en sets de regalo" }
               - { label: "Mensaje del anuncio (inglés)", name: banner_en, widget: string, required: false }
 
+  - name: galeria
+    label: Galería espiritual
+    editor: { preview: false }
+    files:
+      - name: obras
+        label: Fotografías, cuadros, pinturas y dibujos
+        file: data/gallery.json
+        format: json
+        fields:
+          - label: Obras
+            name: items
+            widget: list
+            label_singular: obra
+            summary: "{{fields.title_es}} · {{fields.type}}"
+            fields:
+              - { label: "ID (código único, sin espacios, ej.: virgen-acuarela-1)", name: id, widget: string }
+              - label: Tipo
+                name: type
+                widget: select
+                default: fotografia
+                options:
+                  - { label: "Fotografía", value: fotografia }
+                  - { label: "Cuadro", value: cuadro }
+                  - { label: "Pintura", value: pintura }
+                  - { label: "Dibujo", value: dibujo }
+              - { label: "Imagen", name: img, widget: image, media_folder: "/img/galeria", public_folder: "/img/galeria", hint: "JPG o PNG. Ideal entre 1200 y 2000 px por lado." }
+              - { label: "Título (español)", name: title_es, widget: string }
+              - { label: "Título (inglés)", name: title_en, widget: string }
+              - { label: "Descripción (español)", name: desc_es, widget: text, required: false }
+              - { label: "Descripción (inglés)", name: desc_en, widget: text, required: false }
+              - { label: "Mostrar en la página principal", name: featured, widget: boolean, default: false, required: false, hint: "Se muestran hasta 3 obras en la sección de la galería de la página principal." }
+              - { label: "Está a la venta", name: for_sale, widget: boolean, default: false, required: false }
+              - { label: "Precio (USD, opcional)", name: price, widget: number, value_type: float, min: 0, required: false }
+              - { label: "Vendida", name: sold, widget: boolean, default: false, required: false }
+              - { label: "Ocultar", name: hidden, widget: boolean, default: false, required: false }
+
   - name: textos
     label: Textos de la página
     editor: { preview: false }

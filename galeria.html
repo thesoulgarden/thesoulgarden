@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Spiritual gallery · El Jardín de los Ángeles</title>
+<meta name="description" content="Spiritual photographs, paintings, framed art and drawings from El Jardín de los Ángeles, including photos from the Grotto of Lourdes.">
+<link rel="canonical" href="https://thesoulgarden.netlify.app/galeria.html">
+<meta property="og:title" content="Spiritual gallery · El Jardín de los Ángeles">
+<meta property="og:image" content="https://thesoulgarden.netlify.app/img/galeria/gruta-massabielle.jpg">
+<meta name="theme-color" content="#1E2333">
+<link rel="icon" type="image/png" href="/img/favicon.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Karla:wght@400;500;700&display=swap">
+<style>
+:root{--ink:#1E2333;--muted:#4F5566;--accent:#2F4A7A;--line:#DCD5C8;--paper:#FBF9F4;--gold:#F2D48A;--pad:clamp(20px,6vw,120px)}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:Karla,"Helvetica Neue",Helvetica,Arial,sans-serif;color:var(--ink);background:#F4F0E8;line-height:1.5;padding-bottom:env(safe-area-inset-bottom,0px)}
+img{max-width:100%;display:block}
+a{color:var(--accent)}
+.header{position:sticky;top:0;z-index:20;background:rgba(251,247,238,.95);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.hin{height:68px;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(17px,2.2vw,22px);min-width:0}
+.logo img{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);flex-shrink:0}
+.right{display:flex;align-items:center;gap:10px}
+.back{min-height:44px;padding:0 18px;border:1px solid var(--ink);border-radius:999px;display:inline-flex;align-items:center;color:var(--ink);text-decoration:none;font-weight:700;font-size:15px;white-space:nowrap}
+.lang{display:flex;border:1px solid var(--ink);border-radius:999px;overflow:hidden;flex-shrink:0}
+.lang button{min-width:44px;height:40px;border:0;background:transparent;font:700 14px Karla,sans-serif;color:var(--ink);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:#F4F0E8}
+@media (max-width:560px){.logo span{display:none}.back{padding:0 14px;font-size:14px}}
+.hero{position:relative;padding:clamp(56px,9vw,104px) var(--pad) clamp(40px,6vw,64px);color:#FBF7EE;overflow:hidden;background:#1C2440}
+.hero::before{content:"";position:absolute;inset:0;background:url(/img/galeria/gruta-massabielle.jpg) center 40%/cover no-repeat;opacity:.38}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,24,46,.35),rgba(18,24,46,.85))}
+.hero>*{position:relative;z-index:1;max-width:760px}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+h1{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:clamp(36px,6vw,62px);line-height:1.05;margin:14px 0}
+.hero p{font-size:clamp(16px,2vw,19px);color:#E9E4D8;margin:0}
+main{padding:32px var(--pad) 80px}
+.pills{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;margin-bottom:28px}
+.pills::-webkit-scrollbar{display:none}
+.pill{flex:0 0 auto;min-height:44px;padding:0 18px;border-radius:999px;font:700 15px Karla,sans-serif;cursor:pointer;border:1px solid #B8B1A3;background:transparent;color:var(--ink)}
+.pill[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#F4F0E8}
+.grid{columns:3 280px;column-gap:20px}
+.item{break-inside:avoid;margin:0 0 20px;background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden;cursor:pointer;display:block;width:100%;padding:0;text-align:left;font:inherit;color:inherit}
+.item:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.item img{width:100%;height:auto;transition:transform .3s}
+.item:hover img{transform:scale(1.02)}
+.cap{padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px}
+.cap .kind{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#3E5578}
+.cap b{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:18px;line-height:1.25}
+.cap .sale{font-size:14px;font-weight:700;color:#7A1F2B}
+.empty{color:var(--muted);text-align:center;padding:40px 0}
+.lb-o{position:fixed;inset:0;background:rgba(10,14,28,.88);z-index:40}
+.lb{position:fixed;z-index:41;inset:0;display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top,0px)) 16px max(16px,env(safe-area-inset-bottom,0px))}
+.lb[hidden],.lb-o[hidden]{display:none}
+.lb-box{background:var(--paper);border-radius:22px;overflow:hidden;max-width:min(1100px,100%);max-height:100%;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(280px,1fr);box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.lb-img{background:#111;display:flex;align-items:center;justify-content:center;min-height:300px}
+.lb-img img{max-height:86vh;width:auto;max-width:100%;object-fit:contain}
+.lb-txt{padding:32px 28px;display:flex;flex-direction:column;gap:12px;overflow:auto;max-height:86vh}
+.lb-txt h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:clamp(24px,3vw,32px);line-height:1.15;margin:0}
+.lb-txt p{color:var(--muted);margin:0}
+.price{font-size:22px;font-weight:700}
+.btn{min-height:50px;padding:0 22px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;text-decoration:none;border:0;cursor:pointer;font-family:inherit}
+.btn-wa{background:#1E7E4A;color:#fff}
+.btn-ghost{border:1px solid var(--ink);color:var(--ink);background:transparent}
+.lb-actions{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.lb-close{position:fixed;top:max(14px,env(safe-area-inset-top,0px));right:14px;z-index:42;width:48px;height:48px;border-radius:999px;border:0;background:#FBF9F4;color:var(--ink);font-size:26px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.lb-nav{position:fixed;top:50%;transform:translateY(-50%);z-index:42;width:48px;height:48px;border-radius:999px;border:0;background:rgba(251,249,244,.92);font-size:24px;cursor:pointer}
+.lb-prev{left:12px}.lb-next{right:12px}
+@media (max-width:820px){.lb{align-items:flex-end;padding:0}.lb-box{grid-template-columns:1fr;border-radius:22px 22px 0 0;max-height:94vh;overflow:auto}.lb-img img{max-height:60vh}.lb-txt{max-height:none;padding:22px 20px calc(24px + env(safe-area-inset-bottom,0px))}.lb-nav{top:30%}}
+.cta{margin-top:40px;background:#1F2A44;color:#F4F0E8;border-radius:24px;padding:clamp(24px,5vw,48px);display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+.cta h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:clamp(24px,3.4vw,34px);margin:0;max-width:640px}
+.cta .btn{background:#F4F0E8;color:var(--ink)}
+footer{background:var(--ink);color:#B9B4A8;padding:28px var(--pad) calc(28px + env(safe-area-inset-bottom,0px));font-size:14px;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between}
+footer a{color:#D8D3C6}
+</style>
+</head>
+<body>
+<header class="header"><div class="hin">
+  <a class="logo" href="/" id="home-link"><img src="/img/logo.png" alt="" width="44" height="44"><span>El Jardín de los Ángeles</span></a>
+  <div class="right">
+    <a class="back" href="/" id="back-link" data-t="back">← Shop</a>
+    <div class="lang" role="group" aria-label="Language / Idioma"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="es" aria-pressed="false">ES</button></div>
+  </div>
+</div></header>
+
+<section class="hero">
+  <div class="eyebrow" data-t="eyebrow">Spiritual gallery</div>
+  <h1 data-t="h1">Images that lift the soul</h1>
+  <p data-t="intro">Photographs from our pilgrimage to Lourdes, paintings, framed art and drawings inspired by faith. Tap any image to see it up close.</p>
+</section>
+
+<main>
+  <div class="pills" id="pills" role="group" aria-label="Filter"></div>
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty" hidden data-t="empty">There are no pieces in this category yet. Come back soon.</p>
+  <div class="cta">
+    <h2 data-t="cta_h">Interested in a piece or a custom work?</h2>
+    <a class="btn" id="cta-btn" href="/" data-t="cta_b">Write to us</a>
+  </div>
+</main>
+
+<footer>
+  <span>© El Jardín de los Ángeles</span>
+  <span><a href="/" id="foot-home" data-t="foot_shop">Shop</a> · <a href="/politicas.html" data-t="foot_pol">Shipping, returns &amp; privacy</a> · <a href="https://www.instagram.com/soul_garden147/" target="_blank" rel="noopener">Instagram</a></span>
+</footer>
+
+<div class="lb-o" id="lb-o" hidden></div>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-labelledby="lb-title" hidden>
+  <button type="button" class="lb-close" id="lb-close" aria-label="Close">×</button>
+  <button type="button" class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">‹</button>
+  <button type="button" class="lb-nav lb-next" id="lb-next" aria-label="Next">›</button>
+  <div class="lb-box">
+    <div class="lb-img"><img id="lb-img" src="" alt=""></div>
+    <div class="lb-txt">
+      <div class="eyebrow" id="lb-kind" style="color:#3E5578"></div>
+      <h2 id="lb-title"></h2>
+      <p id="lb-desc"></p>
+      <div class="price" id="lb-price" hidden></div>
+      <div class="lb-actions">
+        <a class="btn btn-wa" id="lb-wa" href="#" target="_blank" rel="noopener" hidden></a>
+        <button type="button" class="btn btn-ghost" id="lb-share"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var T={
+    en:{title:'Spiritual gallery · El Jardín de los Ángeles',back:'← Shop',eyebrow:'Spiritual gallery',h1:'Images that lift the soul',
+      intro:'Photographs from our pilgrimage to Lourdes, paintings, framed art and drawings inspired by faith. Tap any image to see it up close.',
+      all:'All',fotografia:'Photographs',cuadro:'Framed art',pintura:'Paintings',dibujo:'Drawings',
+      empty:'There are no pieces in this category yet. Come back soon.',cta_h:'Interested in a piece or a custom work?',cta_b:'Write to us',
+      foot_shop:'Shop',foot_pol:'Shipping, returns & privacy',ask:'Ask about this piece on WhatsApp',ask_msg:'Hi! I am interested in this piece from your gallery:',
+      cta_msg:'Hi! I saw your spiritual gallery and I would like more information.',share:'Share',copied:'Link copied',for_sale:'Available',sold:'Sold',
+      close:'Close',prev:'Previous',next:'Next'},
+    es:{title:'Galería espiritual · El Jardín de los Ángeles',back:'← Tienda',eyebrow:'Galería espiritual',h1:'Imágenes que elevan el alma',
+      intro:'Fotografías de nuestra peregrinación a Lourdes, pinturas, cuadros y dibujos inspirados en la fe. Toca cualquier imagen para verla de cerca.',
+      all:'Todo',fotografia:'Fotografías',cuadro:'Cuadros',pintura:'Pinturas',dibujo:'Dibujos',
+      empty:'Todavía no hay obras en esta categoría. Vuelve pronto.',cta_h:'¿Te interesa una obra o un trabajo personalizado?',cta_b:'Escríbenos',
+      foot_shop:'Tienda',foot_pol:'Envíos, devoluciones y privacidad',ask:'Preguntar por esta obra en WhatsApp',ask_msg:'Hola, me interesa esta obra de su galería:',
+      cta_msg:'Hola, vi su galería espiritual y quisiera más información.',share:'Compartir',copied:'Enlace copiado',for_sale:'Disponible',sold:'Vendida',
+      close:'Cerrar',prev:'Anterior',next:'Siguiente'}
+  };
+  var lang='en', cur='all', items=[], shown=[], idx=-1, WA='', lastFocus=null;
+  var TYPES=['fotografia','cuadro','pintura','dibujo'];
+  function t(k){return (T[lang]&&T[lang][k])||T.en[k]||k;}
+  function esc(s){var d=document.createElement('div');d.textContent=String(s==null?'':s);return d.innerHTML;}
+  function money(n){n=parseFloat(n)||0;return '$'+n.toFixed(2).replace(/\.00$/,'');}
+  function title(it){return lang==='es'?(it.title_es||it.title_en||''):(it.title_en||it.title_es||'');}
+  function desc(it){return lang==='es'?(it.desc_es||it.desc_en||''):(it.desc_en||it.desc_es||'');}
+  function safeImg(u){u=String(u||'');return /^\/[\w\-\/\.]+\.(jpe?g|png|webp|gif)$/i.test(u)?u:'';}
+  function track(path,ttl){try{if(window.goatcounter&&window.goatcounter.count) window.goatcounter.count({path:path,title:ttl||path,event:true});}catch(e){}}
+
+  function renderPills(){
+    var used=TYPES.filter(function(ty){return items.some(function(it){return it.type===ty;});});
+    var order=['all'].concat(TYPES);
+    document.getElementById('pills').innerHTML=order.map(function(c){
+      var n=c==='all'?items.length:items.filter(function(it){return it.type===c;}).length;
+      return '<button type="button" class="pill" data-c="'+c+'" aria-pressed="'+(c===cur)+'">'+t(c)+(n?' · '+n:'')+'</button>';
+    }).join('');
+    [].forEach.call(document.querySelectorAll('#pills .pill'),function(b){b.addEventListener('click',function(){cur=b.getAttribute('data-c');render();});});
+  }
+  function render(){
+    renderPills();
+    shown=items.filter(function(it){return cur==='all'||it.type===cur;});
+    document.getElementById('empty').hidden=!!shown.length;
+    document.getElementById('grid').innerHTML=shown.map(function(it,i){
+      var sale=it.for_sale?'<span class="sale">'+(it.sold?t('sold'):(parseFloat(it.price)>0?money(it.price)+' · ':'')+t('for_sale'))+'</span>':'';
+      return '<button type="button" class="item" data-i="'+i+'"><img src="'+esc(safeImg(it.img))+'" alt="'+esc(title(it))+'" loading="lazy">'+
+        '<span class="cap"><span class="kind">'+esc(t(it.type))+'</span><b>'+esc(title(it))+'</b>'+sale+'</span></button>';
+    }).join('');
+    [].forEach.call(document.querySelectorAll('#grid .item'),function(b){b.addEventListener('click',function(){open(+b.getAttribute('data-i'));});});
+  }
+  function fill(){
+    var it=shown[idx]; if(!it) return;
+    var im=document.getElementById('lb-img'); im.src=safeImg(it.img); im.alt=title(it);
+    document.getElementById('lb-kind').textContent=t(it.type);
+    document.getElementById('lb-title').textContent=title(it);
+    document.getElementById('lb-desc').textContent=desc(it);
+    var pr=document.getElementById('lb-price');
+    pr.hidden=!it.for_sale; pr.textContent=it.sold?t('sold'):(parseFloat(it.price)>0?money(it.price):t('for_sale'));
+    var w=document.getElementById('lb-wa'); w.hidden=!WA; w.textContent=t('ask');
+    if(WA) w.href='https://wa.me/'+WA+'?text='+encodeURIComponent(t('ask_msg')+' '+title(it)+' — '+location.origin+'/galeria.html#'+encodeURIComponent(it.id||''));
+    document.getElementById('lb-share').textContent=t('share');
+    var multi=shown.length>1; document.getElementById('lb-prev').hidden=!multi; document.getElementById('lb-next').hidden=!multi;
+  }
+  function open(i){
+    idx=i; lastFocus=document.activeElement; fill();
+    document.getElementById('lb').hidden=false; document.getElementById('lb-o').hidden=false; document.body.style.overflow='hidden';
+    document.getElementById('lb-close').focus();
+    try{history.replaceState(null,'','#'+encodeURIComponent(shown[idx].id||''));}catch(e){}
+    track('galeria/'+(shown[idx].id||i),'Galería: '+(shown[idx].title_es||''));
+  }
+  function close(){
+    document.getElementById('lb').hidden=true; document.getElementById('lb-o').hidden=true; document.body.style.overflow='';
+    try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}
+    if(lastFocus&&lastFocus.focus) lastFocus.focus();
+  }
+  function step(d){ if(!shown.length) return; idx=(idx+d+shown.length)%shown.length; fill(); }
+  document.getElementById('lb-close').addEventListener('click',close);
+  document.getElementById('lb-o').addEventListener('click',close);
+  document.getElementById('lb-prev').addEventListener('click',function(){step(-1);});
+  document.getElementById('lb-next').addEventListener('click',function(){step(1);});
+  document.getElementById('lb-share').addEventListener('click',function(){
+    var it=shown[idx]; if(!it) return; var url=location.origin+'/galeria.html#'+encodeURIComponent(it.id||'');
+    if(navigator.share){navigator.share({title:title(it),url:url}).catch(function(){});}
+    else if(navigator.clipboard){navigator.clipboard.writeText(url).then(function(){document.getElementById('lb-share').textContent=t('copied');});}
+  });
+  document.addEventListener('keydown',function(e){
+    if(document.getElementById('lb').hidden) return;
+    if(e.key==='Escape') close(); else if(e.key==='ArrowLeft') step(-1); else if(e.key==='ArrowRight') step(1);
+  });
+  var sx=null; document.getElementById('lb').addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
+  document.getElementById('lb').addEventListener('touchend',function(e){ if(sx==null) return; var dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>50) step(dx<0?1:-1); sx=null; });
+
+  function setLang(l,save){
+    lang=(l==='es')?'es':'en'; document.documentElement.lang=lang; document.title=t('title');
+    [].forEach.call(document.querySelectorAll('[data-t]'),function(e){e.textContent=t(e.getAttribute('data-t'));});
+    [].forEach.call(document.querySelectorAll('.lang button'),function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-lang')===lang));});
+    document.getElementById('lb-close').setAttribute('aria-label',t('close'));
+    document.getElementById('lb-prev').setAttribute('aria-label',t('prev')); document.getElementById('lb-next').setAttribute('aria-label',t('next'));
+    var q=lang==='es'?'/?lang=es':'/';
+    ['home-link','back-link','foot-home'].forEach(function(id){document.getElementById(id).href=q;});
+    var cb=document.getElementById('cta-btn');
+    if(WA){cb.href='https://wa.me/'+WA+'?text='+encodeURIComponent(t('cta_msg'));cb.target='_blank';cb.rel='noopener';}
+    else {cb.href='https://ig.me/m/soul_garden147';cb.target='_blank';cb.rel='noopener';}
+    render(); if(!document.getElementById('lb').hidden) fill();
+    if(save){try{localStorage.setItem('lang',lang);}catch(e){}}
+  }
+  var start='en';
+  try{var q=new URLSearchParams(location.search).get('lang'),s=localStorage.getItem('lang'); start=(q==='es'||q==='en')?q:(s||start);}catch(e){}
+  [].forEach.call(document.querySelectorAll('.lang button'),function(b){b.addEventListener('click',function(){setLang(b.getAttribute('data-lang'),true);});});
+
+  function getJSON(u){return fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok) throw new Error(u);return r.json();});}
+  Promise.all([getJSON('/data/gallery.json').catch(function(){return {items:[]};}),getJSON('/data/settings.json').catch(function(){return {};})]).then(function(r){
+    items=((r[0]&&r[0].items)||[]).filter(function(it){return it&&safeImg(it.img)&&TYPES.indexOf(it.type)>=0&&it.hidden!==true;});
+    var st=r[1]||{}; WA=String(st.whatsapp||'').replace(/\D/g,'');
+    var code=String(st.goatcounter||'').trim().toLowerCase();
+    if(/^[a-z0-9-]{2,50}$/.test(code)&&!/^(localhost|127\.)/.test(location.hostname)){var sc=document.createElement('script');sc.async=true;sc.src='https://gc.zgo.at/count.js';sc.setAttribute('data-goatcounter','https://'+code+'.goatcounter.com/count');document.head.appendChild(sc);}
+    setLang(start,false);
+    var h=decodeURIComponent((location.hash||'').slice(1)); if(h){var i=shown.map(function(x){return x.id;}).indexOf(h); if(i>=0) open(i);}
+  });
+})();
+</script>
+</body>
+</html>
