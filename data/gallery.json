@@ -100,7 +100,12 @@
       "type": "pintura",
       "id": "alas-de-esperanza",
       "desc_es": "Un ave de plumas azules, verdes y rojas abre sus alas sobre un fondo amarillo y turquesa, con destellos brillantes.",
-      "for_sale": false
+      "for_sale": false,
+      "deal": {
+        "code": "ym8ctjt",
+        "price": 35,
+        "expires": "2026-10-06T03:59:00.000Z"
+      }
     },
     {
       "img": "/img/galeria/pajaro-sobre-la-rosa.jpg",
