@@ -155,6 +155,15 @@ collections:
               - { label: "Precio (USD, opcional)", name: price, widget: number, value_type: float, min: 0, required: false }
               - { label: "Vendida", name: sold, widget: boolean, default: false, required: false }
               - { label: "Ocultar", name: hidden, widget: boolean, default: false, required: false }
+              - label: "Oferta aceptada (se llena sola desde el Tablero)"
+                name: deal
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - { label: "Código", name: code, widget: string, required: false }
+                  - { label: "Precio acordado", name: price, widget: number, value_type: float, required: false }
+                  - { label: "Válido hasta", name: expires, widget: string, required: false }
 
   - name: textos
     label: Textos de la página

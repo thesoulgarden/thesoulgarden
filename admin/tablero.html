@@ -38,6 +38,31 @@ h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:24px;margin:28px
 .box ul{margin:0;padding-left:18px}.box li{margin:4px 0}
 .empty{color:var(--muted);font-style:italic}
 .note{color:var(--muted);font-size:13px;margin-top:24px}
+.deal-tool{display:flex;flex-direction:column;gap:14px}
+.dt-help{margin:0;color:var(--muted)}
+.dt-login{background:#FFF6DA;border:1px solid #F2D48A;border-radius:12px;padding:12px 14px}
+.dt-login[hidden],.dt-result[hidden]{display:none}
+.dt-form{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:12px;align-items:end}
+.dt-form label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700;color:var(--muted)}
+.dt-form select,.dt-form input{font:16px Karla,sans-serif;min-height:48px;padding:0 12px;border:1px solid #B8B1A3;border-radius:12px;background:#fff;color:var(--ink)}
+.dt-btn{min-height:48px;padding:0 20px;border:0;border-radius:999px;background:#1E7E4A;color:#fff;font:700 16px Karla,sans-serif;cursor:pointer}
+.dt-btn.ghost{background:transparent;border:1px solid var(--ink);color:var(--ink)}
+.dt-btn[disabled]{opacity:.5;cursor:wait}
+.dt-status{font-weight:700;min-height:1.5em}
+.dt-status.ok{color:#1E7E4A}.dt-status.err{color:#9C0006}
+.dt-result{display:flex;flex-direction:column;gap:10px;background:#F1F7F2;border:1px solid #BFDCC6;border-radius:14px;padding:14px}
+.dt-result textarea{font:15px Karla,sans-serif;padding:10px 12px;border:1px solid #B8B1A3;border-radius:12px;resize:vertical;width:100%}
+.dt-actions,.dt-langs{display:flex;gap:10px;flex-wrap:wrap}
+.dt-langs button{min-height:36px;padding:0 14px;border:1px solid #B8B1A3;border-radius:999px;background:#fff;font:700 13px Karla,sans-serif;cursor:pointer}
+.dt-langs button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.dt-h3{margin:8px 0 0;font-size:16px}
+.dt-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.dt-list li.row{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.dt-list .meta{font-size:14px}.dt-list .meta b{display:block;font-size:15px}
+.dt-list .acts{display:flex;gap:6px;flex-wrap:wrap}
+.dt-list .acts button{min-height:36px;padding:0 12px;border:1px solid #B8B1A3;border-radius:999px;background:#fff;font:700 13px Karla,sans-serif;cursor:pointer}
+@media (max-width:760px){.dt-form{grid-template-columns:1fr}.dt-btn{width:100%}}
+
 </style>
 </head>
 <body>
@@ -53,6 +78,30 @@ h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:24px;margin:28px
     <div class="kpi"><span>Agotados</span><b id="k-out">—</b><small>Marcados en el catálogo</small></div>
     <div class="kpi"><span>Últimas unidades</span><b id="k-last">—</b><small>Marcados en el catálogo</small></div>
     <div class="kpi"><span>Ofertas activas</span><b id="k-offers">—</b><small id="k-offers-note">Ahora mismo</small></div>
+  </div>
+
+
+  <h2>Aceptar un precio de la galería</h2>
+  <div class="box deal-tool" id="deal-tool">
+    <p class="dt-help">Cuando llegues a un acuerdo por WhatsApp: elige la obra, escribe el precio y toca <b>Aceptar precio</b>. Te doy el mensaje listo para enviarle al comprador.</p>
+    <div id="dt-login" class="dt-login" hidden>Para usar esto, primero <a href="/admin/">entra al editor</a> e inicia sesión con GitHub en este mismo navegador. Luego vuelve aquí.</div>
+    <div id="dt-form" class="dt-form">
+      <label><span>1. Obra</span><select id="dt-item"></select></label>
+      <label><span>2. Precio acordado (USD)</span><input id="dt-price" type="number" inputmode="decimal" min="1" step="1" placeholder="Ej.: 30"></label>
+      <label><span>Válido por</span><select id="dt-days"><option value="1">1 día</option><option value="3" selected>3 días</option><option value="7">7 días</option></select></label>
+      <button type="button" class="dt-btn" id="dt-go">3. ✓ Aceptar precio</button>
+    </div>
+    <div id="dt-status" class="dt-status" role="status" aria-live="polite"></div>
+    <div id="dt-result" class="dt-result" hidden>
+      <div class="dt-langs"><button type="button" data-ml="es" aria-pressed="true">Mensaje en español</button><button type="button" data-ml="en" aria-pressed="false">In English</button></div>
+      <textarea id="dt-msg" rows="4" readonly></textarea>
+      <div class="dt-actions">
+        <button type="button" class="dt-btn" id="dt-share">📤 Enviar por WhatsApp</button>
+        <button type="button" class="dt-btn ghost" id="dt-copy">Copiar mensaje</button>
+      </div>
+    </div>
+    <h3 class="dt-h3">Ofertas aceptadas activas</h3>
+    <ul id="dt-list" class="dt-list"><li class="empty">Cargando…</li></ul>
   </div>
 
   <h2>Accesos</h2>
@@ -118,6 +167,131 @@ h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:24px;margin:28px
       return (c.name_es||c.id)+' · '+(c.discount||0)+'% · '+state+(e?' (hasta '+e.toLocaleDateString('es')+')':'');
     }),'No hay campañas');
   });
+})();
+</script>
+
+<script>
+/* Aceptar precio de una obra: guarda la oferta en data/gallery.json usando la sesión del editor (GitHub). */
+(function(){
+  var REPO='thesoulgarden/thesoulgarden', FILE='data/gallery.json', BRANCH='main';
+  var API='https://api.github.com/repos/'+REPO+'/contents/'+FILE;
+  var $=function(id){return document.getElementById(id);};
+  var items=[], last=null, msgLang='es';
+  function token(){
+    try{ var keys=['decap-cms-user','netlify-cms-user'];
+      for(var i=0;i<keys.length;i++){ var v=localStorage.getItem(keys[i]); if(v){ var o=JSON.parse(v); if(o&&o.token) return o.token; } }
+    }catch(e){} return null;
+  }
+  function b64d(s){ return decodeURIComponent(escape(atob(String(s).replace(/\n/g,'')))); }
+  function b64e(s){ return btoa(unescape(encodeURIComponent(s))); }
+  function status(text,kind){ var s=$('dt-status'); s.textContent=text||''; s.className='dt-status'+(kind?' '+kind:''); }
+  function code(){ var al='abcdefghjkmnpqrstuvwxyz23456789', a=new Uint8Array(7); crypto.getRandomValues(a); return Array.prototype.map.call(a,function(x){return al[x%al.length];}).join(''); }
+  function money(n){ n=parseFloat(n)||0; return '$'+n.toFixed(2).replace(/\.00$/,''); }
+  function link(c,l){ return location.origin+'/galeria.html'+(l==='es'?'?lang=es':'')+'#comprar='+c; }
+  function message(it,price,c,l){
+    return l==='es'
+      ? '¡Sí, acepto el precio! 🙏 Aquí puedes comprar "'+(it.title_es||it.title_en)+'" por '+money(price)+': '+link(c,'es')
+      : 'Yes, I accept the price! 🙏 You can buy "'+(it.title_en||it.title_es)+'" for '+money(price)+' here: '+link(c,'en');
+  }
+  async function gh(method,body){
+    var tk=token(); if(!tk) throw new Error('login');
+    var r=await fetch(API+(method==='GET'?'?ref='+BRANCH+'&t='+Date.now():''),{method:method,cache:'no-store',
+      headers:{'Authorization':'token '+tk,'Accept':'application/vnd.github+json','Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});
+    if(r.status===401||r.status===403) throw new Error('login');
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    return r.json();
+  }
+  async function mutate(fn,commitMsg){
+    for(var attempt=0;attempt<2;attempt++){
+      var f=await gh('GET'); var data=JSON.parse(b64d(f.content));
+      fn(data);
+      try{ await gh('PUT',{message:commitMsg,content:b64e(JSON.stringify(data,null,2)+'\n'),sha:f.sha,branch:BRANCH}); return data; }
+      catch(e){ if(String(e.message).indexOf('409')<0||attempt) throw e; }
+    }
+  }
+  function fillSelect(){
+    var sel=$('dt-item'), keep=sel.value;
+    var avail=items.filter(function(x){return x&&!x.sold&&!x.hidden;});
+    sel.innerHTML=avail.map(function(x){var o=document.createElement('option');o.value=x.id;o.textContent=(x.title_es||x.title_en)+(x.for_sale&&x.price?' ('+money(x.price)+')':'');return o.outerHTML;}).join('');
+    if(keep) sel.value=keep;
+  }
+  function renderList(){
+    var ul=$('dt-list'), now=Date.now();
+    var act=items.filter(function(x){return x&&x.deal&&x.deal.code&&!x.sold&&!(x.deal.expires&&Date.parse(x.deal.expires)<now);});
+    if(!act.length){ ul.innerHTML='<li class="empty">No hay ofertas activas.</li>'; return; }
+    ul.innerHTML='';
+    act.forEach(function(x){
+      var li=document.createElement('li'); li.className='row';
+      var m=document.createElement('div'); m.className='meta';
+      var b=document.createElement('b'); b.textContent=x.title_es||x.title_en; m.appendChild(b);
+      m.appendChild(document.createTextNode(money(x.deal.price)+' · hasta '+new Date(x.deal.expires).toLocaleDateString('es')+' · código '+x.deal.code));
+      var acts=document.createElement('div'); acts.className='acts';
+      function btn(label,fn){var bt=document.createElement('button');bt.type='button';bt.textContent=label;bt.onclick=fn;acts.appendChild(bt);}
+      btn('Copiar mensaje',function(){ copy(message(x,x.deal.price,x.deal.code,'es')); });
+      btn('✓ Marcar vendida',function(){ act2(x.id,'sold'); });
+      btn('Cancelar oferta',function(){ act2(x.id,'cancel'); });
+      li.appendChild(m); li.appendChild(acts); ul.appendChild(li);
+    });
+  }
+  function copy(text){
+    if(navigator.clipboard){ navigator.clipboard.writeText(text).then(function(){status('Mensaje copiado. Pégalo en el chat de WhatsApp.','ok');}); }
+    else { var ta=$('dt-msg'); ta.value=text; ta.select(); document.execCommand('copy'); status('Mensaje copiado.','ok'); }
+  }
+  async function act2(id,kind){
+    if(kind==='sold'&&!confirm('¿Marcar esta obra como vendida? El enlace de compra dejará de funcionar.')) return;
+    if(kind==='cancel'&&!confirm('¿Cancelar esta oferta? El enlace dejará de funcionar.')) return;
+    status('Guardando…');
+    try{
+      var data=await mutate(function(d){ (d.items||[]).forEach(function(x){ if(x.id===id){ delete x.deal; if(kind==='sold'){x.sold=true;} } }); },
+        (kind==='sold'?'Marcar vendida: ':'Cancelar oferta: ')+id);
+      items=data.items||[]; fillSelect(); renderList();
+      status(kind==='sold'?'Listo: la obra quedará como Vendida en 1–2 minutos.':'Listo: la oferta se canceló.','ok');
+    }catch(e){ handleErr(e); }
+  }
+  function handleErr(e){
+    if(String(e.message)==='login'){ $('dt-login').hidden=false; status('Necesitas iniciar sesión en el editor primero.','err'); }
+    else status('No se pudo guardar ('+e.message+'). Inténtalo otra vez en un momento.','err');
+  }
+  function showResult(){
+    if(!last) return;
+    $('dt-msg').value=message(last.item,last.price,last.code,msgLang);
+    [].forEach.call(document.querySelectorAll('.dt-langs button'),function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-ml')===msgLang));});
+    $('dt-result').hidden=false;
+  }
+  [].forEach.call(document.querySelectorAll('.dt-langs button'),function(b){b.onclick=function(){msgLang=b.getAttribute('data-ml');showResult();};});
+  $('dt-copy').onclick=function(){ copy($('dt-msg').value); };
+  $('dt-share').onclick=function(){
+    var text=$('dt-msg').value;
+    if(navigator.share){ navigator.share({text:text}).catch(function(){}); }
+    else { window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank','noopener'); }
+  };
+  $('dt-go').onclick=async function(){
+    var id=$('dt-item').value, price=parseFloat($('dt-price').value), days=parseInt($('dt-days').value,10)||3;
+    if(!id){ status('Elige una obra.','err'); return; }
+    if(!(price>0)){ status('Escribe el precio acordado.','err'); $('dt-price').focus(); return; }
+    var it=items.filter(function(x){return x.id===id;})[0];
+    if(!confirm('¿Aceptar '+money(price)+' por "'+(it.title_es||it.title_en)+'"?')) return;
+    var c=code(), exp=new Date(); exp.setDate(exp.getDate()+days); exp.setHours(23,59,0,0);
+    var btn=this; btn.disabled=true; status('Guardando la oferta…');
+    try{
+      var data=await mutate(function(d){ (d.items||[]).forEach(function(x){ if(x.id===id){ x.deal={code:c,price:price,expires:exp.toISOString()}; } }); },
+        'Oferta aceptada: '+id+' por '+money(price));
+      items=data.items||[]; fillSelect(); renderList();
+      last={item:it,price:price,code:c}; msgLang='es'; showResult(); $('dt-price').value='';
+      status('Oferta guardada. Ya puedes enviar el mensaje; el enlace empezará a funcionar en 1–2 minutos.','ok');
+      var tries=0, iv=setInterval(function(){
+        fetch('/data/gallery.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){
+          var ok=(d.items||[]).some(function(x){return x.deal&&x.deal.code===c;});
+          if(ok){ clearInterval(iv); status('¡Listo! El enlace ya funciona. Envíale el mensaje al comprador.','ok'); }
+          else if(++tries>30){ clearInterval(iv); status('La oferta está guardada; revisa en Netlify que la publicación terminó.','ok'); }
+        }).catch(function(){});
+      },8000);
+    }catch(e){ handleErr(e); }
+    btn.disabled=false;
+  };
+  if(!token()){ $('dt-login').hidden=false; }
+  fetch('/data/gallery.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){ items=d.items||[]; fillSelect(); renderList(); })
+    .catch(function(){ $('dt-list').innerHTML='<li class="empty">No se pudo cargar la galería.</li>'; });
 })();
 </script>
 </body>

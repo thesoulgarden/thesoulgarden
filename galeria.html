@@ -69,6 +69,13 @@ main{padding:32px var(--pad) 80px}
 .lb-nav{position:fixed;top:50%;transform:translateY(-50%);z-index:42;width:48px;height:48px;border-radius:999px;border:0;background:rgba(251,249,244,.92);font-size:24px;cursor:pointer}
 .lb-prev{left:12px}.lb-next{right:12px}
 @media (max-width:820px){.lb{align-items:flex-end;padding:0}.lb-box{grid-template-columns:1fr;border-radius:22px 22px 0 0;max-height:94vh;overflow:auto}.lb-img img{max-height:60vh}.lb-txt{max-height:none;padding:22px 20px calc(24px + env(safe-area-inset-bottom,0px))}.lb-nav{top:30%}}
+.deal{background:#FFF6DA;border:2px solid #F2D48A;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.deal[hidden],.notice[hidden]{display:none}
+.deal-label{font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#7F6000}
+.deal-price{font-family:Fraunces,Georgia,serif;font-size:32px;font-weight:600}
+.deal-note{font-size:13px;color:var(--muted)}
+.btn-gold{background:#1E2333;color:#F4F0E8}
+.notice{background:#FBF9F4;border:1px solid var(--line);border-left:4px solid #7A1F2B;border-radius:12px;padding:14px 16px;margin-bottom:22px}
 .cta{margin-top:40px;background:#1F2A44;color:#F4F0E8;border-radius:24px;padding:clamp(24px,5vw,48px);display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
 .cta h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:clamp(24px,3.4vw,34px);margin:0;max-width:640px}
 .cta .btn{background:#F4F0E8;color:var(--ink)}
@@ -94,6 +101,7 @@ footer a{color:#D8D3C6}
 <main>
   <div class="pills" id="pills" role="group" aria-label="Filter"></div>
   <div class="grid" id="grid"></div>
+  <div class="notice" id="deal-notice" hidden></div>
   <p class="empty" id="empty" hidden data-t="empty">There are no pieces in this category yet. Come back soon.</p>
   <div class="cta">
     <h2 data-t="cta_h">Interested in a piece or a custom work?</h2>
@@ -118,6 +126,12 @@ footer a{color:#D8D3C6}
       <h2 id="lb-title"></h2>
       <p id="lb-desc"></p>
       <div class="price" id="lb-price" hidden></div>
+      <div class="deal" id="lb-deal" hidden>
+        <div class="deal-label" id="lb-deal-label"></div>
+        <div class="deal-price" id="lb-deal-price"></div>
+        <button type="button" class="btn btn-gold" id="lb-deal-add"></button>
+        <div class="deal-note" id="lb-deal-note"></div>
+      </div>
       <div class="lb-actions">
         <a class="btn btn-wa" id="lb-wa" href="#" target="_blank" rel="noopener" hidden></a>
         <button type="button" class="btn btn-ghost" id="lb-share"></button>
@@ -135,16 +149,21 @@ footer a{color:#D8D3C6}
       empty:'There are no pieces in this category yet. Come back soon.',cta_h:'Interested in a piece or a custom work?',cta_b:'Write to us',
       foot_shop:'Shop',foot_pol:'Shipping, returns & privacy',ask:'Ask about this piece on WhatsApp',ask_msg:'Hi! I am interested in this piece from your gallery:',
       cta_msg:'Hi! I saw your spiritual gallery and I would like more information.',share:'Share',copied:'Link copied',for_sale:'Available',sold:'Sold',
-      close:'Close',prev:'Previous',next:'Next'},
+      close:'Close',prev:'Previous',next:'Next',deal_label:'Agreed price for you',deal_add:'Add to cart',deal_note:'This price is valid only with your personal link',deal_until:'Valid until',deal_gone:'This offer link is no longer available (it expired or the piece was sold). Message us on WhatsApp and we will help you.'},
     es:{title:'Galería espiritual · El Jardín de los Ángeles',back:'← Tienda',eyebrow:'Galería espiritual',h1:'Imágenes que elevan el alma',
       intro:'Fotografías de nuestra peregrinación a Lourdes, pinturas, cuadros y dibujos inspirados en la fe. Toca cualquier imagen para verla de cerca.',
       all:'Todo',fotografia:'Fotografías',cuadro:'Cuadros',pintura:'Pinturas',dibujo:'Dibujos',
       empty:'Todavía no hay obras en esta categoría. Vuelve pronto.',cta_h:'¿Te interesa una obra o un trabajo personalizado?',cta_b:'Escríbenos',
       foot_shop:'Tienda',foot_pol:'Envíos, devoluciones y privacidad',ask:'Preguntar por esta obra en WhatsApp',ask_msg:'Hola, me interesa esta obra de su galería:',
       cta_msg:'Hola, vi su galería espiritual y quisiera más información.',share:'Compartir',copied:'Enlace copiado',for_sale:'Disponible',sold:'Vendida',
-      close:'Cerrar',prev:'Anterior',next:'Siguiente'}
+      close:'Cerrar',prev:'Anterior',next:'Siguiente',deal_label:'Precio acordado para ti',deal_add:'Agregar al carrito',deal_note:'Este precio es válido solo con tu enlace personal',deal_until:'Válido hasta',deal_gone:'Este enlace de oferta ya no está disponible (venció o la obra ya se vendió). Escríbenos por WhatsApp y te ayudamos.'}
   };
-  var lang='en', cur='all', items=[], shown=[], idx=-1, WA='', lastFocus=null;
+  var lang='en', cur='all', items=[], shown=[], idx=-1, WA='', lastFocus=null, DEAL=null;
+  function activeDeal(it,code){
+    if(!it||it.sold||!it.deal||!it.deal.code||String(it.deal.code)!==String(code)) return null;
+    var exp=it.deal.expires?Date.parse(it.deal.expires):NaN; if(!isNaN(exp)&&Date.now()>exp) return null;
+    var p=parseFloat(it.deal.price); return p>0?{price:p,expires:isNaN(exp)?null:new Date(exp)}:null;
+  }
   var TYPES=['fotografia','cuadro','pintura','dibujo'];
   function t(k){return (T[lang]&&T[lang][k])||T.en[k]||k;}
   function esc(s){var d=document.createElement('div');d.textContent=String(s==null?'':s);return d.innerHTML;}
@@ -185,13 +204,22 @@ footer a{color:#D8D3C6}
     var w=document.getElementById('lb-wa'); w.hidden=!WA; w.textContent=t('ask');
     if(WA) w.href='https://wa.me/'+WA+'?text='+encodeURIComponent(t('ask_msg')+' '+title(it)+' — '+location.origin+'/galeria.html#'+encodeURIComponent(it.id||''));
     document.getElementById('lb-share').textContent=t('share');
+    var dbox=document.getElementById('lb-deal'), d=(DEAL&&DEAL.id===it.id)?activeDeal(it,DEAL.code):null;
+    dbox.hidden=!d;
+    if(d){
+      pr.hidden=true;
+      document.getElementById('lb-deal-label').textContent=t('deal_label');
+      document.getElementById('lb-deal-price').textContent=money(d.price);
+      document.getElementById('lb-deal-add').textContent=t('deal_add');
+      document.getElementById('lb-deal-note').textContent=t('deal_note')+(d.expires?' · '+t('deal_until')+' '+d.expires.toLocaleDateString(lang==='es'?'es':'en'):'');
+    }
     var multi=shown.length>1; document.getElementById('lb-prev').hidden=!multi; document.getElementById('lb-next').hidden=!multi;
   }
   function open(i){
     idx=i; lastFocus=document.activeElement; fill();
     document.getElementById('lb').hidden=false; document.getElementById('lb-o').hidden=false; document.body.style.overflow='hidden';
     document.getElementById('lb-close').focus();
-    try{history.replaceState(null,'','#'+encodeURIComponent(shown[idx].id||''));}catch(e){}
+    if(!(DEAL&&DEAL.id===shown[idx].id)){ try{history.replaceState(null,'','#'+encodeURIComponent(shown[idx].id||''));}catch(e){} }
     track('galeria/'+(shown[idx].id||i),'Galería: '+(shown[idx].title_es||''));
   }
   function close(){
@@ -204,6 +232,15 @@ footer a{color:#D8D3C6}
   document.getElementById('lb-o').addEventListener('click',close);
   document.getElementById('lb-prev').addEventListener('click',function(){step(-1);});
   document.getElementById('lb-next').addEventListener('click',function(){step(1);});
+  document.getElementById('lb-deal-add').addEventListener('click',function(){
+    var it=shown[idx]; if(!it||!DEAL||DEAL.id!==it.id||!activeDeal(it,DEAL.code)) return;
+    var cart=[]; try{cart=JSON.parse(localStorage.getItem('cart_v1')||'[]'); if(!Array.isArray(cart)) cart=[];}catch(e){}
+    cart=cart.filter(function(l){return !(l&&l.art&&l.id==='art:'+it.id);});
+    cart.push({id:'art:'+it.id,v:null,q:1,art:true,code:String(DEAL.code)});
+    try{localStorage.setItem('cart_v1',JSON.stringify(cart));}catch(e){}
+    track('galeria-oferta/'+it.id,'Oferta aceptada agregada al carrito: '+(it.title_es||''));
+    location.href='/'+(lang==='es'?'?lang=es':'')+'#carrito';
+  });
   document.getElementById('lb-share').addEventListener('click',function(){
     var it=shown[idx]; if(!it) return; var url=location.origin+'/galeria.html#'+encodeURIComponent(it.id||'');
     if(navigator.share){navigator.share({title:title(it),url:url}).catch(function(){});}
@@ -241,7 +278,13 @@ footer a{color:#D8D3C6}
     var code=String(st.goatcounter||'').trim().toLowerCase();
     if(/^[a-z0-9-]{2,50}$/.test(code)&&!/^(localhost|127\.)/.test(location.hostname)){var sc=document.createElement('script');sc.async=true;sc.src='https://gc.zgo.at/count.js';sc.setAttribute('data-goatcounter','https://'+code+'.goatcounter.com/count');document.head.appendChild(sc);}
     setLang(start,false);
-    var h=decodeURIComponent((location.hash||'').slice(1)); if(h){var i=shown.map(function(x){return x.id;}).indexOf(h); if(i>=0) open(i);}
+    var h=decodeURIComponent((location.hash||'').slice(1));
+    var m=h.match(/^comprar=([\w\-]{3,40})$/);
+    if(m){
+      var code=m[1], hit=items.filter(function(x){return activeDeal(x,code);})[0];
+      if(hit){ DEAL={id:hit.id,code:code}; cur='all'; render(); open(shown.map(function(x){return x.id;}).indexOf(hit.id)); }
+      else { var n=document.getElementById('deal-notice'); n.hidden=false; n.textContent=t('deal_gone'); }
+    } else if(h){var i=shown.map(function(x){return x.id;}).indexOf(h); if(i>=0) open(i);}
   });
 })();
 </script>
