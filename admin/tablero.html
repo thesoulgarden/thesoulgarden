@@ -38,6 +38,13 @@ h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:24px;margin:28px
 .box ul{margin:0;padding-left:18px}.box li{margin:4px 0}
 .empty{color:var(--muted);font-style:italic}
 .note{color:var(--muted);font-size:13px;margin-top:24px}
+.gate{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:24px}
+.gate[hidden],#app[hidden]{display:none}
+.gate img{border-radius:16px}
+.gate h1{color:var(--ink);font-family:Fraunces,Georgia,serif;font-weight:400;font-size:28px;margin:0}
+.gate p{color:var(--muted);margin:0;max-width:420px}
+.gate-btn{margin-top:8px;min-height:48px;padding:0 24px;border-radius:999px;background:var(--ink);color:#F4F0E8;font-weight:700;text-decoration:none;display:inline-flex;align-items:center}
+.gate-btn[hidden]{display:none}
 .deal-tool{display:flex;flex-direction:column;gap:14px}
 .dt-help{margin:0;color:var(--muted)}
 .dt-login{background:#FFF6DA;border:1px solid #F2D48A;border-radius:12px;padding:12px 14px}
@@ -66,6 +73,13 @@ h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:24px;margin:28px
 </style>
 </head>
 <body>
+<div class="gate" id="gate" role="status" aria-live="polite">
+  <img src="/img/logo.png" alt="" width="72" height="72">
+  <h1 id="gate-title">Verificando acceso…</h1>
+  <p id="gate-text">Un momento, estamos confirmando tu sesión.</p>
+  <a class="gate-btn" id="gate-btn" href="/admin/" hidden>Iniciar sesión</a>
+</div>
+<div id="app" hidden>
 <header><div class="hin">
   <img src="/img/logo.png" alt="" width="48" height="48">
   <div><h1>Tablero de la tienda</h1><div class="sub">Todo lo de El Jardín de los Ángeles en un solo lugar</div></div>
@@ -126,6 +140,32 @@ h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:24px;margin:28px
   </div>
   <p class="note">Esta página solo muestra enlaces y datos que ya son públicos en tu tienda. Para editar, siempre se pide tu cuenta de GitHub.</p>
 </main>
+</div>
+<script>
+/* Puerta de acceso: solo se muestra el Tablero si GitHub confirma que esta sesión puede editar el repositorio. */
+(function(){
+  var REPO='thesoulgarden/thesoulgarden';
+  function tok(){ try{ var ks=['decap-cms-user','netlify-cms-user']; for(var i=0;i<ks.length;i++){ var v=localStorage.getItem(ks[i]); if(v){ var o=JSON.parse(v); if(o&&o.token) return o.token; } } }catch(e){} return null; }
+  function deny(title,text){
+    document.getElementById('gate-title').textContent=title;
+    document.getElementById('gate-text').textContent=text;
+    document.getElementById('gate-btn').hidden=false;
+    setTimeout(function(){ location.replace('/admin/'); },2500);
+  }
+  var t=tok();
+  if(!t){ deny('Acceso solo para administradoras','Inicia sesión con tu cuenta de GitHub para entrar. Te llevamos al inicio de sesión…'); return; }
+  fetch('https://api.github.com/repos/'+REPO,{headers:{'Authorization':'token '+t,'Accept':'application/vnd.github+json'},cache:'no-store'})
+    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(repo){
+      if(repo&&repo.permissions&&repo.permissions.push){ document.getElementById('gate').hidden=true; document.getElementById('app').hidden=false; }
+      else deny('Sin permiso','Tu cuenta no tiene permiso para administrar esta tienda.');
+    })
+    .catch(function(){
+      try{ localStorage.removeItem('jda_admin'); }catch(e){}
+      deny('Tu sesión venció','Vuelve a iniciar sesión con GitHub. Te llevamos al inicio de sesión…');
+    });
+})();
+</script>
 <script>
 (function(){
   function j(u){return fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok) throw 0; return r.json();});}
