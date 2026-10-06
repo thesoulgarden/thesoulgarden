@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What do the runes tell you? · El Jardín de los Ángeles</title>
+<meta name="description" content="A free, reflective three-rune reading (past, present, future) with the 24 runes of the Elder Futhark, plus a manifestation set suggested for your result.">
+<link rel="canonical" href="https://thesoulgarden.netlify.app/runas.html">
+<meta property="og:title" content="What do the runes tell you? · El Jardín de los Ángeles">
+<meta property="og:image" content="https://thesoulgarden.netlify.app/img/angeles.jpg">
+<meta name="theme-color" content="#121830">
+<link rel="icon" type="image/png" href="/img/favicon.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Karla:wght@400;500;700&display=swap">
+<style>
+:root{--night:#121830;--night2:#1C2440;--ink:#1E2333;--paper:#FBF9F4;--cream:#F4F0E8;--gold:#F2D48A;--gold2:#D9B45A;--muted:#B9B4A8;--line:rgba(242,212,138,.25);--pad:clamp(20px,6vw,120px)}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;font-family:Karla,"Helvetica Neue",Helvetica,Arial,sans-serif;color:var(--cream);background:var(--night);line-height:1.55;padding-bottom:env(safe-area-inset-bottom,0px);
+  background-image:radial-gradient(1px 1px at 20% 30%,rgba(255,255,255,.5) 50%,transparent 51%),radial-gradient(1px 1px at 70% 15%,rgba(255,255,255,.4) 50%,transparent 51%),radial-gradient(1.5px 1.5px at 85% 60%,rgba(242,212,138,.5) 50%,transparent 51%),radial-gradient(1px 1px at 40% 80%,rgba(255,255,255,.35) 50%,transparent 51%),radial-gradient(ellipse 900px 600px at 50% -10%,rgba(242,212,138,.12),transparent 70%);
+  background-size:420px 420px,520px 520px,600px 600px,380px 380px,100% 100%;background-attachment:fixed}
+a{color:var(--gold)}
+button,input,select,textarea{font-family:inherit}
+.header{position:sticky;top:0;z-index:20;background:rgba(18,24,48,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.hin{height:68px;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;color:var(--cream);text-decoration:none;font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(16px,2vw,20px);min-width:0}
+.logo img{width:42px;height:42px;border-radius:11px;flex-shrink:0}
+.hnav{display:flex;align-items:center;gap:8px}
+.hnav a.t{color:var(--cream);text-decoration:none;font-weight:700;font-size:15px;padding:0 8px}
+.hist-btn{min-height:40px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--cream);font-weight:700;cursor:pointer}
+.lang{display:flex;border:1px solid var(--gold);border-radius:999px;overflow:hidden;flex-shrink:0}
+.lang button{min-width:42px;height:38px;border:0;background:transparent;font:700 13px Karla,sans-serif;color:var(--gold);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--gold);color:var(--night)}
+.back{color:var(--cream);text-decoration:none;font-weight:700;font-size:15px}
+@media (max-width:760px){.logo span,.hnav a.t{display:none}}
+.hero{padding:clamp(56px,9vw,110px) var(--pad) 40px;text-align:center}
+.glyphs{font-size:clamp(28px,5vw,44px);letter-spacing:.4em;color:var(--gold);opacity:.85}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:400;margin:0}
+h1{font-size:clamp(36px,6.5vw,66px);line-height:1.05;margin:18px auto 14px;max-width:900px}
+h1 em{color:var(--gold);font-style:italic}
+.hero p{color:#D8D3C6;font-size:clamp(16px,2vw,19px);max-width:620px;margin:0 auto}
+.sec{padding:clamp(40px,7vw,80px) var(--pad);max-width:1200px;margin:0 auto}
+.card{background:rgba(28,36,64,.78);border:1px solid var(--line);border-radius:24px;padding:clamp(22px,4vw,40px)}
+.ask{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+.ask h2{font-size:clamp(28px,4vw,40px);text-align:center}
+.lbl{font-weight:700;font-size:14px;color:var(--gold);letter-spacing:1px;text-transform:uppercase}
+textarea.q{width:100%;min-height:96px;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:rgba(18,24,48,.7);color:var(--cream);font-size:17px;resize:vertical}
+textarea.q:focus{outline:2px solid var(--gold);outline-offset:2px}
+.count{font-size:13px;color:var(--muted);text-align:right;margin-top:-10px}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mode{display:flex;gap:12px;align-items:flex-start;text-align:left;padding:16px;border-radius:16px;border:1px solid var(--line);background:transparent;color:var(--cream);cursor:pointer}
+.mode[aria-pressed="true"]{border-color:var(--gold);background:rgba(242,212,138,.08)}
+.mode .ic{font-size:26px;color:var(--gold);line-height:1}
+.mode b{display:block;font-size:16px}.mode small{color:var(--muted);font-size:14px}
+.manual{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.manual[hidden]{display:none}
+.mpos{display:flex;flex-direction:column;gap:6px;padding:12px;border:1px solid var(--line);border-radius:14px}
+.mpos span{font-size:13px;font-weight:700;color:var(--gold)}
+.mpos select{min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--night);color:var(--cream);padding:0 8px;font-size:15px}
+.mpos label{display:flex;gap:8px;align-items:center;font-size:14px;color:#D8D3C6}
+.go{min-height:58px;border:0;border-radius:999px;background:var(--gold);color:var(--night);font-weight:700;font-size:18px;letter-spacing:1px;cursor:pointer}
+.go:hover{background:#F7DFA4}
+@media (max-width:640px){.modes,.manual{grid-template-columns:1fr}}
+/* Reading */
+#reading[hidden]{display:none}
+.rq{text-align:center;color:#D8D3C6;font-style:italic;margin:0 auto 26px;max-width:720px}
+.spread{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,3vw,28px)}
+.slot{display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+.slot .pos{font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.stone{width:min(150px,26vw);aspect-ratio:3/4;perspective:800px}
+.stone .in{position:relative;width:100%;height:100%;transition:transform .9s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.stone.flip .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:40% 40% 36% 36%/30% 30% 44% 44%;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 16px 40px rgba(0,0,0,.45),inset 0 -8px 18px rgba(0,0,0,.25)}
+.face.back{background:linear-gradient(160deg,#3a4366,#232b48);color:rgba(242,212,138,.35);font-size:34px}
+.face.front{background:linear-gradient(160deg,#EDE6D6,#CFC6B2);transform:rotateY(180deg);color:#2A2438}
+.face.front .g{font-size:clamp(46px,9vw,72px);line-height:1;font-weight:600}
+.face.front.rev .g{transform:rotate(180deg)}
+.slot h3{font-size:clamp(20px,2.6vw,26px)}
+.slot .kw{color:var(--gold);font-size:14px;font-weight:700}
+.slot .or{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.slot p{margin:0;color:#D8D3C6;font-size:15px}
+.slot .txt{opacity:0;transition:opacity .6s .6s}
+.slot.shown .txt{opacity:1}
+@media (max-width:700px){.spread{grid-template-columns:1fr;gap:22px}.slot{display:grid;grid-template-columns:92px 1fr;column-gap:16px;row-gap:8px;text-align:left;align-items:start}.slot .pos{grid-column:1/-1}.stone{width:92px}.slot .tx{display:flex;flex-direction:column;gap:6px}}
+.concl{margin-top:34px;text-align:center;display:flex;flex-direction:column;gap:14px;align-items:center}
+.concl h2{font-size:clamp(26px,4vw,40px)}
+.theme-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:999px;background:rgba(242,212,138,.14);border:1px solid var(--gold);color:var(--gold);font-weight:700;font-size:18px}
+.concl p{max-width:720px;color:#E9E4D8;font-size:17px;margin:0}
+.ask-manifest{margin-top:8px;display:flex;flex-direction:column;gap:12px;align-items:center}
+.ask-manifest h3{font-size:clamp(22px,3vw,30px);color:var(--gold)}
+.row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn{min-height:52px;padding:0 24px;border-radius:999px;font-weight:700;font-size:16px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:0}
+.btn.gold{background:var(--gold);color:var(--night)}
+.btn.ghost{background:transparent;border:1px solid var(--gold);color:var(--gold)}
+.btn.light{background:var(--cream);color:var(--ink)}
+/* Manifest */
+#manifest[hidden]{display:none}
+.mf{background:var(--paper);color:var(--ink);border-radius:24px;padding:clamp(22px,4vw,40px);display:flex;flex-direction:column;gap:20px}
+.mf .eyebrow{color:#7A5A12}
+.mf h2{font-size:clamp(26px,4vw,38px)}
+.aff{font-family:Fraunces,Georgia,serif;font-size:clamp(20px,2.6vw,26px);font-style:italic;background:#FFF6DA;border-left:4px solid var(--gold2);padding:14px 18px;border-radius:12px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0;padding:0;list-style:none}
+.steps li{background:#F4F0E8;border:1px solid #DCD5C8;border-radius:16px;padding:16px}
+.steps b{display:block;margin-bottom:4px}
+.steps p{margin:0;color:#4F5566;font-size:15px}
+.prods{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.prod{border:1px solid #DCD5C8;border-radius:16px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.prod img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.prod .pi{padding:12px 14px;display:flex;flex-direction:column;gap:4px;flex:1}
+.prod b{font-size:15px;line-height:1.3}
+.prod span{color:#4F5566;font-size:14px}
+.prod .pr{font-weight:700;color:var(--ink);margin-top:auto}
+.prod a{font-size:14px;font-weight:700;color:#2F4A7A}
+.other{display:flex;flex-wrap:wrap;gap:8px}
+.other button{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid #B8B1A3;background:transparent;color:var(--ink);font-weight:700;cursor:pointer}
+.other button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.mf .btn.gold{background:var(--ink);color:var(--cream)}
+.mf .btn.ghost{border-color:var(--ink);color:var(--ink)}
+.added{color:#1E7E4A;font-weight:700}
+@media (max-width:760px){.steps,.prods{grid-template-columns:1fr}.prod{flex-direction:row}.prod img{width:110px;flex-shrink:0}}
+/* Library */
+.lib-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.lib-head h2{font-size:clamp(28px,4vw,42px)}
+.lib-head input{min-height:46px;border-radius:999px;border:1px solid var(--line);background:rgba(18,24,48,.7);color:var(--cream);padding:0 18px;font-size:15px;min-width:240px}
+.lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.rune{border:1px solid var(--line);border-radius:16px;background:rgba(28,36,64,.6)}
+.rune summary{list-style:none;cursor:pointer;display:flex;gap:14px;align-items:center;padding:14px 16px;min-height:64px}
+.rune summary::-webkit-details-marker{display:none}
+.rune .n{font-size:12px;color:var(--muted);width:20px}
+.rune .gl{font-size:30px;color:var(--gold);width:34px;text-align:center}
+.rune .nm b{display:block;font-family:Fraunces,Georgia,serif;font-size:19px;font-weight:600}
+.rune .nm small{color:#D8D3C6}
+.rune summary::after{content:"+";margin-left:auto;color:var(--gold);font-size:22px;transition:transform .2s}
+.rune[open] summary::after{transform:rotate(45deg)}
+.rune .body{padding:0 16px 16px 84px;color:#D8D3C6;font-size:15px;display:flex;flex-direction:column;gap:6px}
+.rune .body b{color:var(--gold);font-weight:700}
+@media (max-width:560px){.rune .body{padding-left:16px}}
+/* History */
+.hist{position:fixed;inset:0;z-index:40;background:rgba(8,10,20,.7);display:flex;justify-content:flex-end}
+.hist[hidden]{display:none}
+.hist .panel{width:min(440px,100vw);height:100%;background:var(--night2);border-left:1px solid var(--line);padding:calc(20px + env(safe-area-inset-top,0px)) 20px 20px;overflow:auto;display:flex;flex-direction:column;gap:12px}
+.hist .top{display:flex;justify-content:space-between;align-items:center}
+.hist h2{font-size:26px}
+.hist .x{width:44px;height:44px;border:0;background:transparent;color:var(--cream);font-size:26px;cursor:pointer}
+.hitem{border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.hitem small{color:var(--muted)}.hitem .gls{font-size:24px;color:var(--gold);letter-spacing:.2em}
+.hitem button{align-self:flex-start;background:none;border:0;color:var(--gold);font-weight:700;cursor:pointer;padding:4px 0}
+.disc{max-width:760px;margin:0 auto;text-align:center;color:var(--muted);font-size:14px}
+footer{border-top:1px solid var(--line);padding:28px var(--pad) calc(28px + env(safe-area-inset-bottom,0px));display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;color:var(--muted);font-size:14px}
+footer a{color:#D8D3C6}
+.toast{position:fixed;left:50%;top:calc(80px + env(safe-area-inset-top,0px));transform:translate(-50%,-12px);background:var(--gold);color:var(--night);padding:12px 20px;border-radius:999px;font-weight:700;opacity:0;pointer-events:none;transition:all .2s;z-index:60;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){.stone .in{transition:none}.slot .txt{transition:none}}
+</style>
+</head>
+<body>
+<header class="header"><div class="hin">
+  <a class="logo" href="/" id="home-link"><img src="/img/logo.png" alt="" width="42" height="42"><span>El Jardín de los Ángeles</span></a>
+  <div class="hnav">
+    <a class="t" href="#consulta" data-t="nav_read">Reading</a>
+    <a class="t" href="#biblioteca" data-t="nav_lib">Library</a>
+    <button type="button" class="hist-btn" id="hist-btn"><span data-t="nav_hist">History</span> · <span id="hist-n">0</span></button>
+    <div class="lang" role="group" aria-label="Language / Idioma"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="es" aria-pressed="false">ES</button></div>
+  </div>
+</div></header>
+
+<section class="hero">
+  <div class="glyphs" aria-hidden="true">ᚠ ᚱ ᛉ ᛞ ᛟ</div>
+  <div class="eyebrow" data-t="hero_eyebrow">Elder Futhark · 24 runes</div>
+  <h1 data-th="hero_h1">What do <em>the runes</em> tell you?</h1>
+  <p data-t="hero_p">A three-rune reading to reflect on your past, understand your present and explore the path ahead. At the end, we suggest how to manifest what the runes reveal.</p>
+</section>
+
+<section class="sec" id="consulta">
+  <div class="card ask">
+    <div class="eyebrow" style="text-align:center" data-t="ask_eyebrow">Open your reading</div>
+    <h2 data-t="ask_h2">What would you like to shed light on?</h2>
+    <label class="lbl" for="q" data-t="ask_lbl">Your question</label>
+    <textarea class="q" id="q" maxlength="220" data-tp="ask_ph" placeholder="E.g. What do I need to know about my new job?"></textarea>
+    <div class="count"><span id="qn">0</span> / 220</div>
+    <div class="lbl" data-t="mode_lbl">Choose how to draw your runes</div>
+    <div class="modes" role="group">
+      <button type="button" class="mode" data-mode="digital" aria-pressed="true"><span class="ic">✦</span><span><b data-t="mode_d">Digital draw</b><small data-t="mode_d_s">Chance chooses each rune and whether it falls upright or reversed.</small></span></button>
+      <button type="button" class="mode" data-mode="manual" aria-pressed="false"><span class="ic">ᚲ</span><span><b data-t="mode_m">Manual selection</b><small data-t="mode_m_s">If you have physical runes, record the ones you drew.</small></span></button>
+    </div>
+    <div class="manual" id="manual" hidden></div>
+    <button type="button" class="go" id="go" data-t="go">Draw the runes →</button>
+  </div>
+</section>
+
+<section class="sec" id="reading" hidden>
+  <p class="rq" id="rq"></p>
+  <div class="spread" id="spread"></div>
+  <div class="concl" id="concl"></div>
+</section>
+
+<section class="sec" id="manifest" hidden></section>
+
+<section class="sec" id="biblioteca">
+  <div class="lib-head">
+    <div><div class="eyebrow" data-t="lib_eyebrow">The Elder Futhark</div><h2 data-t="lib_h2">Rune library</h2></div>
+    <input type="search" id="lib-q" data-tp="lib_ph" placeholder="Search a rune…" aria-label="Search">
+  </div>
+  <div class="lib" id="lib"></div>
+</section>
+
+<section class="sec"><p class="disc" data-t="disc">Rune reading is a symbolic, reflective practice. It does not predict inevitable events and does not replace medical, legal, financial or psychological advice.</p></section>
+
+<footer>
+  <span>© El Jardín de los Ángeles</span>
+  <span><a href="/" id="foot-home" data-t="foot_shop">Shop</a> · <a href="/galeria.html" data-t="foot_gal">Gallery</a> · <a href="/politicas.html" data-t="foot_pol">Shipping, returns &amp; privacy</a></span>
+</footer>
+
+<div class="hist" id="hist" hidden role="dialog" aria-modal="true" aria-labelledby="hist-title">
+  <div class="panel">
+    <div class="top"><h2 id="hist-title" data-t="hist_h">Your readings</h2><button type="button" class="x" id="hist-x" aria-label="Close">×</button></div>
+    <div id="hist-list"></div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+/* ---------- Runes: [glyph, name, reversible, keywords ES, keywords EN, upright ES, upright EN, reversed ES, reversed EN, themes] ---------- */
+var R=[
+['ᚠ','Fehu',1,'Abundancia, recursos y movimiento','Abundance, resources and movement','Llega prosperidad material o energía que hay que hacer circular con generosidad.','Material prosperity or energy is arriving; let it circulate with generosity.','Cuida tus recursos: algo se escapa o no se valora lo suficiente.','Take care of your resources: something is slipping away or undervalued.',{abundancia:3,suerte:1}],
+['ᚢ','Uruz',1,'Fuerza vital, salud y transformación','Life force, health and transformation','Tienes la fuerza para superar lo que se presenta; es momento de actuar con vigor.','You have the strength to overcome what lies ahead; act with vigor.','Energía baja o fuerza mal dirigida; descansa antes de forzar.','Low energy or misdirected strength; rest before you push.',{trabajo:2,positivismo:2}],
+['ᚦ','Thurisaz',1,'Umbral, defensa y acción consciente','Threshold, defense and conscious action','Estás ante una puerta; avanza con cuidado y protege lo que es tuyo.','You stand at a threshold; move forward with care and protect what is yours.','Impulsividad o un obstáculo inesperado; no reacciones con prisa.','Impulsiveness or an unexpected obstacle; do not react in haste.',{proteccion:3}],
+['ᚨ','Ansuz',1,'Comunicación, inspiración y consejo','Communication, inspiration and advice','Presta atención a un mensaje o consejo; la palabra sabia te guía.','Pay attention to a message or advice; wise words guide you.','Malentendidos o consejos confusos; escucha antes de hablar.','Misunderstandings or confusing advice; listen before you speak.',{positivismo:2,bendiciones:1}],
+['ᚱ','Raidho',1,'Viaje, ritmo y dirección','Journey, rhythm and direction','El camino se aclara: un viaje, un cambio o un nuevo ritmo te espera.','The path becomes clear: a journey, a change or a new rhythm awaits.','Retrasos o rumbo incierto; revisa hacia dónde vas.','Delays or an uncertain course; check where you are heading.',{trabajo:2,suerte:1}],
+['ᚲ','Kenaz',1,'Claridad, creatividad y revelación','Clarity, creativity and revelation','Una luz interior te muestra la respuesta; confía en tu creatividad.','An inner light reveals the answer; trust your creativity.','Algo permanece oculto; date tiempo para ver con claridad.','Something remains hidden; give yourself time to see clearly.',{positivismo:3}],
+['ᚷ','Gebo',0,'Intercambio, alianza y reciprocidad','Exchange, partnership and reciprocity','Un regalo, una alianza o un vínculo equilibrado llega a tu vida.','A gift, a partnership or a balanced bond comes into your life.','','',{amor:3,bendiciones:1}],
+['ᚹ','Wunjo',1,'Alegría, armonía y pertenencia','Joy, harmony and belonging','Momentos de alegría y armonía; celebra lo que has logrado.','Moments of joy and harmony; celebrate what you have achieved.','Tristeza pasajera o sensación de no encajar; busca a los tuyos.','Passing sadness or a feeling of not belonging; reach out to your people.',{positivismo:2,amor:2}],
+['ᚺ','Hagalaz',0,'Ruptura, cambio natural y liberación','Disruption, natural change and release','Un cambio inesperado limpia el camino; lo que se rompe deja espacio a lo nuevo.','An unexpected change clears the way; what breaks makes room for the new.','','',{proteccion:2,positivismo:1}],
+['ᚾ','Nauthiz',0,'Necesidad, resistencia y aprendizaje','Need, endurance and learning','La dificultad enseña; con paciencia y esfuerzo saldrás fortalecido.','Hardship teaches; with patience and effort you will come out stronger.','','',{trabajo:2,proteccion:1}],
+['ᛁ','Isa',0,'Pausa, quietud y concentración','Pause, stillness and focus','Es tiempo de detenerte y esperar; la calma prepara el siguiente paso.','It is time to stop and wait; stillness prepares the next step.','','',{bendiciones:2}],
+['ᛃ','Jera',0,'Ciclo, cosecha y tiempo correcto','Cycle, harvest and right timing','Recogerás lo que sembraste; todo llega a su debido tiempo.','You will reap what you have sown; everything comes in its own time.','','',{abundancia:3,trabajo:1}],
+['ᛇ','Eihwaz',0,'Resiliencia, eje y transición','Resilience, axis and transition','Como el tejo, eres resistente; atraviesas una transición con firmeza.','Like the yew tree, you are resilient; you move through a transition with strength.','','',{proteccion:3}],
+['ᛈ','Perthro',1,'Misterio, posibilidad y revelación','Mystery, possibility and revelation','El azar juega a tu favor; algo oculto está por revelarse.','Chance is on your side; something hidden is about to be revealed.','Sorpresas que incomodan; suelta la necesidad de controlarlo todo.','Uncomfortable surprises; let go of the need to control everything.',{suerte:3}],
+['ᛉ','Algiz',1,'Protección, intuición y conciencia','Protection, intuition and awareness','Estás protegido; confía en tu intuición y en quienes te cuidan.','You are protected; trust your intuition and those who care for you.','Bajaste la guardia; cuida tus límites y tu energía.','Your guard is down; protect your boundaries and your energy.',{proteccion:3,bendiciones:1}],
+['ᛊ','Sowilo',0,'Sol, integridad y éxito','Sun, wholeness and success','La luz del sol te acompaña: éxito, salud y victoria están cerca.','The light of the sun is with you: success, health and victory are near.','','',{trabajo:2,positivismo:2}],
+['ᛏ','Tiwaz',1,'Justicia, valentía y compromiso','Justice, courage and commitment','Actúa con honor y valentía; la justicia está de tu lado.','Act with honor and courage; justice is on your side.','Falta de motivación o una lucha que no vale la pena.','Lack of motivation or a fight that is not worth it.',{trabajo:3}],
+['ᛒ','Berkano',1,'Nacimiento, cuidado y renovación','Birth, nurturing and renewal','Algo nuevo nace y crece con cuidado: familia, proyecto o renovación.','Something new is born and grows with care: family, a project or renewal.','Crecimiento detenido; cuida lo que estás gestando.','Growth is stalled; nurture what you are bringing to life.',{amor:2,bendiciones:2}],
+['ᛖ','Ehwaz',1,'Confianza, cooperación y progreso','Trust, teamwork and progress','Avanzas acompañado; la cooperación y la confianza te impulsan.','You move forward together; teamwork and trust carry you.','Desconfianza o desacuerdo con alguien cercano; habla con claridad.','Distrust or disagreement with someone close; speak clearly.',{trabajo:2,amor:1}],
+['ᛗ','Mannaz',1,'Identidad, comunidad y perspectiva','Self, community and perspective','Mírate con honestidad y apóyate en tu comunidad.','Look at yourself honestly and lean on your community.','Aislamiento o dudas sobre ti mismo; no estás solo.','Isolation or self-doubt; you are not alone.',{bendiciones:2,amor:1}],
+['ᛚ','Laguz',1,'Intuición, emoción y flujo','Intuition, emotion and flow','Déjate llevar por la corriente; tus emociones e intuición te guían.','Go with the flow; your emotions and intuition guide you.','Emociones revueltas; busca calma antes de decidir.','Stirred-up emotions; seek calm before you decide.',{amor:2,bendiciones:1}],
+['ᛜ','Ingwaz',0,'Gestación, culminación y energía interior','Gestation, completion and inner energy','Un ciclo se completa y la energía acumulada da fruto.','A cycle completes and stored-up energy bears fruit.','','',{abundancia:2,suerte:1}],
+['ᛞ','Dagaz',0,'Despertar, giro y transformación','Awakening, turning point and transformation','Amanece una nueva etapa; un cambio positivo transforma tu vida.','A new stage dawns; a positive change transforms your life.','','',{suerte:2,positivismo:2}],
+['ᛟ','Othala',1,'Herencia, hogar y legado','Heritage, home and legacy','Tu hogar, tus raíces y tu familia son tu riqueza y tu fuerza.','Your home, your roots and your family are your wealth and strength.','Tensiones familiares o apego al pasado; honra tus raíces sin quedarte atado.','Family tensions or clinging to the past; honor your roots without being bound.',{abundancia:2,bendiciones:2}]
+];
+/* ---------- Themes and suggested sets (product IDs from the catalog) ---------- */
+var TH={
+ abundancia:{icon:'🌾',es:'Abundancia',en:'Abundance',
+  d_es:'Tus runas hablan de prosperidad que se mueve: recursos que llegan, cosechas que maduran y la invitación a recibir con gratitud.',
+  d_en:'Your runes speak of prosperity in motion: resources arriving, harvests ripening and an invitation to receive with gratitude.',
+  a_es:'Me abro a recibir la abundancia que Dios y la vida tienen para mí, y la comparto con gratitud.',
+  a_en:'I am open to receiving the abundance life has for me, and I share it with gratitude.',
+  s_es:[['Ordena tu espacio','Limpia un rincón de tu casa o tu cartera: la abundancia llega donde hay lugar.'],['Agradece cada día','Escribe tres cosas por las que das gracias, aunque sean pequeñas.'],['Comparte algo','Da un poco de lo que tienes: tiempo, ayuda o un detalle. Lo que circula, regresa.']],
+  s_en:[['Clear your space','Tidy a corner of your home or your wallet: abundance arrives where there is room.'],['Give thanks daily','Write down three things you are grateful for, even small ones.'],['Share something','Give a little of what you have: time, help or a small gift. What circulates, returns.']],
+  p:['4405526793','4445423792','4426166615']},
+ proteccion:{icon:'🛡️',es:'Protección',en:'Protection',
+  d_es:'Tus runas te piden cuidar tu energía y tus límites. Estás atravesando un umbral, y la protección y la firmeza son tus aliadas.',
+  d_en:'Your runes ask you to guard your energy and boundaries. You are crossing a threshold, and protection and resolve are your allies.',
+  a_es:'Dios me protege y me guía; solo lo bueno llega a mi vida y a mi hogar.',
+  a_en:'I am protected and guided; only good things come into my life and my home.',
+  s_es:[['Bendice tu hogar','Rocía unas gotas de agua bendita en la entrada de tu casa con una oración.'],['Pon límites con amor','Di "no" a lo que te desgasta, sin culpa.'],['Lleva un símbolo contigo','Una medalla o pulsera que te recuerde que nunca caminas sin compañía.']],
+  s_en:[['Bless your home','Sprinkle a few drops of holy water at your front door with a prayer.'],['Set loving boundaries','Say "no" to what drains you, without guilt.'],['Carry a symbol','A medal or bracelet that reminds you that you are not alone.']],
+  p:['4574686237','4421914416','4424756906']},
+ amor:{icon:'💗',es:'Amor y armonía',en:'Love & harmony',
+  d_es:'Tus runas hablan de vínculos: alianzas, reciprocidad y emociones que fluyen. Es momento de cuidar el amor que das y recibes.',
+  d_en:'Your runes speak of bonds: partnerships, reciprocity and flowing emotions. It is time to nurture the love you give and receive.',
+  a_es:'Doy y recibo amor en equilibrio; mis relaciones florecen en paz y armonía.',
+  a_en:'I give and receive love in balance; my relationships flourish in peace and harmony.',
+  s_es:[['Reconcíliate','Escribe o llama a alguien con quien quieras sanar un vínculo.'],['Un gesto de cariño','Sorprende a alguien querido con un detalle hecho con amor.'],['Reza por tu familia','Dedica un misterio del rosario a las personas que amas.']],
+  s_en:[['Reconcile','Write or call someone you would like to heal a bond with.'],['A loving gesture','Surprise someone dear with a gift made with love.'],['Pray for your family','Dedicate a decade of the rosary to the people you love.']],
+  p:['4405676612','4445423792','4400042886']},
+ trabajo:{icon:'💼',es:'Trabajo y éxito',en:'Work & success',
+  d_es:'Tus runas señalan acción, esfuerzo y victoria. El camino se abre si actúas con valentía, constancia y honestidad.',
+  d_en:'Your runes point to action, effort and victory. The way opens if you act with courage, consistency and honesty.',
+  a_es:'Mis esfuerzos dan fruto; avanzo con valentía y el éxito me acompaña.',
+  a_en:'My efforts bear fruit; I move forward with courage and success goes with me.',
+  s_es:[['Fija una meta clara','Escribe una meta concreta para los próximos 30 días.'],['Da el primer paso hoy','Haz una acción pequeña que te acerque a esa meta.'],['Pide ayuda','Habla con alguien que pueda orientarte o abrirte una puerta.']],
+  s_en:[['Set a clear goal','Write down one concrete goal for the next 30 days.'],['Take the first step today','Do one small action that brings you closer to that goal.'],['Ask for help','Talk to someone who can guide you or open a door.']],
+  p:['4426166615','4574686237','4444608989']},
+ positivismo:{icon:'☀️',es:'Positivismo y claridad',en:'Positivity & clarity',
+  d_es:'Tus runas traen luz: claridad para ver tu camino, energía renovada y la invitación a soltar lo pesado para recibir lo nuevo.',
+  d_en:'Your runes bring light: clarity to see your path, renewed energy and an invitation to release what weighs you down.',
+  a_es:'Suelto lo que me pesa y recibo con alegría la luz y la claridad de este nuevo día.',
+  a_en:'I release what weighs on me and joyfully receive the light and clarity of this new day.',
+  s_es:[['Haz una limpieza','Ventila tu casa, enciende una vela e incienso, y suelta lo que ya no sirve.'],['Cuida tus pensamientos','Cada vez que notes un pensamiento negativo, cámbialo por una frase de gratitud.'],['Sal a la luz','Camina unos minutos al sol o al aire libre cada día.']],
+  s_en:[['Do a cleansing','Air out your home, light a candle and incense, and let go of what no longer serves you.'],['Mind your thoughts','Each time you notice a negative thought, replace it with a phrase of gratitude.'],['Step into the light','Walk a few minutes in the sun or outdoors every day.']],
+  p:['4405526793','4426166615','4424756906']},
+ bendiciones:{icon:'🙏',es:'Bendiciones y paz',en:'Blessings & peace',
+  d_es:'Tus runas te invitan a la calma, a tus raíces y a tu fe. La paz interior y las bendiciones llegan cuando te detienes a escuchar.',
+  d_en:'Your runes invite you to stillness, to your roots and to your faith. Inner peace and blessings come when you stop to listen.',
+  a_es:'Descanso en la paz de Dios; mi vida y mi familia están llenas de bendiciones.',
+  a_en:'I rest in peace; my life and my family are full of blessings.',
+  s_es:[['Un momento de oración','Regálate diez minutos de silencio u oración cada día.'],['Bendice a otros','Ofrece una oración o una palabra amable a alguien que lo necesite.'],['Honra tus raíces','Recuerda con cariño a tus antepasados y agradece lo que te dejaron.']],
+  s_en:[['A moment of prayer','Give yourself ten minutes of silence or prayer each day.'],['Bless others','Offer a prayer or a kind word to someone who needs it.'],['Honor your roots','Remember your ancestors with love and give thanks for what they left you.']],
+  p:['4424756906','4424729455','4405676612']},
+ suerte:{icon:'🍀',es:'Suerte y nuevos comienzos',en:'Luck & new beginnings',
+  d_es:'Tus runas anuncian giros favorables: oportunidades inesperadas, un nuevo amanecer y el azar jugando a tu favor.',
+  d_en:'Your runes announce favorable turns: unexpected opportunities, a new dawn and chance on your side.',
+  a_es:'Abro mi corazón a las nuevas oportunidades; la buena fortuna me encuentra en el momento justo.',
+  a_en:'I am ready for new opportunities; good fortune finds me at the right moment.',
+  s_es:[['Di "sí" a lo nuevo','Acepta una invitación o una idea que normalmente dejarías pasar.'],['Escribe tu deseo','Anótalo en una hoja y guárdalo en un lugar especial.'],['Empieza algo hoy','Un hábito, un curso o un proyecto: el comienzo atrae la suerte.']],
+  s_en:[['Say "yes" to the new','Accept an invitation or idea you would normally let pass.'],['Write your wish','Note it on paper and keep it somewhere special.'],['Start something today','A habit, a class or a project: beginnings attract luck.']],
+  p:['4444395672','4445423792','4405526793']}
+};
+var ORDER=['abundancia','proteccion','amor','trabajo','positivismo','bendiciones','suerte'];
+var POS=[{k:'past',w:.8},{k:'present',w:1.1},{k:'future',w:1.3}];
+var T={
+ en:{title:'What do the runes tell you? · El Jardín de los Ángeles',nav_read:'Reading',nav_lib:'Library',nav_hist:'History',hero_eyebrow:'Elder Futhark · 24 runes',
+  hero_h1:'What do <em>the runes</em> tell you?',hero_p:'A three-rune reading to reflect on your past, understand your present and explore the path ahead. At the end, we suggest how to manifest what the runes reveal.',
+  ask_eyebrow:'Open your reading',ask_h2:'What would you like to shed light on?',ask_lbl:'Your question',ask_ph:'E.g. What do I need to know about my new job?',
+  mode_lbl:'Choose how to draw your runes',mode_d:'Digital draw',mode_d_s:'Chance chooses each rune and whether it falls upright or reversed.',mode_m:'Manual selection',mode_m_s:'If you have physical runes, record the ones you drew.',
+  go:'Draw the runes →',past:'Past',present:'Present',future:'Future',upright:'Upright',reversed:'Reversed',no_rev:'Reversed (not for this rune)',rune:'Rune',
+  your_q:'Your question',no_q:'A general reading',concl_eyebrow:'Final conclusion',concl_h:'Your reading points toward',
+  ask_mf:'Would you like to manifest what the runes suggest?',yes_mf:'Yes, I want to manifest it ✨',again:'New reading',
+  mf_eyebrow:'Your manifestation set',mf_h:'Manifest {t}',aff:'Your affirmation',steps_h:'Three steps for the coming days',prods_h:'Suggested pieces to accompany your intention',
+  add_set:'Add the whole set to cart',view_cart:'View cart',added:'Added to your cart ✓',view:'View',other:'Prefer another focus?',
+  lib_eyebrow:'The Elder Futhark',lib_h2:'Rune library',lib_ph:'Search a rune…',up_m:'Upright',rev_m:'Reversed',themes_l:'Energy',
+  disc:'Rune reading is a symbolic, reflective practice. It does not predict inevitable events and does not replace medical, legal, financial or psychological advice.',
+  hist_h:'Your readings',hist_empty:'You have no saved readings yet.',open:'Open reading',foot_shop:'Shop',foot_gal:'Gallery',foot_pol:'Shipping, returns & privacy',
+  pick:'Choose the three runes',dup:'Choose three different runes.',close:'Close',sold_out:'Sold out'},
+ es:{title:'¿Qué te dicen las runas? · El Jardín de los Ángeles',nav_read:'Tirada',nav_lib:'Biblioteca',nav_hist:'Historial',hero_eyebrow:'Futhark Antiguo · 24 runas',
+  hero_h1:'¿Qué te dicen <em>las runas</em>?',hero_p:'Una lectura de tres runas para reflexionar sobre tu pasado, entender tu presente y explorar el camino que se abre. Al final, te sugerimos cómo manifestar lo que las runas revelan.',
+  ask_eyebrow:'Abre tu consulta',ask_h2:'¿Qué deseas iluminar?',ask_lbl:'Tu pregunta',ask_ph:'Ej.: ¿Qué necesito saber sobre mi nuevo trabajo?',
+  mode_lbl:'Elige cómo sacarás tus runas',mode_d:'Tirada digital',mode_d_s:'El azar elige cada runa y si cae derecha o invertida.',mode_m:'Selección manual',mode_m_s:'Si tienes runas físicas, registra las que sacaste.',
+  go:'Realizar la tirada →',past:'Pasado',present:'Presente',future:'Futuro',upright:'Derecha',reversed:'Invertida',no_rev:'Invertida (no aplica a esta runa)',rune:'Runa',
+  your_q:'Tu pregunta',no_q:'Una lectura general',concl_eyebrow:'Conclusión final',concl_h:'Tu lectura apunta hacia',
+  ask_mf:'¿Te gustaría manifestar lo que las runas te sugieren?',yes_mf:'Sí, quiero manifestarlo ✨',again:'Nueva lectura',
+  mf_eyebrow:'Tu set de manifestación',mf_h:'Manifiesta {t}',aff:'Tu afirmación',steps_h:'Tres pasos para los próximos días',prods_h:'Piezas sugeridas para acompañar tu intención',
+  add_set:'Agregar el set completo al carrito',view_cart:'Ver carrito',added:'Agregado a tu carrito ✓',view:'Ver',other:'¿Prefieres otro enfoque?',
+  lib_eyebrow:'El Futhark Antiguo',lib_h2:'Biblioteca de runas',lib_ph:'Buscar una runa…',up_m:'Derecha',rev_m:'Invertida',themes_l:'Energía',
+  disc:'La lectura de runas es una práctica simbólica y de reflexión. No predice hechos inevitables ni reemplaza el consejo médico, legal, financiero o psicológico.',
+  hist_h:'Tus lecturas',hist_empty:'Todavía no tienes lecturas guardadas.',open:'Abrir lectura',foot_shop:'Tienda',foot_gal:'Galería',foot_pol:'Envíos, devoluciones y privacidad',
+  pick:'Elige las tres runas',dup:'Elige tres runas diferentes.',close:'Cerrar',sold_out:'Agotado'}
+};
+var lang='en', mode='digital', current=null, PRODUCTS={}, WA='';
+function t(k){return (T[lang]&&T[lang][k])||T.en[k]||k;}
+function $(id){return document.getElementById(id);}
+function esc(s){var d=document.createElement('div');d.textContent=String(s==null?'':s);return d.innerHTML;}
+function money(n){n=parseFloat(n)||0;return '$'+n.toFixed(2).replace(/\.00$/,'');}
+function rnd(n){var a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%n;}
+function track(path,ttl){try{if(window.goatcounter&&window.goatcounter.count) window.goatcounter.count({path:path,title:ttl||path,event:true});}catch(e){}}
+function toast(m){var e=$('toast');e.textContent=m;e.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(function(){e.classList.remove('show');},2200);}
+
+/* ---------- Draw ---------- */
+function digital(){
+  var pool=R.map(function(_,i){return i;}), out=[];
+  for(var k=0;k<3;k++){ var j=rnd(pool.length), i=pool.splice(j,1)[0]; out.push({i:i,rev:R[i][2]?rnd(2)===1:false}); }
+  return out;
+}
+function manualPick(){
+  var out=[];
+  for(var k=0;k<3;k++){ var i=parseInt($('m-r'+k).value,10); if(isNaN(i)) return null; out.push({i:i,rev:R[i][2]?$('m-v'+k).checked:false}); }
+  if(out[0].i===out[1].i||out[0].i===out[2].i||out[1].i===out[2].i){ toast(t('dup')); return 'dup'; }
+  return out;
+}
+function scoreThemes(draw){
+  var s={}; ORDER.forEach(function(k){s[k]=0;});
+  draw.forEach(function(d,p){ var th=R[d.i][9], w=POS[p].w*(d.rev?.6:1);
+    Object.keys(th).forEach(function(k){s[k]+=th[k]*w;}); if(d.rev) s.positivismo+=0.5; });
+  var best=ORDER.slice().sort(function(a,b){return s[b]-s[a]||ORDER.indexOf(a)-ORDER.indexOf(b);})[0];
+  return {best:best,scores:s};
+}
+function renderReading(r,animate){
+  current=r;
+  $('reading').hidden=false; $('manifest').hidden=true;
+  $('rq').innerHTML='<b>'+esc(t('your_q'))+':</b> '+esc(r.q||t('no_q'));
+  $('spread').innerHTML=r.draw.map(function(d,p){
+    var ru=R[d.i], rev=d.rev;
+    var mean=lang==='es'?(rev?ru[7]:ru[5]):(rev?ru[8]:ru[6]);
+    return '<div class="slot'+(animate?'':' shown')+'" data-p="'+p+'"><div class="pos">'+t(POS[p].k)+'</div>'+
+      '<div class="stone'+(animate?'':' flip')+'"><div class="in"><div class="face back">ᛝ</div><div class="face front'+(rev?' rev':'')+'"><span class="g">'+ru[0]+'</span></div></div></div>'+
+      '<div class="tx txt"><h3>'+ru[1]+'</h3><div class="or">'+(rev?t('reversed'):t('upright'))+'</div><div class="kw">'+esc(lang==='es'?ru[3]:ru[4])+'</div><p>'+esc(mean)+'</p></div></div>';
+  }).join('');
+  var th=TH[r.theme];
+  $('concl').innerHTML='<div class="eyebrow">'+t('concl_eyebrow')+'</div><h2>'+t('concl_h')+'</h2><div class="theme-chip">'+th.icon+' '+esc(th[lang])+'</div>'+
+    '<p>'+esc(lang==='es'?th.d_es:th.d_en)+'</p><div class="ask-manifest"><h3>'+t('ask_mf')+'</h3><div class="row"><button type="button" class="btn gold" id="mf-yes">'+t('yes_mf')+'</button><button type="button" class="btn ghost" id="again">'+t('again')+'</button></div></div>';
+  $('mf-yes').onclick=function(){ renderManifest(r.theme); track('runas/manifestar/'+r.theme,'Runas: quiere manifestar '+r.theme); };
+  $('again').onclick=function(){ $('reading').hidden=true; $('manifest').hidden=true; $('q').value=''; $('qn').textContent='0'; $('consulta').scrollIntoView({behavior:'smooth'}); };
+  if(animate){
+    $('concl').style.opacity='0';
+    var stones=document.querySelectorAll('#spread .slot');
+    [].forEach.call(stones,function(sl,k){ setTimeout(function(){ sl.querySelector('.stone').classList.add('flip'); sl.classList.add('shown'); },500+k*700); });
+    setTimeout(function(){ $('concl').style.transition='opacity .8s'; $('concl').style.opacity='1'; },500+3*700+400);
+  }
+}
+function renderManifest(theme){
+  var th=TH[theme], m=$('manifest'); m.hidden=false;
+  var steps=lang==='es'?th.s_es:th.s_en;
+  var items=th.p.map(function(id){return PRODUCTS[id];}).filter(Boolean);
+  var avail=items.filter(function(p){return p.status!=='agotado';});
+  var q=lang==='es'?'?lang=es':'';
+  m.innerHTML='<div class="mf"><div><div class="eyebrow">'+t('mf_eyebrow')+'</div><h2>'+th.icon+' '+esc(t('mf_h').replace('{t}',(lang==='es'?th.es:th.en).toLowerCase()))+'</h2></div>'+
+    '<div><div class="lbl" style="color:#7A5A12">'+t('aff')+'</div><div class="aff">“'+esc(lang==='es'?th.a_es:th.a_en)+'”</div></div>'+
+    '<div><div class="lbl" style="color:#7A5A12;margin-bottom:10px">'+t('steps_h')+'</div><ol class="steps">'+steps.map(function(s,i){return '<li><b>'+(i+1)+'. '+esc(s[0])+'</b><p>'+esc(s[1])+'</p></li>';}).join('')+'</ol></div>'+
+    (items.length?'<div><div class="lbl" style="color:#7A5A12;margin-bottom:10px">'+t('prods_h')+'</div><div class="prods">'+items.map(function(p){
+      var n=lang==='es'?p.name_es:(p.name_en||p.name_es), d=lang==='es'?p.desc_es:(p.desc_en||p.desc_es);
+      return '<div class="prod"><img src="'+esc(p.img)+'" alt="'+esc(n)+'" loading="lazy"><div class="pi"><b>'+esc(n)+'</b><span>'+esc(d)+'</span><span class="pr">'+(p.status==='agotado'?t('sold_out'):money(p.price))+'</span><a href="/'+q+'#p='+encodeURIComponent(p.id)+'">'+t('view')+' →</a></div></div>';
+    }).join('')+'</div></div>':'')+
+    '<div class="row" style="justify-content:flex-start">'+(avail.length?'<button type="button" class="btn gold" id="add-set">'+t('add_set')+'</button>':'')+'<a class="btn ghost" href="/'+q+'#carrito" id="view-cart">'+t('view_cart')+'</a></div><div class="added" id="added" role="status"></div>'+
+    '<div><div class="lbl" style="color:#7A5A12;margin-bottom:8px">'+t('other')+'</div><div class="other">'+ORDER.map(function(k){return '<button type="button" data-th="'+k+'" aria-pressed="'+(k===theme)+'">'+TH[k].icon+' '+esc(TH[k][lang])+'</button>';}).join('')+'</div></div></div>';
+  if($('add-set')) $('add-set').onclick=function(){
+    var cart=[]; try{cart=JSON.parse(localStorage.getItem('cart_v1')||'[]'); if(!Array.isArray(cart)) cart=[];}catch(e){}
+    avail.forEach(function(p){ var v=(p.variants&&p.variants.length)?0:null;
+      var hit=cart.filter(function(l){return l.id===p.id&&l.v===v&&!l.art;})[0]; if(hit) hit.q=Math.min(hit.q+1,20); else cart.push({id:p.id,v:v,q:1}); });
+    try{localStorage.setItem('cart_v1',JSON.stringify(cart));}catch(e){}
+    $('added').textContent=t('added'); toast(t('added'));
+    track('runas/set-carrito/'+theme,'Runas: set '+theme+' al carrito');
+  };
+  [].forEach.call(m.querySelectorAll('.other button'),function(b){b.onclick=function(){renderManifest(b.getAttribute('data-th'));};});
+  m.scrollIntoView({behavior:'smooth',block:'start'});
+}
+/* ---------- History ---------- */
+function hist(){try{var h=JSON.parse(localStorage.getItem('runas_hist')||'[]');return Array.isArray(h)?h:[];}catch(e){return [];}}
+function saveHist(r){var h=hist(); h.unshift(r); h=h.slice(0,12); try{localStorage.setItem('runas_hist',JSON.stringify(h));}catch(e){} $('hist-n').textContent=h.length;}
+function renderHist(){
+  var h=hist(), el=$('hist-list');
+  if(!h.length){el.innerHTML='<p style="color:var(--muted)">'+t('hist_empty')+'</p>';return;}
+  el.innerHTML=h.map(function(r,i){return '<div class="hitem"><small>'+new Date(r.at).toLocaleString(lang==='es'?'es':'en')+'</small><b>'+esc(r.q||t('no_q'))+'</b><span class="gls">'+r.draw.map(function(d){return R[d.i][0];}).join(' ')+'</span><small>'+TH[r.theme].icon+' '+esc(TH[r.theme][lang])+'</small><button type="button" data-i="'+i+'">'+t('open')+' →</button></div>';}).join('');
+  [].forEach.call(el.querySelectorAll('button'),function(b){b.onclick=function(){ closeHist(); renderReading(h[+b.getAttribute('data-i')],false); $('reading').scrollIntoView({behavior:'smooth'}); };});
+}
+function openHist(){renderHist(); $('hist').hidden=false; $('hist-x').focus();}
+function closeHist(){$('hist').hidden=true; $('hist-btn').focus();}
+$('hist-btn').onclick=openHist; $('hist-x').onclick=closeHist;
+$('hist').addEventListener('click',function(e){if(e.target===$('hist')) closeHist();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!$('hist').hidden) closeHist();});
+/* ---------- Library ---------- */
+function renderLib(){
+  var f=($('lib-q').value||'').toLowerCase();
+  $('lib').innerHTML=R.map(function(ru,i){
+    var kw=lang==='es'?ru[3]:ru[4]; if(f&&(ru[1]+' '+kw).toLowerCase().indexOf(f)<0) return '';
+    var ths=Object.keys(ru[9]).map(function(k){return TH[k].icon+' '+TH[k][lang];}).join(' · ');
+    return '<details class="rune"><summary><span class="n">'+String(i+1).padStart(2,'0')+'</span><span class="gl">'+ru[0]+'</span><span class="nm"><b>'+ru[1]+'</b><small>'+esc(kw)+'</small></span></summary>'+
+      '<div class="body"><div><b>'+t('up_m')+':</b> '+esc(lang==='es'?ru[5]:ru[6])+'</div>'+(ru[2]?'<div><b>'+t('rev_m')+':</b> '+esc(lang==='es'?ru[7]:ru[8])+'</div>':'')+'<div><b>'+t('themes_l')+':</b> '+esc(ths)+'</div></div></details>';
+  }).join('');
+}
+$('lib-q').addEventListener('input',renderLib);
+/* ---------- Form ---------- */
+function renderManual(){
+  $('manual').innerHTML=[0,1,2].map(function(k){
+    return '<div class="mpos"><span>'+t(POS[k].k)+'</span><select id="m-r'+k+'" aria-label="'+t('rune')+' '+t(POS[k].k)+'"><option value="">'+t('rune')+'…</option>'+R.map(function(ru,i){return '<option value="'+i+'">'+ru[0]+' '+ru[1]+'</option>';}).join('')+'</select>'+
+      '<label><input type="checkbox" id="m-v'+k+'"> <span id="m-vl'+k+'">'+t('reversed')+'</span></label></div>';
+  }).join('');
+  [0,1,2].forEach(function(k){ $('m-r'+k).onchange=function(){ var i=parseInt(this.value,10), ok=!isNaN(i)&&R[i][2]; $('m-v'+k).disabled=!ok; if(!ok) $('m-v'+k).checked=false; $('m-vl'+k).textContent=(!isNaN(i)&&!R[i][2])?t('no_rev'):t('reversed'); }; });
+}
+[].forEach.call(document.querySelectorAll('.mode'),function(b){b.onclick=function(){ mode=b.getAttribute('data-mode');
+  [].forEach.call(document.querySelectorAll('.mode'),function(x){x.setAttribute('aria-pressed',String(x===b));});
+  $('manual').hidden=mode!=='manual'; if(mode==='manual'&&!$('manual').innerHTML) renderManual(); };});
+$('q').addEventListener('input',function(){$('qn').textContent=this.value.length;});
+$('go').onclick=function(){
+  var draw=mode==='digital'?digital():manualPick();
+  if(draw==='dup') return; if(!draw){ toast(t('pick')); return; }
+  var sc=scoreThemes(draw), r={at:Date.now(),q:$('q').value.trim().slice(0,220),draw:draw,theme:sc.best,mode:mode};
+  saveHist(r); renderReading(r,true);
+  setTimeout(function(){$('reading').scrollIntoView({behavior:'smooth',block:'start'});},50);
+  track('runas/tirada/'+mode,'Runas: tirada '+mode+' → '+sc.best);
+};
+/* ---------- Language ---------- */
+function setLang(l,save){
+  lang=(l==='es')?'es':'en'; document.documentElement.lang=lang; document.title=t('title');
+  [].forEach.call(document.querySelectorAll('[data-t]'),function(e){e.textContent=t(e.getAttribute('data-t'));});
+  [].forEach.call(document.querySelectorAll('[data-th]'),function(e){ if(e.tagName==='H1') e.innerHTML=t(e.getAttribute('data-th')); });
+  [].forEach.call(document.querySelectorAll('[data-tp]'),function(e){e.setAttribute('placeholder',t(e.getAttribute('data-tp')));});
+  [].forEach.call(document.querySelectorAll('.lang button'),function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-lang')===lang));});
+  $('hist-x').setAttribute('aria-label',t('close'));
+  var q=lang==='es'?'?lang=es':''; $('home-link').href='/'+q; $('foot-home').href='/'+q;
+  document.querySelector('footer a[href^="/galeria"]').href='/galeria.html'+q;
+  if(!$('manual').hidden||$('manual').innerHTML) renderManual();
+  renderLib(); if(current&&!$('reading').hidden){ var mfOpen=!$('manifest').hidden, th=mfOpen?(document.querySelector('.other button[aria-pressed="true"]')||{}).getAttribute&&document.querySelector('.other button[aria-pressed="true"]').getAttribute('data-th'):null; renderReading(current,false); if(th) renderManifest(th); }
+  if(save){try{localStorage.setItem('lang',lang);}catch(e){}}
+}
+[].forEach.call(document.querySelectorAll('.lang button'),function(b){b.onclick=function(){setLang(b.getAttribute('data-lang'),true);};});
+var start='en'; try{var qp=new URLSearchParams(location.search).get('lang'),s=localStorage.getItem('lang'); start=(qp==='es'||qp==='en')?qp:(s||start);}catch(e){}
+$('hist-n').textContent=hist().length;
+setLang(start,false);
+/* ---------- Catalog + settings ---------- */
+function getJSON(u){return fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok) throw 0;return r.json();});}
+Promise.all([getJSON('/data/products.json').catch(function(){return {products:[]};}),getJSON('/data/settings.json').catch(function(){return {};})]).then(function(r){
+  ((r[0]&&r[0].products)||[]).forEach(function(p){ if(p&&p.id) PRODUCTS[String(p.id)]=p; });
+  var st=r[1]||{}, code=String(st.goatcounter||'').trim().toLowerCase();
+  if(/^[a-z0-9-]{2,50}$/.test(code)&&!/^(localhost|127\.)/.test(location.hostname)){var sc=document.createElement('script');sc.async=true;sc.src='https://gc.zgo.at/count.js';sc.setAttribute('data-goatcounter','https://'+code+'.goatcounter.com/count');document.head.appendChild(sc);}
+});
+})();
+</script>
+</body>
+</html>
