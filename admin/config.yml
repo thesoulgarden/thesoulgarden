@@ -312,6 +312,35 @@ collections:
                 fields:
                   - { label: "Español", name: es, widget: string, required: false }
                   - { label: "Inglés", name: en, widget: string, required: false }
+          - label: "Nuestra historia"
+            name: historia
+            widget: object
+            collapsed: true
+            fields:
+              - label: "Título"
+                name: st_h2
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Texto de entrada (siempre visible)"
+                name: st_lead
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: text }
+                  - { label: "Inglés", name: en, widget: text }
+              - label: "Mensaje de la causa (gatitos)"
+                name: st_cause
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: string }
+                  - { label: "Inglés", name: en, widget: string }
+              - label: "Historia completa"
+                name: story_full
+                widget: object
+                fields:
+                  - { label: "Español", name: es, widget: text, hint: "Separa los párrafos con una línea en blanco. Para un subtítulo, empieza la línea con ## (ej.: ## Una causa muy especial)." }
+                  - { label: "Inglés", name: en, widget: text }
           - label: "Video de Lourdes"
             name: lourdes
             widget: object
