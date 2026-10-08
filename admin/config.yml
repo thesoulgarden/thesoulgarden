@@ -165,6 +165,34 @@ collections:
                   - { label: "Precio acordado", name: price, widget: number, value_type: float, required: false }
                   - { label: "Válido hasta", name: expires, widget: string, required: false }
 
+  - name: gatitos
+    label: Nuestros gatitos
+    editor: { preview: false }
+    files:
+      - name: gatitos
+        label: Fotos y videos de los gatitos
+        file: data/gatitos.json
+        format: json
+        fields:
+          - label: Fotos y videos
+            name: items
+            widget: list
+            label_singular: foto o video
+            summary: "{{fields.type}} · {{fields.caption_es}}"
+            fields:
+              - label: Tipo
+                name: type
+                widget: select
+                default: foto
+                options:
+                  - { label: "Foto", value: foto }
+                  - { label: "Video (MP4)", value: video }
+              - { label: "Archivo (foto JPG/PNG o video MP4)", name: src, widget: file, media_folder: "/img/gatitos", public_folder: "/img/gatitos", hint: "Videos: cortos (menos de 1 minuto) y de menos de 20 MB." }
+              - { label: "Portada del video (opcional)", name: poster, widget: image, required: false, media_folder: "/img/gatitos", public_folder: "/img/gatitos" }
+              - { label: "Texto (español)", name: caption_es, widget: string }
+              - { label: "Texto (inglés)", name: caption_en, widget: string }
+              - { label: "Ocultar", name: hidden, widget: boolean, default: false, required: false }
+
   - name: textos
     label: Textos de la página
     editor: { preview: false }

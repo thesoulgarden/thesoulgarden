@@ -1,0 +1,98 @@
+{
+  "items": [
+    {
+      "type": "video",
+      "src": "/video/gatitos/preparando-la-comida.mp4",
+      "poster": "/video/gatitos/preparando-la-comida.jpg",
+      "caption_es": "Preparando la comida del día",
+      "caption_en": "Getting the day's meal ready"
+    },
+    {
+      "type": "video",
+      "src": "/video/gatitos/a-comer.mp4",
+      "poster": "/video/gatitos/a-comer.jpg",
+      "caption_es": "¡A comer!",
+      "caption_en": "Mealtime!"
+    },
+    {
+      "type": "video",
+      "src": "/video/gatitos/invierno.mp4",
+      "poster": "/video/gatitos/invierno.jpg",
+      "caption_es": "Comida y refugio también en invierno",
+      "caption_en": "Food and shelter in winter too"
+    },
+    {
+      "type": "video",
+      "src": "/video/gatitos/siesta.mp4",
+      "poster": "/video/gatitos/siesta.jpg",
+      "caption_es": "Hora de la siesta",
+      "caption_en": "Nap time"
+    },
+    {
+      "type": "foto",
+      "src": "/img/gatitos/biberon.jpg",
+      "caption_es": "Biberón para los más pequeños",
+      "caption_en": "A bottle for the little ones"
+    },
+    {
+      "type": "foto",
+      "src": "/img/gatitos/abrigados.jpg",
+      "caption_es": "Abrigados en sus primeros días",
+      "caption_en": "Kept warm in their first days"
+    },
+    {
+      "type": "foto",
+      "src": "/img/gatitos/veterinario.jpg",
+      "caption_es": "Visita al veterinario",
+      "caption_en": "A visit to the vet"
+    },
+    {
+      "type": "foto",
+      "src": "/img/gatitos/invierno.jpg",
+      "caption_es": "Con nieve o con frío, nunca les falta comida",
+      "caption_en": "Snow or cold, they never go without food"
+    },
+    {
+      "type": "foto",
+      "src": "/img/gatitos/casitas-con-mantas.jpg",
+      "caption_es": "Casitas con mantas, elevadas del suelo",
+      "caption_en": "Little houses with blankets, raised off the ground"
+    },
+    {
+      "type": "foto",
+      "src": "/img/gatitos/hora-de-comer.jpg",
+      "caption_es": "Hora de comer: todos comparten",
+      "caption_en": "Mealtime: everyone shares"
+    },
+    {
+      "type": "foto",
+      "src": "/img/gatitos/comiendo-juntos.jpg",
+      "caption_es": "Comiendo juntos",
+      "caption_en": "Eating together"
+    },
+    {
+      "type": "foto",
+      "src": "/img/gatitos/pequeno-comilon.jpg",
+      "caption_es": "Un pequeño comilón",
+      "caption_en": "A little foodie"
+    },
+    {
+      "type": "foto",
+      "src": "/img/gatitos/siempre-atenta.jpg",
+      "caption_es": "Siempre atenta",
+      "caption_en": "Always watchful"
+    },
+    {
+      "type": "foto",
+      "src": "/img/gatitos/paseo-naranja.jpg",
+      "caption_es": "De paseo",
+      "caption_en": "Out for a stroll"
+    },
+    {
+      "type": "foto",
+      "src": "/img/gatitos/patio-seguro.jpg",
+      "caption_es": "Un patio seguro para descansar",
+      "caption_en": "A safe patio to rest"
+    }
+  ]
+}

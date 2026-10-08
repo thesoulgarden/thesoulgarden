@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Our kittens · El Jardín de los Ángeles</title>
+<meta name="description" content="Part of every purchase at El Jardín de los Ángeles helps feed, shelter and care for street kittens until they find a home.">
+<link rel="canonical" href="https://thesoulgarden.netlify.app/gatitos.html">
+<meta property="og:title" content="Our kittens · El Jardín de los Ángeles">
+<meta property="og:image" content="https://thesoulgarden.netlify.app/img/gatitos/abrigados.jpg">
+<meta name="theme-color" content="#1E2333">
+<link rel="icon" type="image/png" href="/img/favicon.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Karla:wght@400;500;700&display=swap">
+<style>
+:root{--ink:#1E2333;--muted:#4F5566;--accent:#2F4A7A;--line:#DCD5C8;--paper:#FBF9F4;--gold:#F2D48A;--pad:clamp(20px,6vw,120px)}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;font-family:Karla,"Helvetica Neue",Helvetica,Arial,sans-serif;color:var(--ink);background:#F4F0E8;line-height:1.55;padding-bottom:env(safe-area-inset-bottom,0px)}
+img,video{max-width:100%;display:block}
+a{color:var(--accent)}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:400;margin:0}
+.header{position:sticky;top:0;z-index:20;background:rgba(251,247,238,.95);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.hin{height:68px;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.logo{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(14px,4.1vw,20px);line-height:1.15;min-width:0}
+.logo img{width:42px;height:42px;border-radius:11px;border:1px solid var(--line);flex-shrink:0}
+.right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.back{min-height:40px;padding:0 14px;border:1px solid var(--ink);border-radius:999px;display:inline-flex;align-items:center;color:var(--ink);text-decoration:none;font-weight:700;font-size:14px;white-space:nowrap}
+.lang{display:flex;border:1px solid var(--ink);border-radius:999px;overflow:hidden}
+.lang button{min-width:40px;height:38px;border:0;background:transparent;font:700 13px Karla,sans-serif;color:var(--ink);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:#F4F0E8}
+.hero{position:relative;color:#FBF7EE;padding:clamp(64px,10vw,120px) var(--pad) clamp(48px,7vw,80px);overflow:hidden;background:#1C2440}
+.hero::before{content:"";position:absolute;inset:0;background:url(/img/gatitos/abrigados.jpg) center 35%/cover no-repeat;opacity:.45}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,24,46,.25),rgba(18,24,46,.85))}
+.hero>*{position:relative;z-index:1;max-width:760px}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+.hero h1{font-size:clamp(40px,7vw,68px);line-height:1.05;margin:14px 0}
+.hero p{font-size:clamp(17px,2vw,20px);color:#E9E4D8;margin:0}
+.sec{padding:clamp(48px,7vw,88px) var(--pad);max-width:1280px;margin:0 auto}
+.sec>.eyebrow{color:#3E5578}
+.sec h2{font-size:clamp(30px,4.6vw,46px);margin:10px 0 26px}
+.steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;list-style:none;padding:0;margin:0}
+.steps li{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:8px}
+.steps .ic{font-size:30px}
+.steps b{font-size:18px;font-family:Fraunces,Georgia,serif;font-weight:600}
+.steps p{margin:0;color:var(--muted);font-size:15px}
+@media (max-width:1100px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
+.videos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.vcard{margin:0;display:flex;flex-direction:column;gap:8px}
+.vcard video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:20px;background:#1C2440}
+.vcard figcaption,.pcard figcaption{font-weight:700;font-size:15px}
+@media (max-width:900px){.videos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.photos{columns:3 260px;column-gap:16px}
+.pcard{break-inside:avoid;margin:0 0 16px;background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.pcard button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in}
+.pcard img{width:100%;height:auto}
+.pcard figcaption{padding:12px 14px}
+.cta{background:#1F2A44;color:#F4F0E8;border-radius:28px;padding:clamp(28px,5vw,56px);display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+.cta h2{margin:0;color:#fff}
+.cta p{margin:0;color:#D8D3C6;font-size:17px;max-width:640px}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.btn{min-height:52px;padding:0 24px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;text-decoration:none}
+.btn-wa{background:#1E7E4A;color:#fff}
+.btn-light{background:#F4F0E8;color:var(--ink)}
+@media (max-width:560px){.row .btn{flex:1 1 100%}}
+.lb{position:fixed;inset:0;z-index:40;background:rgba(10,14,28,.92);display:flex;align-items:center;justify-content:center;padding:16px}
+.lb[hidden]{display:none}
+.lb img{max-width:100%;max-height:82vh;border-radius:12px}
+.lb figure{margin:0;display:flex;flex-direction:column;gap:10px;align-items:center;color:#F4F0E8;font-weight:700;text-align:center}
+.lb button{position:fixed;width:48px;height:48px;border-radius:999px;border:0;background:#FBF9F4;color:var(--ink);font-size:24px;cursor:pointer}
+.lb .x{top:max(14px,env(safe-area-inset-top,0px));right:14px}.lb .pv{left:12px;top:50%}.lb .nx{right:12px;top:50%}
+footer{background:var(--ink);color:#B9B4A8;padding:28px var(--pad) calc(28px + env(safe-area-inset-bottom,0px));font-size:14px;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between}
+footer a{color:#D8D3C6}
+</style>
+</head>
+<body>
+<header class="header"><div class="hin">
+  <a class="logo" href="/" id="home-link"><img src="/img/logo.png" alt="" width="42" height="42"><span>El Jardín de los Ángeles</span></a>
+  <div class="right">
+    <a class="back" href="/#historia" id="back-link" data-t="back">← Our story</a>
+    <div class="lang" role="group" aria-label="Language / Idioma"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="es" aria-pressed="false">ES</button></div>
+  </div>
+</div></header>
+
+<section class="hero">
+  <div class="eyebrow" data-t="eyebrow">Our cause 🐾</div>
+  <h1 data-t="h1">Our kittens</h1>
+  <p data-t="intro">Part of every purchase at El Jardín de los Ángeles helps feed, shelter and care for the kittens who live on the streets, and protect the littlest ones in their first days until they find a home.</p>
+</section>
+
+<section class="sec">
+  <div class="eyebrow" data-t="how_eyebrow">How we care for them</div>
+  <h2 data-t="how_h2">From the street to a loving home</h2>
+  <ol class="steps">
+    <li><span class="ic">🍽️</span><b data-t="s1h">Food every day</b><p data-t="s1p">We prepare their food every day and make sure everyone eats, even the shyest ones.</p></li>
+    <li><span class="ic">🏠</span><b data-t="s2h">Shelter and warmth</b><p data-t="s2p">Little houses raised off the ground, with blankets, so they can rest protected from the cold and rain.</p></li>
+    <li><span class="ic">❄️</span><b data-t="s3h">In winter too</b><p data-t="s3p">When the snow arrives, we keep bringing them food and a warm place: that is when they need it most.</p></li>
+    <li><span class="ic">🍼</span><b data-t="s4h">Their first days</b><p data-t="s4p">Newborns get a bottle, warmth and lots of love, and we take them to the vet when they need it.</p></li>
+    <li><span class="ic">🏡</span><b data-t="s5h">A forever home</b><p data-t="s5p">Once they are healthy and strong, we look for families who want to adopt them.</p></li>
+  </ol>
+</section>
+
+<section class="sec" id="videos">
+  <div class="eyebrow" data-t="v_eyebrow">On video</div>
+  <h2 data-t="v_h2">A day with them</h2>
+  <div class="videos" id="videos-grid"></div>
+</section>
+
+<section class="sec" id="fotos">
+  <div class="eyebrow" data-t="p_eyebrow">In photos</div>
+  <h2 data-t="p_h2">Moments of care</h2>
+  <div class="photos" id="photos-grid"></div>
+</section>
+
+<section class="sec">
+  <div class="cta">
+    <div class="eyebrow" data-t="cta_eyebrow">Adopt or help</div>
+    <h2 data-t="cta_h2">Would you like to adopt or help?</h2>
+    <p data-t="cta_p">Message us on WhatsApp to ask about kittens available for adoption. And remember: every purchase in our shop helps too.</p>
+    <div class="row">
+      <a class="btn btn-wa" id="adopt-btn" href="https://ig.me/m/soul_garden147" target="_blank" rel="noopener" data-t="cta_wa">Ask about adoption</a>
+      <a class="btn btn-light" id="shop-btn" href="/#catalogo" data-t="cta_shop">Visit the shop</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© El Jardín de los Ángeles</span>
+  <span><a href="/" id="foot-home" data-t="foot_shop">Shop</a> · <a href="/politicas.html" data-t="foot_pol">Shipping, returns &amp; privacy</a> · <a href="https://www.instagram.com/soul_garden147/" target="_blank" rel="noopener">Instagram</a></span>
+</footer>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Photo">
+  <button type="button" class="x" id="lb-x" aria-label="Close">×</button>
+  <button type="button" class="pv" id="lb-pv" aria-label="Previous">‹</button>
+  <button type="button" class="nx" id="lb-nx" aria-label="Next">›</button>
+  <figure><img id="lb-img" src="" alt=""><figcaption id="lb-cap"></figcaption></figure>
+</div>
+
+<script>
+(function(){
+  var T={
+    en:{title:'Our kittens · El Jardín de los Ángeles',back:'← Our story',eyebrow:'Our cause 🐾',h1:'Our kittens',
+      intro:'Part of every purchase at El Jardín de los Ángeles helps feed, shelter and care for the kittens who live on the streets, and protect the littlest ones in their first days until they find a home.',
+      how_eyebrow:'How we care for them',how_h2:'From the street to a loving home',
+      s1h:'Food every day',s1p:'We prepare their food every day and make sure everyone eats, even the shyest ones.',
+      s2h:'Shelter and warmth',s2p:'Little houses raised off the ground, with blankets, so they can rest protected from the cold and rain.',
+      s3h:'In winter too',s3p:'When the snow arrives, we keep bringing them food and a warm place: that is when they need it most.',
+      s4h:'Their first days',s4p:'Newborns get a bottle, warmth and lots of love, and we take them to the vet when they need it.',
+      s5h:'A forever home',s5p:'Once they are healthy and strong, we look for families who want to adopt them.',
+      v_eyebrow:'On video',v_h2:'A day with them',p_eyebrow:'In photos',p_h2:'Moments of care',
+      cta_eyebrow:'Adopt or help',cta_h2:'Would you like to adopt or help?',cta_p:'Message us on WhatsApp to ask about kittens available for adoption. And remember: every purchase in our shop helps too.',
+      cta_wa:'Ask about adoption',cta_shop:'Visit the shop',foot_shop:'Shop',foot_pol:'Shipping, returns & privacy',
+      wa_msg:'Hi! I saw your kittens on the website and I would like to ask about adoption.',close:'Close',prev:'Previous',next:'Next'},
+    es:{title:'Nuestros gatitos · El Jardín de los Ángeles',back:'← Nuestra historia',eyebrow:'Nuestra causa 🐾',h1:'Nuestros gatitos',
+      intro:'Parte de cada compra en El Jardín de los Ángeles ayuda a alimentar, abrigar y cuidar a los gatitos que viven en la calle, y a proteger a los más pequeños en sus primeros días hasta que encuentran un hogar.',
+      how_eyebrow:'Cómo los cuidamos',how_h2:'De la calle a un hogar lleno de amor',
+      s1h:'Comida todos los días',s1p:'Les preparamos comida cada día y nos aseguramos de que todos coman, incluso los más tímidos.',
+      s2h:'Refugio y abrigo',s2p:'Casitas elevadas del suelo, con mantas, para que descansen protegidos del frío y la lluvia.',
+      s3h:'También en invierno',s3p:'Cuando llega la nieve, seguimos llevándoles comida y un lugar abrigado: es cuando más lo necesitan.',
+      s4h:'Sus primeros días',s4p:'Los recién nacidos reciben biberón, calor y mucho cariño, y los llevamos al veterinario cuando lo necesitan.',
+      s5h:'Un hogar para siempre',s5p:'Cuando están sanos y fuertes, buscamos familias que quieran adoptarlos.',
+      v_eyebrow:'En video',v_h2:'Un día con ellos',p_eyebrow:'En fotos',p_h2:'Momentos de cuidado',
+      cta_eyebrow:'Adopta o ayuda',cta_h2:'¿Te gustaría adoptar o ayudar?',cta_p:'Escríbenos por WhatsApp para preguntar por los gatitos en adopción. Y recuerda: cada compra en la tienda también ayuda.',
+      cta_wa:'Preguntar por adopción',cta_shop:'Ir a la tienda',foot_shop:'Tienda',foot_pol:'Envíos, devoluciones y privacidad',
+      wa_msg:'Hola, vi a los gatitos en la página y quisiera preguntar por la adopción.',close:'Cerrar',prev:'Anterior',next:'Siguiente'}
+  };
+  var lang='en', items=[], photos=[], idx=0, WA='', last=null;
+  function t(k){return (T[lang]&&T[lang][k])||T.en[k]||k;}
+  function $(id){return document.getElementById(id);}
+  function esc(s){var d=document.createElement('div');d.textContent=String(s==null?'':s);return d.innerHTML;}
+  function ok(u,re){u=String(u||'');return re.test(u)?u:'';}
+  var IMG=/^\/[\w\-\/\.]+\.(jpe?g|png|webp)$/i, VID=/^\/[\w\-\/\.]+\.mp4$/i;
+  function cap(x){return lang==='es'?(x.caption_es||x.caption_en||''):(x.caption_en||x.caption_es||'');}
+  function track(p,ttl){try{if(window.goatcounter&&window.goatcounter.count) window.goatcounter.count({path:p,title:ttl||p,event:true});}catch(e){}}
+  function render(){
+    var vids=items.filter(function(x){return x.type==='video'&&ok(x.src,VID)&&!x.hidden;});
+    photos=items.filter(function(x){return x.type!=='video'&&ok(x.src,IMG)&&!x.hidden;});
+    $('videos').hidden=!vids.length; $('fotos').hidden=!photos.length;
+    $('videos-grid').innerHTML=vids.map(function(v){
+      return '<figure class="vcard"><video controls playsinline preload="none"'+(ok(v.poster,IMG)?' poster="'+esc(v.poster)+'"':'')+' aria-label="'+esc(cap(v))+'"><source src="'+esc(v.src)+'" type="video/mp4"></video><figcaption>'+esc(cap(v))+'</figcaption></figure>';
+    }).join('');
+    [].forEach.call(document.querySelectorAll('#videos-grid video'),function(v){var once=false;v.addEventListener('play',function(){if(!once){once=true;track('gatitos/video','Gatitos: reproducir video');}
+      [].forEach.call(document.querySelectorAll('#videos-grid video'),function(o){if(o!==v) o.pause();});});});
+    $('photos-grid').innerHTML=photos.map(function(p,i){
+      return '<figure class="pcard"><button type="button" data-i="'+i+'"><img src="'+esc(p.src)+'" alt="'+esc(cap(p))+'" loading="lazy"></button><figcaption>'+esc(cap(p))+'</figcaption></figure>';
+    }).join('');
+    [].forEach.call(document.querySelectorAll('#photos-grid button'),function(b){b.onclick=function(){open(+b.getAttribute('data-i'));};});
+  }
+  function fill(){var p=photos[idx]; $('lb-img').src=p.src; $('lb-img').alt=cap(p); $('lb-cap').textContent=cap(p);}
+  function open(i){idx=i; last=document.activeElement; fill(); $('lb').hidden=false; document.body.style.overflow='hidden'; $('lb-x').focus();}
+  function close(){$('lb').hidden=true; document.body.style.overflow=''; if(last&&last.focus) last.focus();}
+  function step(d){idx=(idx+d+photos.length)%photos.length; fill();}
+  $('lb-x').onclick=close; $('lb-pv').onclick=function(){step(-1);}; $('lb-nx').onclick=function(){step(1);};
+  $('lb').addEventListener('click',function(e){if(e.target===$('lb')) close();});
+  document.addEventListener('keydown',function(e){if($('lb').hidden) return; if(e.key==='Escape') close(); else if(e.key==='ArrowLeft') step(-1); else if(e.key==='ArrowRight') step(1);});
+  var sx=null; $('lb').addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
+  $('lb').addEventListener('touchend',function(e){if(sx==null) return; var dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>50) step(dx<0?1:-1); sx=null;});
+  function setLang(l,save){
+    lang=(l==='es')?'es':'en'; document.documentElement.lang=lang; document.title=t('title');
+    [].forEach.call(document.querySelectorAll('[data-t]'),function(e){e.textContent=t(e.getAttribute('data-t'));});
+    [].forEach.call(document.querySelectorAll('.lang button'),function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-lang')===lang));});
+    $('lb-x').setAttribute('aria-label',t('close')); $('lb-pv').setAttribute('aria-label',t('prev')); $('lb-nx').setAttribute('aria-label',t('next'));
+    var q=lang==='es'?'?lang=es':'';
+    $('home-link').href='/'+q; $('foot-home').href='/'+q; $('back-link').href='/'+q+'#historia'; $('shop-btn').href='/'+q+'#catalogo';
+    if(WA) $('adopt-btn').href='https://wa.me/'+WA+'?text='+encodeURIComponent(t('wa_msg'));
+    render(); if(!$('lb').hidden) fill();
+    if(save){try{localStorage.setItem('lang',lang);}catch(e){}}
+  }
+  [].forEach.call(document.querySelectorAll('.lang button'),function(b){b.onclick=function(){setLang(b.getAttribute('data-lang'),true);};});
+  $('adopt-btn').addEventListener('click',function(){track('gatitos/adopcion','Gatitos: preguntar por adopción');});
+  var start='en'; try{var q=new URLSearchParams(location.search).get('lang'),s=localStorage.getItem('lang'); start=(q==='es'||q==='en')?q:(s||start);}catch(e){}
+  function getJSON(u){return fetch(u,{cache:'no-cache'}).then(function(r){if(!r.ok) throw 0;return r.json();});}
+  Promise.all([getJSON('/data/gatitos.json').catch(function(){return {items:[]};}),getJSON('/data/settings.json').catch(function(){return {};})]).then(function(r){
+    items=(r[0]&&r[0].items)||[]; var st=r[1]||{}; WA=String(st.whatsapp||'').replace(/\D/g,'');
+    var code=String(st.goatcounter||'').trim().toLowerCase();
+    if(/^[a-z0-9-]{2,50}$/.test(code)&&!/^(localhost|127\.)/.test(location.hostname)){var sc=document.createElement('script');sc.async=true;sc.src='https://gc.zgo.at/count.js';sc.setAttribute('data-goatcounter','https://'+code+'.goatcounter.com/count');document.head.appendChild(sc);}
+    setLang(start,false);
+  });
+  setLang(start,false);
+})();
+</script>
+</body>
+</html>
