@@ -6,7 +6,7 @@
       "start": "2026-09-28T22:28",
       "name_es": "Thanksgiving y Black Friday",
       "products": [],
-      "active": true,
+      "active": false,
       "applies_to": "all",
       "end": "2026-11-30T23:59",
       "id": "thanksgiving-2026",
