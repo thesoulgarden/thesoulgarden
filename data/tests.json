@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "code": "weuzzwk4qa",
   "no_shipping": true,
   "products": [
@@ -7,7 +7,7 @@
       "id": "test-1",
       "name_es": "Producto de prueba",
       "name_en": "Test item",
-      "price": 0.5
+      "price": 0.01
     }
   ]
 }
