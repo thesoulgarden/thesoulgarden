@@ -1,15 +1,16 @@
-// POST /api/paypal/create-order  { lines:[...], lang:"es"|"en", expected:<subtotal que vio el cliente> }
+// POST /api/paypal/create-order  { lines:[...], lang:"es"|"en", expected:<subtotal que vio el cliente>, tc:<código de modo prueba, opcional> }
 // Calcula el precio en el servidor y crea la orden en PayPal. "expected" NO se usa para cobrar:
 // solo sirve para avisar al cliente si los precios cambiaron desde que cargó la página.
 import products from "../../data/products.json" with { type: "json" };
 import offers from "../../data/offers.json" with { type: "json" };
 import gallery from "../../data/gallery.json" with { type: "json" };
 import settings from "../../data/settings.json" with { type: "json" };
+import tests from "../../data/tests.json" with { type: "json" };
 import { priceCart, paypalOrderBody, PricingError } from "../lib/pricing.mjs";
 import { config as ppConfig, api, signOrder, PayPalError } from "../lib/paypal.mjs";
 import { json, readJson, logError } from "../lib/http.mjs";
 
-export const DATA = { products, offers, gallery, settings };
+export const DATA = { products, offers, gallery, settings, tests };
 
 export async function handle(req, { data = DATA, now = Date.now(), fetchImpl } = {}) {
   if (req.method !== "POST") return json(405, { error: "method_not_allowed" });
@@ -20,7 +21,7 @@ export async function handle(req, { data = DATA, now = Date.now(), fetchImpl } =
 
   let priced;
   try {
-    priced = priceCart(data, body.lines, { lang: body.lang === "es" ? "es" : "en", now });
+    priced = priceCart(data, body.lines, { lang: body.lang === "es" ? "es" : "en", now, testCode: typeof body.tc === "string" ? body.tc.slice(0, 64) : "" });
   } catch (e) {
     if (e instanceof PricingError) return json(422, { error: e.code, line: e.detail ?? null });
     logError("create/pricing", e); return json(500, { error: "server_error" });

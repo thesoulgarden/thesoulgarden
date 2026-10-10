@@ -70,6 +70,23 @@ h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:24px;margin:28px
 .dt-list .acts button{min-height:36px;padding:0 12px;border:1px solid #B8B1A3;border-radius:999px;background:#fff;font:700 13px Karla,sans-serif;cursor:pointer}
 @media (max-width:760px){.dt-form{grid-template-columns:1fr}.dt-btn{width:100%}}
 
+
+.tt-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.tt-state{font-weight:700;border-radius:999px;padding:6px 14px;background:#E9E6DF;color:var(--ink)}
+.tt-state.on{background:#B3261E;color:#fff}
+.tt-switch{display:flex;gap:10px;align-items:center;font-weight:700;min-height:44px;cursor:pointer}
+.tt-switch input{width:22px;height:22px}
+.tt-rows{display:flex;flex-direction:column;gap:8px}
+.tt-row{display:grid;grid-template-columns:1.4fr 1.4fr .7fr auto;gap:8px;align-items:end;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px}
+.tt-row label{display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:700;color:var(--muted)}
+.tt-row input{font:16px Karla,sans-serif;min-height:44px;padding:0 10px;border:1px solid #B8B1A3;border-radius:10px;background:#fff;color:var(--ink);width:100%}
+.tt-row button{min-height:44px;padding:0 12px;border:1px solid #B8B1A3;border-radius:999px;background:#fff;font:700 13px Karla,sans-serif;cursor:pointer}
+.tt-actions{display:flex;flex-wrap:wrap;gap:10px}
+.tt-actions .dt-btn{width:auto}
+a.dt-btn{display:inline-flex;align-items:center;text-decoration:none}
+a.dt-btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.tt-note{font-size:13px;color:var(--muted);margin:0}
+@media (max-width:640px){.tt-row{grid-template-columns:1fr 1fr}.tt-actions .dt-btn{width:100%;justify-content:center}}
 </style>
 </head>
 <body>
@@ -116,6 +133,24 @@ h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:24px;margin:28px
     </div>
     <h3 class="dt-h3">Ofertas aceptadas activas</h3>
     <ul id="dt-list" class="dt-list"><li class="empty">Cargando…</li></ul>
+  </div>
+
+  <h2>Pruebas</h2>
+  <div class="box deal-tool" id="test-tool">
+    <div class="tt-head"><p class="dt-help">Para probar pagos sin mezclar con la tienda real. Los productos de prueba solo se ven entrando con el botón <b>Abrir la tienda en modo prueba</b>.</p><span class="tt-state" id="tt-state">Cargando…</span></div>
+    <div id="tt-login" class="dt-login" hidden>Para usar esto, primero <a href="/admin/">entra al editor</a> e inicia sesión con GitHub en este mismo navegador. Luego vuelve aquí.</div>
+    <label class="tt-switch"><input type="checkbox" id="tt-active"> Modo de pruebas activado</label>
+    <label class="tt-switch"><input type="checkbox" id="tt-noship"> Sin envío en pedidos de prueba <span class="tt-note">(los clientes reales siempre pagan el envío normal)</span></label>
+    <h3 class="dt-h3">Productos de prueba</h3>
+    <div class="tt-rows" id="tt-rows"></div>
+    <div class="tt-actions">
+      <button type="button" class="dt-btn ghost" id="tt-add">+ Agregar producto</button>
+      <button type="button" class="dt-btn" id="tt-save">Guardar cambios</button>
+      <a class="dt-btn ghost" id="tt-open" href="#" target="_blank" rel="noopener" aria-disabled="true">Abrir la tienda en modo prueba ↗</a>
+      <button type="button" class="dt-btn ghost" id="tt-newcode">Cambiar el código del enlace</button>
+    </div>
+    <div id="tt-status" class="dt-status" role="status" aria-live="polite"></div>
+    <p class="tt-note">Cada vez que guardas, la página se vuelve a publicar (1–2 minutos y usa créditos de Netlify). <b>Desactiva el modo al terminar de probar.</b> Los pagos de prueba en modo real (Live) son dinero real: reembólsalos desde PayPal.</p>
   </div>
 
   <h2>Accesos</h2>
@@ -332,6 +367,109 @@ h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:24px;margin:28px
   if(!token()){ $('dt-login').hidden=false; }
   fetch('/data/gallery.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){ items=d.items||[]; fillSelect(); renderList(); })
     .catch(function(){ $('dt-list').innerHTML='<li class="empty">No se pudo cargar la galería.</li>'; });
+})();
+</script>
+
+<script>
+/* Pruebas: guarda data/tests.json usando la sesión del editor (GitHub). */
+(function(){
+  var REPO='thesoulgarden/thesoulgarden', FILE='data/tests.json', BRANCH='main';
+  var API='https://api.github.com/repos/'+REPO+'/contents/'+FILE;
+  var $=function(id){return document.getElementById(id);};
+  var cur=null, sha=null, busy=false;
+  function token(){ try{ var ks=['decap-cms-user','netlify-cms-user']; for(var i=0;i<ks.length;i++){ var v=localStorage.getItem(ks[i]); if(v){ var o=JSON.parse(v); if(o&&o.token) return o.token; } } }catch(e){} return null; }
+  function b64d(x){ return decodeURIComponent(escape(atob(String(x).replace(/\n/g,'')))); }
+  function b64e(x){ return btoa(unescape(encodeURIComponent(x))); }
+  function rnd(n){ var al='abcdefghjkmnpqrstuvwxyz23456789', a=new Uint8Array(n); crypto.getRandomValues(a); return Array.prototype.map.call(a,function(x){return al[x%al.length];}).join(''); }
+  function status(t,k){ var e=$('tt-status'); e.textContent=t||''; e.className='dt-status'+(k?' '+k:''); }
+  async function gh(method,body){
+    var tk=token(); if(!tk) throw new Error('login');
+    var r=await fetch(API+(method==='GET'?'?ref='+BRANCH+'&t='+Date.now():''),{method:method,cache:'no-store',
+      headers:{'Authorization':'token '+tk,'Accept':'application/vnd.github+json','Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});
+    if(r.status===401||r.status===403) throw new Error('login');
+    if(r.status===404&&method==='GET') return null;
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    return r.json();
+  }
+  function setState(){
+    var on=!!(cur&&cur.active);
+    $('tt-state').textContent=on?'ACTIVADO':'Desactivado';
+    $('tt-state').className='tt-state'+(on?' on':'');
+    var o=$('tt-open');
+    if(on&&cur.code){ o.href=location.origin+'/?lang=es&prueba='+encodeURIComponent(cur.code)+'#catalogo'; o.setAttribute('aria-disabled','false'); }
+    else { o.href='#'; o.setAttribute('aria-disabled','true'); }
+  }
+  function row(p){
+    var d=document.createElement('div'); d.className='tt-row'; d.dataset.id=p.id;
+    function field(label,key,type){ var l=document.createElement('label'); l.textContent=label; var i=document.createElement('input'); i.type=type||'text'; i.value=p[key]==null?'':p[key]; i.dataset.k=key; if(type==='number'){i.min='0.01';i.step='0.01';i.inputMode='decimal';} l.appendChild(i); d.appendChild(l); }
+    field('Nombre (español)','name_es'); field('Nombre (inglés)','name_en'); field('Precio (USD)','price','number');
+    var b=document.createElement('button'); b.type='button'; b.textContent='Quitar'; b.onclick=function(){ d.remove(); }; d.appendChild(b);
+    return d;
+  }
+  function render(){
+    $('tt-active').checked=!!cur.active; $('tt-noship').checked=cur.no_shipping!==false;
+    var box=$('tt-rows'); box.innerHTML='';
+    (cur.products||[]).forEach(function(p){ box.appendChild(row(p)); });
+    setState();
+  }
+  function collect(){
+    var ps=[], bad=null;
+    [].forEach.call(document.querySelectorAll('#tt-rows .tt-row'),function(r){
+      var o={id:r.dataset.id}; [].forEach.call(r.querySelectorAll('input'),function(i){ o[i.dataset.k]=i.value.trim(); });
+      o.price=Math.round(parseFloat(o.price)*100)/100;
+      if(!o.name_es) bad='Cada producto necesita un nombre en español.';
+      else if(!(o.price>0)) bad='El precio de "'+o.name_es+'" debe ser mayor que 0 (mínimo $0.01).';
+      ps.push(o);
+    });
+    if(bad) throw new Error('val:'+bad);
+    return ps;
+  }
+  async function load(){
+    try{
+      var f=await gh('GET');
+      if(f){ sha=f.sha; cur=JSON.parse(b64d(f.content)); }
+      else { sha=null; cur={active:false,code:rnd(10),no_shipping:true,products:[{id:'test-1',name_es:'Producto de prueba',name_en:'Test item',price:0.5}]}; }
+      render(); status('');
+    }catch(e){ err(e); }
+  }
+  async function save(change,msg){
+    if(busy) return; busy=true; $('tt-save').disabled=true; status('Guardando…');
+    try{
+      for(var attempt=0;attempt<2;attempt++){
+        var next=JSON.parse(JSON.stringify(cur)); change(next);
+        if(!/^[a-z0-9]{6,40}$/.test(String(next.code||''))) next.code=rnd(10);
+        try{
+          var r=await gh('PUT',{message:msg,content:b64e(JSON.stringify(next,null,2)+'\n'),sha:sha||undefined,branch:BRANCH});
+          sha=r.content&&r.content.sha; cur=next; render();
+          status(next.active?'Guardado. En 1–2 minutos el modo de pruebas estará activo: luego toca "Abrir la tienda en modo prueba".':'Guardado. En 1–2 minutos los productos de prueba desaparecen de la tienda.','ok');
+          return;
+        }catch(e){
+          if(String(e.message).indexOf('409')<0&&String(e.message).indexOf('422')<0||attempt) throw e;
+          var f=await gh('GET'); sha=f&&f.sha; if(f) cur=JSON.parse(b64d(f.content)); // alguien cambió el archivo: reintento sobre la versión nueva
+        }
+      }
+    }catch(e){ err(e); render(); }
+    finally{ busy=false; $('tt-save').disabled=false; }
+  }
+  function err(e){
+    var m=String(e&&e.message||e);
+    if(m==='login'){ $('tt-login').hidden=false; $('tt-state').textContent='Sin sesión'; status('Necesitas iniciar sesión en el editor primero.','err'); }
+    else if(m.indexOf('val:')===0) status(m.slice(4),'err');
+    else { console.error('Pruebas: no se pudo guardar',e); status('No se pudo guardar ('+m+'). Inténtalo otra vez en un momento.','err'); }
+  }
+  $('tt-add').onclick=function(){ if(!cur) return; $('tt-rows').appendChild(row({id:'test-'+rnd(6),name_es:'Producto de prueba',name_en:'Test item',price:0.5})); };
+  $('tt-save').onclick=function(){
+    if(!cur) return; var ps; try{ ps=collect(); }catch(e){ return err(e); }
+    var act=$('tt-active').checked, ns=$('tt-noship').checked;
+    if(act&&!ps.length){ status('Agrega al menos un producto de prueba antes de activar el modo.','err'); return; }
+    save(function(n){ n.active=act; n.no_shipping=ns; n.products=ps; }, act?'Pruebas: modo activado':'Pruebas: modo desactivado');
+  };
+  $('tt-newcode').onclick=function(){
+    if(!cur) return;
+    if(!confirm('¿Cambiar el código? El enlace de prueba anterior dejará de funcionar.')) return;
+    save(function(n){ n.code=rnd(10); },'Pruebas: código nuevo');
+  };
+  load();
 })();
 </script>
 </body>

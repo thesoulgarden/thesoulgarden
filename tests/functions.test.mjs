@@ -165,3 +165,14 @@ test("la firma depende del secreto", () => {
   const body = { purchase_units: [{ amount: { currency_code: "USD", value: "5.00" }, items: [] }] };
   assert.notEqual(signOrder("s1", body), signOrder("s2", body));
 });
+
+test("crea órdenes de prueba solo con el código del modo de pruebas", async () => {
+  const pp = fakePayPal();
+  const d = { ...data, tests: { active: true, code: "abc12345", no_shipping: true, products: [{ id: "test-1", name_es: "Prueba", price: 0.5 }] } };
+  const mk = (tc) => create.handle(req("/api/paypal/create-order", { lines: [{ id: "test-1", q: 1 }], lang: "es", expected: 0.5, tc }), { data: d, fetchImpl: pp.fetchImpl });
+  const ok = await mk("abc12345"); assert.equal(ok.status, 201);
+  const o = pp.orders[(await ok.json()).id].purchase_units[0];
+  assert.equal(o.amount.value, "0.50"); assert.equal(o.amount.breakdown.shipping.value, "0.00");
+  assert.match(o.items[0].name, /^\[PRUEBA\]/);
+  const bad = await mk("nope"); assert.equal(bad.status, 422);
+});

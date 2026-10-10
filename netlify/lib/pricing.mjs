@@ -67,6 +67,18 @@ export function bestPromo(p, campaigns) {
   return best ? { pct: num(best.discount), name: { es: best.name_es || "", en: best.name_en || best.name_es || "" } } : null;
 }
 
+// Productos de prueba (data/tests.json): solo existen si el modo está activado
+// y el navegador trae el código correcto. Nunca tienen ofertas.
+export function testProducts(tests, testCode) {
+  if (!tests || !tests.active) return [];
+  const code = String(tests.code || "");
+  if (code.length < 6 || String(testCode || "") !== code) return [];
+  return (tests.products || []).filter((p) => p && /^test-[a-z0-9-]{1,40}$/.test(String(p.id)) && num(p.price) > 0).map((p) => ({
+    id: String(p.id), name: { es: "[PRUEBA] " + (p.name_es || p.name_en || "Producto de prueba"), en: "[TEST] " + (p.name_en || p.name_es || "Test item") },
+    cat: "pruebas", price: num(p.price), status: "disponible", isTest: true,
+  }));
+}
+
 export function shippingCost(settings) {
   const s = settings && settings.shipping_cost;
   return s != null && !Number.isNaN(parseFloat(s)) ? Math.max(0, parseFloat(s)) : 5;
@@ -78,11 +90,12 @@ const LBL = {
 };
 
 // lines: [{id, v, q}] o [{id:"art:<id>", art:true, code, q:1}]
-export function priceCart(data, lines, { lang = "en", now = Date.now() } = {}) {
+export function priceCart(data, lines, { lang = "en", now = Date.now(), testCode = "" } = {}) {
   const L = LBL[lang] ? lang : "en";
   if (!Array.isArray(lines) || !lines.length) throw new PricingError("empty_cart");
   if (lines.length > MAX_LINES) throw new PricingError("too_many_lines");
-  const products = normalizeProducts(data.products);
+  const products = normalizeProducts(data.products).filter((p) => !/^test-/.test(p.id))
+    .concat(testProducts(data.tests, testCode));
   const byId = Object.fromEntries(products.map((p) => [p.id, p]));
   const camps = activeCampaigns(data.offers, now);
   const gallery = (data.gallery && data.gallery.items) || [];
@@ -112,14 +125,15 @@ export function priceCart(data, lines, { lang = "en", now = Date.now() } = {}) {
     } else if (v != null) throw new PricingError("bad_variant", i);
     const base = v != null ? p.variants[v].price : p.price;
     if (!(base > 0)) throw new PricingError("bad_price", i);
-    const promo = bestPromo(p, camps);
+    const promo = p.isTest ? null : bestPromo(p, camps);
     const unit = promo ? Math.round(base * (100 - promo.pct)) / 100 : base;
     const name = p.name[L] + (v != null ? " — " + p.variants[v].label[L] : "") + (promo ? ` [${LBL[L].offer} ${promo.name[L]} -${promo.pct}%]` : "");
-    return { sku: (p.id + (v != null ? ":" + v : "")).slice(0, 127), name: name.slice(0, 127), quantity: q, unit };
+    return { sku: (p.id + (v != null ? ":" + v : "")).slice(0, 127), name: name.slice(0, 127), quantity: q, unit, isTest: !!p.isTest };
   });
 
   const itemCents = items.reduce((s, it) => s + cents(it.unit) * it.quantity, 0);
-  const shipCents = cents(shippingCost(data.settings));
+  const onlyTests = items.every((it) => it.isTest);
+  const shipCents = onlyTests && data.tests && data.tests.no_shipping ? 0 : cents(shippingCost(data.settings));
   if (itemCents <= 0) throw new PricingError("bad_total");
   return { items, itemTotal: itemCents / 100, shipping: shipCents / 100, total: (itemCents + shipCents) / 100 };
 }

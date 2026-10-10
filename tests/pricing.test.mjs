@@ -104,3 +104,30 @@ test("con los datos reales del panel no falla ningún producto disponible", asyn
     }
   }
 });
+
+test("modo de pruebas: solo con el modo activo y el código correcto", () => {
+  const tests = { active: true, code: "abc12345", no_shipping: true, products: [{ id: "test-1", name_es: "Prueba", price: 0.5 }] };
+  const offers = { campaigns: [{ id: "t", active: true, discount: 15, applies_to: "all" }] };
+  const d = data({ tests, offers });
+  const r = priceCart(d, [{ id: "test-1", q: 1 }], { now: NOW, testCode: "abc12345", lang: "es" });
+  assert.equal(r.items[0].unit, 0.5);                   // sin ofertas
+  assert.equal(r.shipping, 0);                          // sin envío: solo productos de prueba
+  assert.match(r.items[0].name, /^\[PRUEBA\] /);
+  assert.equal(code(() => priceCart(d, [{ id: "test-1", q: 1 }], { now: NOW, testCode: "otro" })), "unknown_product");
+  assert.equal(code(() => priceCart(d, [{ id: "test-1", q: 1 }], { now: NOW })), "unknown_product");
+  assert.equal(code(() => priceCart(data({ tests: { ...tests, active: false } }), [{ id: "test-1", q: 1 }], { now: NOW, testCode: "abc12345" })), "unknown_product");
+  assert.equal(code(() => priceCart(data({ tests: { ...tests, code: "ab" } }), [{ id: "test-1", q: 1 }], { now: NOW, testCode: "ab" })), "unknown_product");
+});
+
+test("modo de pruebas: carrito mixto paga envío normal; sin la opción también", () => {
+  const tests = { active: true, code: "abc12345", no_shipping: true, products: [{ id: "test-1", name_es: "Prueba", price: 0.5 }] };
+  const mixed = priceCart(data({ tests }), [{ id: "test-1", q: 1 }, { id: "a", q: 1 }], { now: NOW, testCode: "abc12345" });
+  assert.equal(mixed.shipping, 5);
+  const noOpt = priceCart(data({ tests: { ...tests, no_shipping: false } }), [{ id: "test-1", q: 1 }], { now: NOW, testCode: "abc12345" });
+  assert.equal(noOpt.shipping, 5);
+});
+
+test("un producto real con id test-… nunca se vende fuera del modo de pruebas", () => {
+  const d = data(); d.products.products.push({ id: "test-x", name_es: "Raro", price: 1, status: "disponible" });
+  assert.equal(code(() => priceCart(d, [{ id: "test-x", q: 1 }], { now: NOW })), "unknown_product");
+});

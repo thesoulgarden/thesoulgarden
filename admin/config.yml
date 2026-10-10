@@ -566,6 +566,27 @@ collections:
                   - { label: "Español", name: es, widget: text }
                   - { label: "Inglés", name: en, widget: text }
 
+  - name: pruebas
+    label: Pruebas
+    editor: { preview: false }
+    files:
+      - name: tests
+        label: Modo de pruebas
+        file: data/tests.json
+        format: json
+        fields:
+          - { label: "Modo de pruebas activado", name: active, widget: boolean, default: false, hint: "Desactívalo siempre al terminar. Es más fácil manejarlo desde el Tablero → Pruebas." }
+          - { label: "Código del enlace de prueba", name: code, widget: string, hint: "Mínimo 6 letras o números. El Tablero puede generar uno nuevo. No es una contraseña: el repositorio es público." , pattern: ["^[a-z0-9]{6,40}$", "Solo letras minúsculas y números, de 6 a 40"] }
+          - { label: "Sin envío en pedidos de prueba", name: no_shipping, widget: boolean, default: true, hint: "Solo aplica si el carrito tiene únicamente productos de prueba. Los clientes reales siempre pagan el envío normal." }
+          - label: "Productos de prueba"
+            name: products
+            widget: list
+            summary: "{{fields.name_es}} · ${{fields.price}}"
+            fields:
+              - { label: "ID (debe empezar con test-)", name: id, widget: string, pattern: ["^test-[a-z0-9-]{1,40}$", "Debe empezar con test- y usar solo minúsculas, números y guiones"] }
+              - { label: "Nombre (español)", name: name_es, widget: string }
+              - { label: "Nombre (inglés)", name: name_en, widget: string, required: false }
+              - { label: "Precio (USD)", name: price, widget: number, value_type: float, min: 0.01, step: 0.01 }
   - name: ajustes
     label: Ajustes
     editor: { preview: false }
