@@ -1,0 +1,27 @@
+# Configuración de Netlify para The Soul Garden.
+# La página se publica tal cual desde la raíz del repositorio (sin paso de compilación).
+[build]
+  publish = "."
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# El código de las funciones y las pruebas no se sirven como páginas.
+[[redirects]]
+  from = "/netlify/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/tests/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/netlify.toml"
+  to = "/404.html"
+  status = 404
+  force = true
