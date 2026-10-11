@@ -87,6 +87,20 @@ a.dt-btn{display:inline-flex;align-items:center;text-decoration:none}
 a.dt-btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
 .tt-note{font-size:13px;color:var(--muted);margin:0}
 @media (max-width:640px){.tt-row{grid-template-columns:1fr 1fr}.tt-actions .dt-btn{width:100%;justify-content:center}}
+
+.zt-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.zt label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:700;color:var(--muted)}
+.zt input,.zt textarea,.zt select{font:16px Karla,sans-serif;min-height:44px;padding:8px 10px;border:1px solid #B8B1A3;border-radius:10px;background:#fff;color:var(--ink);width:100%}
+.zt textarea{min-height:96px;resize:vertical}
+.zt input[type=checkbox]{width:22px;height:22px;min-height:0;padding:0;flex:none}
+.zt label.tt-switch{flex-direction:row;align-items:center;color:var(--ink);font-size:15px;align-self:end}
+.zt-out{white-space:pre-wrap;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font:15px/1.45 Karla,sans-serif;margin:0}
+.zt-warn{background:#FFF4D6;color:#5C4400;border-radius:10px;padding:10px 12px;font-size:14px;margin:0}
+.zt-badge{display:inline-block;background:#B3261E;color:#fff;border-radius:999px;padding:2px 8px;font-size:12px;font-weight:700;margin-left:6px}
+.zt-log{width:100%;border-collapse:collapse;font-size:14px}
+.zt-log th,.zt-log td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)}
+.zt-cfg[hidden],.zt-cfgview[hidden]{display:none}
+@media (max-width:640px){.zt-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -151,6 +165,41 @@ a.dt-btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
     </div>
     <div id="tt-status" class="dt-status" role="status" aria-live="polite"></div>
     <p class="tt-note">Cada vez que guardas, la página se vuelve a publicar (1–2 minutos y usa créditos de Netlify). <b>Desactiva el modo al terminar de probar.</b> Los pagos de prueba en modo real (Live) son dinero real: reembólsalos desde PayPal.</p>
+  </div>
+
+  <h2>Mensaje de Zelle</h2>
+  <div class="box deal-tool zt" id="zelle-tool">
+    <p class="dt-help">Para clientes de confianza: arma el mensaje con el monto y los datos de Zelle. Cópialo, pégalo en WhatsApp y <b>adjunta tu código QR de Zelle</b> desde tus fotos. Esto no publica nada ni gasta créditos.</p>
+    <p class="zt-warn"><b>No envíes el pedido hasta ver el dinero en la app de tu banco.</b> Una captura del cliente no sirve como prueba. Los pagos por Zelle no se pueden revertir.</p>
+
+    <div class="zt-cfgview" id="zt-cfgview"><p class="tt-note">Datos de Zelle guardados en este navegador: <b id="zt-cfgsum"></b> · <a href="#" id="zt-cfgedit">Cambiar</a></p></div>
+    <div class="zt-cfg" id="zt-cfg">
+      <h3 class="dt-h3">Tus datos de Zelle (solo se guardan en este navegador)</h3>
+      <div class="zt-grid">
+        <label>Correo o teléfono de Zelle<input id="zt-to" autocomplete="off" placeholder="correo@ejemplo.com o (555) 123-4567"></label>
+        <label>Nombre registrado en Zelle<input id="zt-name" autocomplete="off" placeholder="Como aparece al pagarte"></label>
+      </div>
+      <div class="tt-actions" style="margin-top:8px"><button type="button" class="dt-btn" id="zt-cfgsave">Guardar mis datos de Zelle</button></div>
+    </div>
+
+    <h3 class="dt-h3">Pedido</h3>
+    <label>Pega aquí el pedido de WhatsApp (opcional: detecta el total solo)<textarea id="zt-paste" placeholder="Hola, quiero hacer este pedido…&#10;…&#10;Total: $37.30"></textarea></label>
+    <div class="zt-grid">
+      <label>Total a pagar (USD)<input id="zt-amount" inputmode="decimal" placeholder="37.30"></label>
+      <label>Nombre del cliente (opcional)<input id="zt-client" autocomplete="off"></label>
+      <label>Idioma del mensaje<select id="zt-lang"><option value="es">Español</option><option value="en">English</option></select></label>
+      <label class="tt-switch"><input type="checkbox" id="zt-test"> Pedido de prueba</label>
+    </div>
+    <div class="tt-actions" style="margin-top:8px">
+      <button type="button" class="dt-btn" id="zt-make">Crear mensaje</button>
+      <button type="button" class="dt-btn ghost" id="zt-copy" disabled>Copiar mensaje</button>
+    </div>
+    <div id="zt-status" class="dt-status" role="status" aria-live="polite"></div>
+    <pre class="zt-out" id="zt-out" hidden></pre>
+
+    <h3 class="dt-h3">Últimos códigos creados (en este navegador)</h3>
+    <div id="zt-logbox"></div>
+    <div class="tt-actions"><button type="button" class="dt-btn ghost" id="zt-cleartests">Borrar los de prueba</button><button type="button" class="dt-btn ghost" id="zt-clearall">Borrar todo el registro</button></div>
   </div>
 
   <h2>Accesos</h2>
@@ -470,6 +519,89 @@ a.dt-btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
     save(function(n){ n.code=rnd(10); },'Pruebas: código nuevo');
   };
   load();
+})();
+</script>
+
+<script>
+/* Mensaje de Zelle: todo ocurre en este navegador. No se guarda nada en GitHub ni se publica. */
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var KC='sg_zelle_cfg', KL='sg_zelle_log', MAXLOG=20;
+  function get(k,d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } }
+  function put(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); return true; }catch(e){ console.error('Zelle: no se pudo guardar en el navegador',e); return false; } }
+  function status(t,k){ var e=$('zt-status'); e.textContent=t||''; e.className='dt-status'+(k?' '+k:''); }
+  function money(n){ return '$'+n.toFixed(2); }
+  function rnd(n){ var al='ABCDEFGHJKMNPQRSTUVWXYZ23456789', a=new Uint8Array(n); crypto.getRandomValues(a); return Array.prototype.map.call(a,function(x){return al[x%al.length];}).join(''); }
+  // Total del mensaje de pedido: la última línea que empieza con "Total:" (no "Subtotal").
+  function parseTotal(txt){
+    var re=/(^|\n)[ \t*_]*total[ \t*_]*:[ \t*_]*\$?[ \t]*([0-9]{1,3}(?:,[0-9]{3})+(?:\.[0-9]{1,2})?|[0-9]{1,6}(?:[.,][0-9]{1,2})?)(?![0-9])/ig, m, last=null;
+    while((m=re.exec(String(txt||'')))) last=m[2];
+    if(last==null) return null;
+    last=/,[0-9]{3}/.test(last)?last.replace(/,/g,''):last.replace(',','.'); // 1,234.50 → 1234.50 · 12,5 → 12.5
+    return parseFloat(last);
+  }
+  function isTestOrder(txt){ return /\[(PRUEBA|TEST)\]/i.test(String(txt||'')); }
+  function buildMessage(o){
+    var es=o.lang!=='en', L=[];
+    if(o.test) L.push(es?'(PEDIDO DE PRUEBA)':'(TEST ORDER)');
+    L.push(es?('Hola'+(o.client?' '+o.client:'')+', para pagar tu pedido con Zelle:'):('Hi'+(o.client?' '+o.client:'')+', to pay for your order with Zelle:'));
+    L.push('');
+    L.push((es?'Monto: ':'Amount: ')+money(o.amount));
+    L.push((es?'Pagar a: ':'Send to: ')+o.to);
+    L.push((es?'Nombre en Zelle: ':'Name in Zelle: ')+o.name);
+    L.push((es?'Nota del pago: ':'Payment memo: ')+o.code);
+    L.push('');
+    L.push(es?'Puedes escanear el código QR que te envío desde la app de tu banco (Zelle → Enviar → escanear QR) o usar el dato de "Pagar a". Escribe el monto exacto y el código en la nota.'
+             :'You can scan the QR code I\u2019m sending from your bank app (Zelle → Send → scan QR) or use the "Send to" info. Enter the exact amount and the code in the memo.');
+    L.push(es?'Avísame por aquí cuando pagues. Enviamos el pedido en cuanto confirmemos el pago en nuestro banco.':'Let me know here once you pay. We ship as soon as we confirm the payment in our bank.');
+    return L.join('\n');
+  }
+  window.__zelle={parseTotal:parseTotal,isTestOrder:isTestOrder,buildMessage:buildMessage}; // para pruebas
+  function cfg(){ return get(KC,null); }
+  function showCfg(){
+    var c=cfg();
+    if(c&&c.to&&c.name){ $('zt-cfg').hidden=true; $('zt-cfgview').hidden=false; $('zt-cfgsum').textContent=c.to+' · '+c.name; }
+    else { $('zt-cfg').hidden=false; $('zt-cfgview').hidden=true; }
+  }
+  function esc(x){ return String(x).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+  function renderLog(){
+    var log=get(KL,[]), box=$('zt-logbox');
+    if(!log.length){ box.innerHTML='<p class="tt-note">Todavía no hay códigos.</p>'; return; }
+    box.innerHTML='<table class="zt-log"><thead><tr><th>Código</th><th>Monto</th><th>Cliente</th><th>Fecha</th></tr></thead><tbody>'+
+      log.map(function(e){ return '<tr><td><b>'+esc(e.code)+'</b>'+(e.test?'<span class="zt-badge">PRUEBA</span>':'')+'</td><td>'+money(e.amount)+'</td><td>'+esc(e.client||'—')+'</td><td>'+esc(new Date(e.at).toLocaleString())+'</td></tr>'; }).join('')+'</tbody></table>';
+  }
+  var lastMsg='';
+  $('zt-cfgsave').onclick=function(){
+    var to=$('zt-to').value.trim(), name=$('zt-name').value.trim();
+    if(!to||!name){ status('Escribe el correo o teléfono de Zelle y el nombre registrado.','err'); return; }
+    if(put(KC,{to:to,name:name})){ status('Datos de Zelle guardados en este navegador.','ok'); showCfg(); } else status('No se pudo guardar en este navegador.','err');
+  };
+  $('zt-cfgedit').onclick=function(e){ e.preventDefault(); var c=cfg()||{}; $('zt-to').value=c.to||''; $('zt-name').value=c.name||''; $('zt-cfg').hidden=false; $('zt-cfgview').hidden=true; };
+  $('zt-paste').addEventListener('input',function(){
+    var v=this.value, t=parseTotal(v);
+    if(t!=null) $('zt-amount').value=t.toFixed(2);
+    if(isTestOrder(v)) $('zt-test').checked=true;
+    if(/(^|\n)\s*(Shipping|Hi!? I would like)\b/i.test(v)) $('zt-lang').value='en'; else if(/(^|\n)\s*(Envío|Hola, quiero)\b/i.test(v)) $('zt-lang').value='es';
+    status(t!=null?'Total detectado: '+money(t)+(isTestOrder(v)?' (pedido de prueba)':''):(v.trim()?'No encontré la línea "Total:". Escribe el monto a mano.':''), t!=null?'ok':(v.trim()?'err':''));
+  });
+  $('zt-make').onclick=function(){
+    var c=cfg(); if(!c){ status('Primero guarda tus datos de Zelle.','err'); return; }
+    var amount=Math.round(parseFloat(String($('zt-amount').value).replace(',','.').replace('$',''))*100)/100;
+    if(!(amount>0)){ status('Escribe un total mayor que 0.','err'); return; }
+    var test=$('zt-test').checked, code=(test?'SGT-':'SG-')+rnd(5);
+    lastMsg=buildMessage({amount:amount,to:c.to,name:c.name,code:code,client:$('zt-client').value.trim(),lang:$('zt-lang').value,test:test});
+    $('zt-out').textContent=lastMsg; $('zt-out').hidden=false; $('zt-copy').disabled=false;
+    var log=get(KL,[]); log.unshift({code:code,amount:amount,client:$('zt-client').value.trim(),at:Date.now(),test:test}); put(KL,log.slice(0,MAXLOG)); renderLog();
+    status('Mensaje listo con el código '+code+'. Cópialo y adjunta tu QR de Zelle en WhatsApp.','ok');
+  };
+  $('zt-copy').onclick=function(){
+    if(!lastMsg) return;
+    function fallback(){ var ta=document.createElement('textarea'); ta.value=lastMsg; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); var ok=false; try{ ok=document.execCommand('copy'); }catch(e){} ta.remove(); status(ok?'Copiado. Pégalo en WhatsApp y adjunta tu QR.':'No se pudo copiar: selecciona el texto y cópialo a mano.',ok?'ok':'err'); }
+    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(lastMsg).then(function(){ status('Copiado. Pégalo en WhatsApp y adjunta tu QR.','ok'); },fallback); else fallback();
+  };
+  $('zt-cleartests').onclick=function(){ put(KL,get(KL,[]).filter(function(e){return !e.test;})); renderLog(); };
+  $('zt-clearall').onclick=function(){ if(confirm('¿Borrar todo el registro de códigos de este navegador?')){ put(KL,[]); renderLog(); } };
+  showCfg(); renderLog();
 })();
 </script>
 </body>
