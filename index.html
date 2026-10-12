@@ -205,7 +205,8 @@ p{margin:0}
 .cart-count[hidden]{display:none}
 .cart-overlay{position:fixed;inset:0;background:rgba(18,24,46,.45);z-index:40}
 .cart{position:fixed;top:0;right:0;bottom:0;width:min(440px,100vw);background:#FBF9F4;z-index:41;display:flex;flex-direction:column;box-shadow:-20px 0 50px rgba(18,24,46,.2);transform:translateX(100%);transition:transform .2s ease;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-.cart.open{transform:none}
+.cart.open{transform:none;overflow-y:auto;overscroll-behavior:contain} /* el carrito completo se desplaza si no cabe */
+.cart.news-drawer.open{display:flex;overflow:hidden} /* .open también se usa en las tarjetas (display:block): el panel de noticias necesita flex para desplazar la lista */
 .cart[hidden],.cart-overlay[hidden]{display:none}
 .news-btn{position:relative;height:40px;padding:0 12px;border:1px solid var(--ink);border-radius:999px;background:transparent;color:var(--ink);display:inline-flex;align-items:center;gap:6px;font:700 13px var(--sans);cursor:pointer;flex-shrink:0}
 .news-btn[hidden]{display:none}
@@ -219,9 +220,11 @@ p{margin:0}
 @media (prefers-reduced-motion:reduce){.news-fab{animation:none}}
 @media (max-width:560px){.header-right .news-btn{display:none}.news-fab:not([hidden]){display:inline-flex}}
 .mobile-nav .news-link[hidden]{display:none}
-.news-list{flex:1;overflow:auto;padding:8px 24px 24px;display:flex;flex-direction:column;gap:18px}
+.news-list{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:8px 24px calc(24px + env(safe-area-inset-bottom,0px))}
+.news-list>.news-item+.news-item{margin-top:18px}
+.news-head-fix{flex:none}
 .news-item{border:1px solid var(--line);border-radius:18px;background:#fff;overflow:hidden}
-.news-item img{width:100%;max-height:220px;object-fit:cover}
+.news-item img{width:100%;height:auto;display:block}
 .news-body{padding:16px 18px;display:flex;flex-direction:column;gap:8px}
 .news-date{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted,#555)}
 .news-item h3{margin:0;font-size:1.2rem}
