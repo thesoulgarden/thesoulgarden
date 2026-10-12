@@ -69,6 +69,7 @@ h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:400;margin:0}
 .hcard h3{font-size:clamp(22px,3vw,28px)}
 .hcard p{margin:0;color:var(--muted)}
 .amts{display:flex;flex-wrap:wrap;gap:8px}
+.amts[hidden]{display:none}
 .amts button{min-width:72px;min-height:48px;padding:0 16px;border:1px solid var(--ink);border-radius:999px;background:#fff;font:700 16px Karla,sans-serif;color:var(--ink);cursor:pointer}
 .amts button[aria-pressed="true"]{background:var(--ink);color:#F4F0E8}
 .amt-other{display:flex;flex-direction:column;gap:4px;font-weight:700;font-size:14px}
@@ -138,7 +139,7 @@ footer a{color:#D8D3C6}
       <h3 data-t="d_h3">Make a donation</h3>
       <p data-t="d_p">Your donation goes to food, shelter and vet care for the kittens.</p>
       <div class="amts" id="don-amts" role="group" aria-label="Amount"></div>
-      <label class="amt-other"><span data-t="d_other">Other amount (USD)</span><input id="don-other" inputmode="decimal" placeholder="$"></label>
+      <label class="amt-other"><span id="don-other-l">Other amount (USD)</span><input id="don-other" inputmode="decimal" placeholder="$"></label>
       <div id="don-pp"></div>
       <p class="don-err" id="don-err" role="alert" hidden></p>
       <div class="don-done" id="don-done" role="status" hidden></div>
@@ -192,9 +193,9 @@ footer a{color:#D8D3C6}
       cta_eyebrow:'Adopt or help',cta_h2:'Would you like to adopt or help?',cta_p:'Message us on WhatsApp to ask about kittens available for adoption. And remember: every purchase in our shop helps too.',
       cta_wa:'Ask about adoption',cta_shop:'Visit the shop',foot_shop:'Shop',foot_pol:'Shipping, returns & privacy',
       wa_msg:'Hi! I saw your kittens on the website and I would like to ask about adoption.',
-      h_eyebrow:'Help them',h_h2:'Help the kittens',d_h3:'Make a donation',d_p:'Your donation goes to food, shelter and vet care for the kittens.',d_other:'Other amount (USD)',
+      h_eyebrow:'Help them',h_h2:'Help the kittens',d_h3:'Make a donation',d_p:'Your donation goes to food, shelter and vet care for the kittens.',d_other:'Other amount (USD)',d_howmuch:'How much would you like to donate? (USD, $1 to $500)',
       d_zelle:'Prefer Zelle? Message us on WhatsApp.',d_tax:'We are not a registered charity, so donations are not tax-deductible. Thank you for helping!',
-      d_err_amt:'Choose an amount between $1 and $500.',d_err:'The donation could not be completed. Please try again or message us on WhatsApp.',d_cancel:'Donation canceled.',
+      d_err_amt:'Enter or choose an amount between $1 and $500.',d_err:'The donation could not be completed. Please try again or message us on WhatsApp.',d_cancel:'Donation canceled.',
       d_done:'Thank you for helping the kittens! Your donation number is: ',d_off:'Donations are not available right now.',d_amts:'Amount',
       a_h3:'Send them something from Amazon',a_p:'We keep a wish list with food, litter and supplies the kittens need. Amazon delivers it directly to us.',a_btn:'See the Amazon wish list',close:'Close',prev:'Previous',next:'Next'},
     es:{title:'Nuestros gatitos · El Jardín de los Ángeles',back:'← Nuestra historia',eyebrow:'Nuestra causa 🐾',h1:'Nuestros gatitos',
@@ -209,9 +210,9 @@ footer a{color:#D8D3C6}
       cta_eyebrow:'Adopta o ayuda',cta_h2:'¿Te gustaría adoptar o ayudar?',cta_p:'Escríbenos por WhatsApp para preguntar por los gatitos en adopción. Y recuerda: cada compra en la tienda también ayuda.',
       cta_wa:'Preguntar por adopción',cta_shop:'Ir a la tienda',foot_shop:'Tienda',foot_pol:'Envíos, devoluciones y privacidad',
       wa_msg:'Hola, vi a los gatitos en la página y quisiera preguntar por la adopción.',
-      h_eyebrow:'Ayúdalos',h_h2:'Ayuda a los gatitos',d_h3:'Haz una donación',d_p:'Tu donación se usa para comida, refugio y veterinario para los gatitos.',d_other:'Otro monto (USD)',
+      h_eyebrow:'Ayúdalos',h_h2:'Ayuda a los gatitos',d_h3:'Haz una donación',d_p:'Tu donación se usa para comida, refugio y veterinario para los gatitos.',d_other:'Otro monto (USD)',d_howmuch:'¿Cuánto quieres donar? (USD, de $1 a $500)',
       d_zelle:'¿Prefieres Zelle? Escríbenos por WhatsApp.',d_tax:'No somos una organización benéfica registrada, así que las donaciones no son deducibles de impuestos. ¡Gracias por ayudar!',
-      d_err_amt:'Elige un monto entre $1 y $500.',d_err:'No se pudo completar la donación. Inténtalo de nuevo o escríbenos por WhatsApp.',d_cancel:'Donación cancelada.',
+      d_err_amt:'Escribe o elige un monto entre $1 y $500.',d_err:'No se pudo completar la donación. Inténtalo de nuevo o escríbenos por WhatsApp.',d_cancel:'Donación cancelada.',
       d_done:'¡Gracias por ayudar a los gatitos! Tu número de donación es: ',d_off:'Las donaciones no están disponibles en este momento.',d_amts:'Monto',
       a_h3:'Envíales algo por Amazon',a_p:'Tenemos una lista de deseos con comida, arena y cosas que los gatitos necesitan. Amazon nos la envía directamente.',a_btn:'Ver la lista de deseos en Amazon',close:'Cerrar',prev:'Anterior',next:'Siguiente'}
   };
@@ -247,15 +248,16 @@ footer a{color:#D8D3C6}
   var sx=null; $('lb').addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
   $('lb').addEventListener('touchend',function(e){if(sx==null) return; var dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>50) step(dx<0?1:-1); sx=null;});
   /* ---------- Ayuda: donaciones (PayPal, verificado en el servidor) y lista de Amazon ---------- */
-  var AMTS=[5,10,25], amt=10, PP_ID='', ppReady=false;
+  var AMTS=[], amt=null, PP_ID='', ppReady=false;
   function cleanAmt(x){ var n=Math.round(parseFloat(String(x).replace('$','').replace(',','.'))*100)/100; return (n>=1&&n<=500)?n:null; }
   function renderAmts(){
     var box=$('don-amts'); if(!box) return; box.setAttribute('aria-label',t('d_amts'));
+    box.hidden=!AMTS.length; $('don-other-l').textContent=t(AMTS.length?'d_other':'d_howmuch');
     box.innerHTML=AMTS.map(function(a){ return '<button type="button" data-a="'+a+'" aria-pressed="'+String(amt===a&&!$('don-other').value)+'">$'+(a%1?a.toFixed(2):a)+'</button>'; }).join('');
   }
   function setupHelp(st){
     var on=st.donations_enabled===true, list=Array.isArray(st.donation_amounts)?st.donation_amounts.map(function(x){ return cleanAmt(x&&typeof x==='object'?x.amount:x); }).filter(Boolean).slice(0,6):[];
-    if(list.length) AMTS=list; amt=AMTS[Math.min(1,AMTS.length-1)];
+    AMTS=list; amt=AMTS.length?AMTS[Math.min(1,AMTS.length-1)]:null; // sin montos rápidos: solo el cuadro libre
     PP_ID=String(st.paypal_client_id||'').trim();
     var amz=String(st.amazon_wishlist_url||'').trim(), amzOk=/^https:\/\/((www\.)?amazon\.com|a\.co)\/[^\s"'<>]*$/.test(amz);
     $('don-card').hidden=!(on&&/^[A-Za-z0-9_-]{20,120}$/.test(PP_ID));
