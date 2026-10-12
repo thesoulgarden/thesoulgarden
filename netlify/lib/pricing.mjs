@@ -152,29 +152,3 @@ export function paypalOrderBody(priced, customId) {
   };
 }
 
-// Donaciones para los gatitos: el monto lo elige quien dona, dentro de los límites.
-export const DONATION_MIN = 1;
-export const DONATION_MAX = 500;
-
-export function priceDonation(settings, amount, { lang = "en" } = {}) {
-  if (!settings || settings.donations_enabled !== true) throw new PricingError("donations_disabled");
-  const raw = typeof amount === "number" ? amount : parseFloat(amount);
-  if (!Number.isFinite(raw)) throw new PricingError("bad_amount");
-  const c = Math.round(raw * 100);
-  if (Math.abs(raw * 100 - c) > 1e-6 || c < DONATION_MIN * 100 || c > DONATION_MAX * 100) throw new PricingError("bad_amount");
-  return { amount: c / 100, name: lang === "es" ? "Donación – Gatitos" : "Donation – Kittens" };
-}
-
-export function donationOrderBody(d, customId) {
-  const usd = { currency_code: "USD", value: m2(d.amount) };
-  return {
-    intent: "CAPTURE",
-    purchase_units: [{
-      description: "El Jardín de los Ángeles – Gatitos",
-      custom_id: customId,
-      items: [{ name: d.name, sku: "donation-gatitos", quantity: "1", unit_amount: usd, category: "DONATION" }],
-      amount: { ...usd, breakdown: { item_total: usd } },
-    }],
-    application_context: { shipping_preference: "NO_SHIPPING", brand_name: "El Jardín de los Ángeles" },
-  };
-}

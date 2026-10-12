@@ -177,25 +177,10 @@ test("crea órdenes de prueba solo con el código del modo de pruebas", async ()
   const bad = await mk("nope"); assert.equal(bad.status, 422);
 });
 
-test("donación: crea orden firmada sin envío y se puede cobrar", async () => {
+test("las donaciones por PayPal ya no existen: se tratan como un carrito inválido", async () => {
   const pp = fakePayPal();
   const d = { ...data, settings: { ...data.settings, donations_enabled: true } };
-  const r = await create.handle(req("/api/paypal/create-order", { kind: "donation", amount: 10, lang: "es" }), { data: d, fetchImpl: pp.fetchImpl });
-  assert.equal(r.status, 201);
-  const id = (await r.json()).id; const o = pp.orders[id];
-  assert.equal(o.purchase_units[0].amount.value, "10.00");
-  assert.match(o.purchase_units[0].custom_id, /^sg1\./);
-  o.status = "APPROVED";
-  const c = await capture.handle(req("/api/paypal/capture-order", { orderID: id }), { fetchImpl: pp.fetchImpl });
-  assert.equal(c.status, 200);
-});
-
-test("donación desactivada o monto inválido no crea orden", async () => {
-  const pp = fakePayPal();
-  const off = await create.handle(req("/api/paypal/create-order", { kind: "donation", amount: 10 }), { data, fetchImpl: pp.fetchImpl });
-  assert.equal(off.status, 422); assert.equal((await off.json()).error, "donations_disabled");
-  const d = { ...data, settings: { donations_enabled: true } };
-  const bad = await create.handle(req("/api/paypal/create-order", { kind: "donation", amount: 9999 }), { data: d, fetchImpl: pp.fetchImpl });
-  assert.equal(bad.status, 422);
+  const r = await create.handle(req("/api/paypal/create-order", { kind: "donation", amount: 10 }), { data: d, fetchImpl: pp.fetchImpl });
+  assert.equal(r.status, 422); assert.equal((await r.json()).error, "empty_cart");
   assert.equal(Object.keys(pp.orders).length, 0);
 });
