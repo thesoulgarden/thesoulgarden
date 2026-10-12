@@ -1,14 +1,12 @@
 {
   "items": [
     {
-      "id": "viaje-lourdes",
-      "date": "2026-10-12",
-      "hidden": true,
-      "title_es": "Próximo viaje a Lourdes",
-      "title_en": "Upcoming trip to Lourdes",
-      "body_es": "Estamos preparando un nuevo viaje de peregrinación a Lourdes para traer más agua bendita, collares, pulseras y dijes.\nSi te interesa algo en especial, anótate en la lista de espera y te avisamos cuando lo tengamos.",
+      "img": "/img/productos/gemini_generated_image_shpk3eshpk3eshpk.jpeg",
       "body_en": "We are planning a new pilgrimage to Lourdes to bring back more holy water, necklaces, bracelets and charms.\nIf you are interested in something special, join the waiting list and we will let you know when we have it.",
-      "img": "",
+      "hidden": false,
+      "body_es": "Estamos preparando un nuevo viaje de peregrinación a Lourdes para traer más agua bendita, collares, pulseras y dijes.\nSi te interesa algo en especial, anótate en la lista de espera y te avisamos cuando lo tengamos.",
+      "date": "2027-10-07",
+      "title_en": "Upcoming trip to Lourdes",
       "waitlist": [
         {
           "es": "Agua bendita de Lourdes",
@@ -26,7 +24,9 @@
           "es": "Dijes",
           "en": "Charms"
         }
-      ]
+      ],
+      "title_es": "Próximo viaje a Lourdes",
+      "id": "viaje-lourdes"
     }
   ]
 }
