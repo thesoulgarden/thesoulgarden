@@ -131,3 +131,18 @@ test("un producto real con id test-… nunca se vende fuera del modo de pruebas"
   const d = data(); d.products.products.push({ id: "test-x", name_es: "Raro", price: 1, status: "disponible" });
   assert.equal(code(() => priceCart(d, [{ id: "test-x", q: 1 }], { now: NOW })), "unknown_product");
 });
+
+test("donaciones: solo activadas y entre $1 y $500, con centavos exactos", async () => {
+  const { priceDonation, donationOrderBody } = await import("../netlify/lib/pricing.mjs");
+  const on = { donations_enabled: true };
+  assert.equal(priceDonation(on, 10, { lang: "es" }).amount, 10);
+  assert.equal(priceDonation(on, "25.50").amount, 25.5);
+  assert.match(priceDonation(on, 5, { lang: "es" }).name, /Donación/);
+  for (const a of [0, 0.99, 500.01, -5, "abc", null, 1.005, Infinity]) assert.equal(code(() => priceDonation(on, a)), "bad_amount", String(a));
+  assert.equal(code(() => priceDonation({}, 10)), "donations_disabled");
+  assert.equal(code(() => priceDonation({ donations_enabled: "true" }, 10)), "donations_disabled");
+  const o = donationOrderBody(priceDonation(on, 12.34), "sg1.x");
+  assert.equal(o.purchase_units[0].amount.value, "12.34");
+  assert.equal(o.purchase_units[0].items[0].category, "DONATION");
+  assert.equal(o.application_context.shipping_preference, "NO_SHIPPING");
+});

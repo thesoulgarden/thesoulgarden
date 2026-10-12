@@ -566,6 +566,39 @@ collections:
                   - { label: "Español", name: es, widget: text }
                   - { label: "Inglés", name: en, widget: text }
 
+  - name: noticias
+    label: Noticias
+    editor: { preview: false }
+    files:
+      - name: noticias
+        label: Noticias y lista de espera
+        file: data/news.json
+        format: json
+        fields:
+          - label: "Noticias"
+            name: items
+            widget: list
+            label_singular: noticia
+            summary: "{{fields.date}} · {{fields.title_es}}"
+            hint: "La noticia más nueva (por fecha) va primero. Cuando publicas una noticia visible que la persona no ha visto, el botón Noticias destella en amarillo."
+            fields:
+              - { label: "ID (corto, sin espacios, no lo cambies después)", name: id, widget: string, pattern: ["^[a-z0-9-]{2,40}$", "Solo minúsculas, números y guiones. Ej.: viaje-lourdes-2027"] }
+              - { label: "Fecha", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+              - { label: "Ocultar (borrador)", name: hidden, widget: boolean, default: false, required: false, hint: "Mientras esté marcada, nadie la ve. Desmárcala para publicarla." }
+              - { label: "Título (español)", name: title_es, widget: string }
+              - { label: "Título (inglés)", name: title_en, widget: string, required: false }
+              - { label: "Texto (español)", name: body_es, widget: text }
+              - { label: "Texto (inglés)", name: body_en, widget: text, required: false }
+              - { label: "Foto (opcional)", name: img, widget: image, required: false }
+              - label: "Lista de espera: productos que la gente puede pedir (opcional)"
+                name: waitlist
+                widget: list
+                required: false
+                summary: "{{fields.es}}"
+                hint: "Si agregas productos aquí, la noticia muestra el botón 'Quiero estar en la lista'. Déjalo vacío si la noticia no es para pedidos."
+                fields:
+                  - { label: "Producto (español)", name: es, widget: string }
+                  - { label: "Producto (inglés)", name: en, widget: string, required: false }
   - name: pruebas
     label: Pruebas
     editor: { preview: false }
@@ -599,6 +632,9 @@ collections:
           - { label: "WhatsApp (con código de país, ej.: +19294133312)", name: whatsapp, widget: string, required: false }
           - { label: "Costo de envío en EE. UU. (USD, 0 = gratis)", name: shipping_cost, widget: number, value_type: float, min: 0, step: 0.5, default: 5, required: false }
           - { label: "Código de GoatCounter (estadísticas)", name: goatcounter, widget: string, required: false, hint: "Solo el código, por ejemplo thesoulgarden (de thesoulgarden.goatcounter.com). Déjalo vacío para desactivar." }
+          - { label: "Gatitos: aceptar donaciones", name: donations_enabled, widget: boolean, default: false, required: false, hint: "Actívalo solo después de confirmar con PayPal que tu cuenta puede recibir donaciones para los gatitos. Las donaciones no son deducibles de impuestos." }
+          - { label: "Gatitos: montos rápidos de donación (USD)", name: donation_amounts, widget: list, field: { label: "Monto", name: amount, widget: number, value_type: float, min: 1, max: 500 }, required: false, hint: "Ej.: 5, 10, 25. La persona también puede escribir otro monto entre $1 y $500." }
+          - { label: "Gatitos: enlace a la lista de deseos de Amazon", name: amazon_wishlist_url, widget: string, required: false, pattern: ["^(https://(www\\.)?amazon\\.com/.*|https://a\\.co/.*)?$", "Debe empezar con https://www.amazon.com/ o https://a.co/"], hint: "Pega el enlace para compartir de tu lista. Configura la dirección de envío de la lista como privada en Amazon. Déjalo vacío para ocultar el botón." }
           - { label: "PayPal: Client ID (público)", name: paypal_client_id, widget: string, required: false, hint: "Pega solo el Client ID de developer.paypal.com → Apps & Credentials. NUNCA pegues aquí el Secret. Déjalo vacío para ocultar el botón de PayPal." }
           - { label: "PayPal: modo", name: paypal_mode, widget: select, default: sandbox, required: false, options: [ { label: "Prueba (Sandbox), sin cobros reales", value: sandbox }, { label: "Pagos reales (Live)", value: live } ], hint: "Debe coincidir con el Client ID: el de Sandbox con Prueba, el de Live con Pagos reales." }
           - { label: "Enlace a la hoja de inventario (Google Sheets)", name: inventory_url, widget: string, required: false, hint: "Pega el enlace de tu Google Sheet. Aparece en el Tablero. Mantén la hoja compartida solo contigo y la dueña." }

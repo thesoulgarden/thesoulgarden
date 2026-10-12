@@ -6,7 +6,7 @@ import offers from "../../data/offers.json" with { type: "json" };
 import gallery from "../../data/gallery.json" with { type: "json" };
 import settings from "../../data/settings.json" with { type: "json" };
 import tests from "../../data/tests.json" with { type: "json" };
-import { priceCart, paypalOrderBody, PricingError } from "../lib/pricing.mjs";
+import { priceCart, paypalOrderBody, priceDonation, donationOrderBody, PricingError } from "../lib/pricing.mjs";
 import { config as ppConfig, api, signOrder, PayPalError } from "../lib/paypal.mjs";
 import { json, readJson, logError } from "../lib/http.mjs";
 
@@ -18,6 +18,23 @@ export async function handle(req, { data = DATA, now = Date.now(), fetchImpl } =
   if (!cfg) { logError("create", new Error("PayPal no configurado (variables de entorno)")); return json(503, { error: "not_configured" }); }
   const body = await readJson(req);
   if (!body) return json(400, { error: "bad_request" });
+
+  // Donación para los gatitos: { kind:"donation", amount, lang }
+  if (body.kind === "donation") {
+    let d;
+    try { d = priceDonation(data.settings, body.amount, { lang: body.lang === "es" ? "es" : "en" }); }
+    catch (e) {
+      if (e instanceof PricingError) return json(422, { error: e.code });
+      logError("create/donation", e); return json(500, { error: "server_error" });
+    }
+    const dorder = donationOrderBody(d, "");
+    dorder.purchase_units[0].custom_id = signOrder(cfg.secret, dorder);
+    try {
+      const res = await api(cfg, "/v2/checkout/orders", { method: "POST", body: JSON.stringify(dorder), fetchImpl });
+      if (!res?.id) throw new PayPalError(502, { name: "NO_ORDER_ID" });
+      return json(201, { id: res.id });
+    } catch (e) { logError("create/donation-paypal", e); return json(502, { error: "paypal_error" }); }
+  }
 
   let priced;
   try {
