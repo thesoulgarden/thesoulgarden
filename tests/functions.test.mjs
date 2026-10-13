@@ -184,3 +184,42 @@ test("las donaciones por PayPal ya no existen: se tratan como un carrito inváli
   assert.equal(r.status, 422); assert.equal((await r.json()).error, "empty_cart");
   assert.equal(Object.keys(pp.orders).length, 0);
 });
+
+const intlData = { ...data, settings: { shipping_cost: 5, intl_enabled: true, intl_min: 15, intl_shipping: 25 } };
+async function approvedWithCountry(pp, dest, country, lines = [{ id: "a", q: 2 }], expected = 20) {
+  const r = await create.handle(req("/api/paypal/create-order", { lines, lang: "es", expected, dest }), { data: intlData, fetchImpl: pp.fetchImpl });
+  const id = (await r.json()).id; const o = pp.orders[id];
+  o.status = "APPROVED"; if (country) o.purchase_units[0].shipping = { address: { country_code: country } };
+  return id;
+}
+const cap = (pp, id) => capture.handle(req("/api/paypal/capture-order", { orderID: id }), { fetchImpl: pp.fetchImpl });
+
+test("destino: pedido nacional con dirección de otro país no se cobra", async () => {
+  const pp = fakePayPal(); const id = await approvedWithCountry(pp, "us", "EC");
+  const r = await cap(pp, id); assert.equal(r.status, 409); assert.equal((await r.json()).error, "intl_mismatch");
+  assert.ok(!pp.calls.some((c) => c.url.endsWith("/capture")));
+});
+
+test("destino: pedido internacional con dirección de EE. UU. no se cobra", async () => {
+  const pp = fakePayPal(); const id = await approvedWithCountry(pp, "intl", "US");
+  const r = await cap(pp, id); assert.equal(r.status, 409); assert.equal((await r.json()).error, "us_address_intl");
+});
+
+test("destino: casos correctos se cobran (EE. UU., Puerto Rico, Ecuador internacional)", async () => {
+  for (const [dest, c] of [["us", "US"], ["us", "PR"], ["intl", "EC"]]) {
+    const pp = fakePayPal(); const id = await approvedWithCountry(pp, dest, c);
+    const r = await cap(pp, id); assert.equal(r.status, 200, dest + c);
+  }
+});
+
+test("destino: alterar la descripción (destino) rompe la firma", async () => {
+  const pp = fakePayPal(); const id = await approvedWithCountry(pp, "us", "EC");
+  pp.orders[id].purchase_units[0].description = "El Jardín de los Ángeles · INTL";
+  const r = await cap(pp, id); assert.equal(r.status, 403);
+});
+
+test("destino: internacional bajo el mínimo no crea orden", async () => {
+  const pp = fakePayPal();
+  const r = await create.handle(req("/api/paypal/create-order", { lines: [{ id: "a", q: 1 }], expected: 10, dest: "intl" }), { data: intlData, fetchImpl: pp.fetchImpl });
+  assert.equal(r.status, 422); assert.equal((await r.json()).error, "below_intl_min");
+});

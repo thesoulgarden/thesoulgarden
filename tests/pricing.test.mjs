@@ -132,3 +132,23 @@ test("un producto real con id test-… nunca se vende fuera del modo de pruebas"
   assert.equal(code(() => priceCart(d, [{ id: "test-x", q: 1 }], { now: NOW })), "unknown_product");
 });
 
+
+test("envío internacional: mínimo, costo fijo y solo si está activado", () => {
+  const settings = { shipping_cost: 5, intl_enabled: true, intl_min: 50, intl_shipping: 25 };
+  const r = priceCart(data({ settings }), [{ id: "a", q: 5 }], { now: NOW, dest: "intl" });
+  assert.equal(r.itemTotal, 50); assert.equal(r.shipping, 25); assert.equal(r.total, 75); assert.equal(r.dest, "intl");
+  assert.equal(code(() => priceCart(data({ settings }), [{ id: "a", q: 4 }], { now: NOW, dest: "intl" })), "below_intl_min");
+  assert.equal(priceCart(data({ settings }), [{ id: "a", q: 1 }], { now: NOW }).shipping, 5); // EE. UU. sin mínimo
+  assert.equal(code(() => priceCart(data({ settings: { ...settings, intl_enabled: false } }), [{ id: "a", q: 5 }], { now: NOW, dest: "intl" })), "intl_disabled");
+  assert.equal(code(() => priceCart(data({ settings: { intl_enabled: true, intl_min: 50 } }), [{ id: "a", q: 5 }], { now: NOW, dest: "intl" })), "intl_disabled"); // sin costo definido
+  assert.equal(code(() => priceCart(data({ settings }), [{ id: "a", q: 5 }], { now: NOW, dest: "mars" })), "bad_dest");
+  const o = paypalOrderBody(r, "x").purchase_units[0];
+  assert.match(o.description, /· INTL$/); assert.equal(o.amount.breakdown.shipping.value, "25.00");
+});
+
+test("envío internacional: el mínimo se compara con el subtotal ya con descuentos", () => {
+  const settings = { intl_enabled: true, intl_min: 50, intl_shipping: 20 };
+  const offers = { campaigns: [{ id: "t", active: true, discount: 15, applies_to: "all" }] };
+  assert.equal(code(() => priceCart(data({ settings, offers }), [{ id: "a", q: 5 }], { now: NOW, dest: "intl" })), "below_intl_min"); // 5 × 8.50 = 42.50
+  assert.equal(priceCart(data({ settings, offers }), [{ id: "a", q: 6 }], { now: NOW, dest: "intl" }).itemTotal, 51);
+});

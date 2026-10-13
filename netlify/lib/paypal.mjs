@@ -61,7 +61,7 @@ function canonical(order) {
   const u = order.purchase_units[0];
   const items = (u.items || []).map((it) => [it.sku || "", String(it.quantity), it.unit_amount?.value || ""].join("~")).join(";");
   const b = u.amount?.breakdown || {};
-  return ["v1", u.amount?.currency_code, u.amount?.value, b.item_total?.value || "", b.shipping?.value || "", items].join("|");
+  return ["v2", u.description || "", u.amount?.currency_code, u.amount?.value, b.item_total?.value || "", b.shipping?.value || "", items].join("|"); // v2: incluye el destino (en description)
 }
 
 function mac(secret, text) {

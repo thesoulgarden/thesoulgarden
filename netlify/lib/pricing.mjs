@@ -90,7 +90,16 @@ const LBL = {
 };
 
 // lines: [{id, v, q}] o [{id:"art:<id>", art:true, code, q:1}]
-export function priceCart(data, lines, { lang = "en", now = Date.now(), testCode = "" } = {}) {
+// Envíos internacionales (ajustes del panel): mínimo de compra y costo fijo.
+export const US_COUNTRIES = ["US", "PR", "VI", "GU", "AS", "MP"]; // EE. UU. y territorios: envío nacional
+export function intlConfig(settings) {
+  const s = settings || {};
+  const min = parseFloat(s.intl_min), ship = parseFloat(s.intl_shipping);
+  return { enabled: s.intl_enabled === true, min: Number.isFinite(min) && min > 0 ? min : 0, shipping: Number.isFinite(ship) && ship >= 0 ? ship : null };
+}
+
+export function priceCart(data, lines, { lang = "en", now = Date.now(), testCode = "", dest = "us" } = {}) {
+  if (dest !== "us" && dest !== "intl") throw new PricingError("bad_dest");
   const L = LBL[lang] ? lang : "en";
   if (!Array.isArray(lines) || !lines.length) throw new PricingError("empty_cart");
   if (lines.length > MAX_LINES) throw new PricingError("too_many_lines");
@@ -133,9 +142,16 @@ export function priceCart(data, lines, { lang = "en", now = Date.now(), testCode
 
   const itemCents = items.reduce((s, it) => s + cents(it.unit) * it.quantity, 0);
   const onlyTests = items.every((it) => it.isTest);
-  const shipCents = onlyTests && data.tests && data.tests.no_shipping ? 0 : cents(shippingCost(data.settings));
+  let shipCents = cents(shippingCost(data.settings));
+  if (dest === "intl") {
+    const ic = intlConfig(data.settings);
+    if (!ic.enabled || ic.shipping == null) throw new PricingError("intl_disabled");
+    if (itemCents < cents(ic.min)) throw new PricingError("below_intl_min", ic.min);
+    shipCents = cents(ic.shipping);
+  }
+  if (onlyTests && data.tests && data.tests.no_shipping) shipCents = 0;
   if (itemCents <= 0) throw new PricingError("bad_total");
-  return { items, itemTotal: itemCents / 100, shipping: shipCents / 100, total: (itemCents + shipCents) / 100 };
+  return { items, dest, itemTotal: itemCents / 100, shipping: shipCents / 100, total: (itemCents + shipCents) / 100 };
 }
 
 // Cuerpo de la orden para la API de PayPal (Orders v2).
@@ -144,7 +160,7 @@ export function paypalOrderBody(priced, customId) {
   return {
     intent: "CAPTURE",
     purchase_units: [{
-      description: "El Jardín de los Ángeles",
+      description: priced.dest === "intl" ? "El Jardín de los Ángeles · INTL" : "El Jardín de los Ángeles · US",
       custom_id: customId,
       items: priced.items.map((it) => ({ name: it.name, sku: it.sku, quantity: String(it.quantity), unit_amount: usd(it.unit), category: "PHYSICAL_GOODS" })),
       amount: { ...usd(priced.total), breakdown: { item_total: usd(priced.itemTotal), shipping: usd(priced.shipping) } },

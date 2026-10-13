@@ -2,6 +2,7 @@
 // Solo cobra órdenes creadas y firmadas por nuestro servidor, y confirma que el cobro quedó COMPLETED
 // por el monto exacto de la orden.
 import { config as ppConfig, api, verifyOrder, PayPalError } from "../lib/paypal.mjs";
+import { US_COUNTRIES } from "../lib/pricing.mjs";
 import { json, readJson, logError } from "../lib/http.mjs";
 
 const ORDER_ID = /^[A-Z0-9]{10,25}$/;
@@ -27,6 +28,18 @@ export async function handle(req, { fetchImpl } = {}) {
   }
   const unit = order.purchase_units[0];
   const want = unit.amount;
+
+  // El destino que eligió el cliente va firmado en la descripción. Si no coincide con el país
+  // de la dirección que puso en PayPal, no se cobra (evita esquivar el mínimo internacional).
+  const country = String(unit.shipping?.address?.country_code || "").toUpperCase();
+  const declaredIntl = /· INTL$/.test(unit.description || "");
+  if (order.status === "APPROVED" && country) {
+    const isUS = US_COUNTRIES.includes(country);
+    if (!declaredIntl && !isUS) { logError("capture/dest", new Error("Dirección fuera de EE. UU. en pedido nacional"), { orderId: id, country }); return json(409, { error: "intl_mismatch" }); }
+    if (declaredIntl && isUS) { logError("capture/dest", new Error("Dirección de EE. UU. en pedido internacional"), { orderId: id, country }); return json(409, { error: "us_address_intl" }); }
+  } else if (order.status === "APPROVED" && !country) {
+    logError("capture/dest", new Error("La orden no trae país de envío; se cobra sin comprobar destino"), { orderId: id });
+  }
 
   if (order.status === "COMPLETED") return checkCaptured(order, want, id); // ya cobrada (reintento)
   if (order.status !== "APPROVED") return json(409, { error: "not_approved", status: order.status || null });

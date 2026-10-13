@@ -224,6 +224,14 @@ p{margin:0}
 @keyframes newsPulse{0%,100%{background:#FFD447;box-shadow:0 0 0 0 rgba(255,196,0,.6)}50%{background:#FFF1B8;box-shadow:0 0 0 8px rgba(255,196,0,0)}}
 @media (prefers-reduced-motion:reduce){.news-btn.has-new{animation:none}}
 @media (max-width:560px){.news-btn .news-lbl{display:none}.news-btn{width:40px;padding:0;justify-content:center}}
+.ship-dest{border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+.ship-dest[hidden]{display:none}
+.ship-dest legend{font-size:14px;font-weight:700;margin-bottom:2px}
+.ship-dest label{display:flex;align-items:center;gap:10px;min-height:36px;font-size:15px}
+.ship-dest input{width:20px;height:20px;flex:none}
+.intl-min{margin:0;background:#FFF4D6;color:#5C4400;border-radius:10px;padding:10px 12px;font-size:14px;font-weight:700}
+.intl-min[hidden]{display:none}
+.btn-wa[disabled]{opacity:.45;cursor:not-allowed}
 .news-fab{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;min-height:48px;padding:0 18px;border-radius:999px;border:1px solid #8A6A00;background:#FFD447;color:#2B2100;font:700 15px var(--sans);display:none;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(18,24,46,.25);cursor:pointer;animation:newsPulse 1.6s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.news-fab{animation:none}}
 @media (max-width:560px){.header-right .news-btn{display:none}.news-fab:not([hidden]){display:inline-flex}}
@@ -443,7 +451,7 @@ body.noscroll{overflow:hidden}
     <nav class="nav" aria-label="Main" data-i18n-aria="aria_main">
       <a href="#catalogo" data-i18n="nav_col">Collection</a><a href="#kits" data-i18n="nav_sets">Gift sets</a><a href="#historia" data-i18n="nav_hist">Our story</a><a href="#lourdes" data-i18n="nav_lourdes">Lourdes</a><a href="/galeria.html" class="gal-link" data-i18n="nav_gal">Gallery</a><a href="/runas.html" class="run-link" data-i18n="nav_runas">Runes</a><a href="#preguntas" data-i18n="nav_faq">FAQ</a>
     </nav>
-    <div class="header-right"><a class="btn btn-ghost etsy-top" href="https://www.etsy.com/shop/Eljardindelosangeles" target="_blank" rel="noopener" data-i18n="etsy_shop">Etsy shop</a>
+    <div class="header-right">
     <button class="news-btn" id="news-btn" type="button" hidden><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15 9a4 4 0 0 1 0 6M18 6a8 8 0 0 1 0 12"/></svg><span class="news-lbl" data-i18n="news_btn">News</span><span class="news-dot" hidden></span></button>
     <button class="cart-btn" type="button" aria-label="Cart" data-i18n-aria="aria_cart"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 8h14l-1.5 12h-11z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cart-count" hidden>0</span></button>
     <div class="lang" role="group" aria-label="Language / Idioma"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="es" aria-pressed="false">ES</button></div>
@@ -453,7 +461,6 @@ body.noscroll{overflow:hidden}
   </div>
   <nav class="mobile-nav" id="mnav" aria-label="Menu" data-i18n-aria="aria_nav">
     <a href="#noticias" class="news-link" hidden data-i18n="news_btn">News</a>    <a href="#catalogo" data-i18n="nav_col">Collection</a><a href="#kits" data-i18n="nav_sets">Gift sets</a><a href="#historia" data-i18n="nav_hist_m">Our story</a><a href="#lourdes" data-i18n="nav_lourdes">Lourdes</a><a href="/galeria.html" class="gal-link" data-i18n="nav_gal">Gallery</a><a href="/runas.html" class="run-link" data-i18n="nav_runas">Runes</a><a href="#resenas" data-i18n="nav_rev">Reviews</a><a href="#como-comprar" data-i18n="nav_how">How to buy</a><a href="#preguntas" data-i18n="nav_faq">FAQ</a>
-    <a class="btn btn-dark" href="https://www.etsy.com/shop/Eljardindelosangeles" target="_blank" rel="noopener" data-i18n="etsy_shop">Etsy shop</a>
   </nav>
 </header>
 
@@ -660,10 +667,16 @@ body.noscroll{overflow:hidden}
     <label class="gift-l"><input type="checkbox" id="cart-gift"> <span data-i18n="gift_l">This is a gift</span></label>
     <label class="cart-note-l" id="gift-msg-l" hidden><span data-i18n="gift_msg_l">Gift card message (optional)</span>
       <textarea id="cart-gift-msg" rows="2" maxlength="200" placeholder="E.g. Congratulations on your First Communion" data-i18n-ph="ph_gift"></textarea></label>
+    <fieldset class="ship-dest" id="ship-dest" hidden>
+      <legend data-i18n="dest_l">Ship to</legend>
+      <label><input type="radio" name="ship-dest" value="us" checked> <span data-i18n="dest_us">United States</span></label>
+      <label><input type="radio" name="ship-dest" value="intl"> <span data-i18n="dest_intl">Another country</span></label>
+    </fieldset>
     <div class="cart-row small"><span>Subtotal</span><span id="cart-sub">$0</span></div>
     <div class="cart-row small"><span data-i18n="cart_ship">Shipping</span><span id="cart-ship">$5</span></div>
     <div class="cart-row"><b>Total</b><b id="cart-total">$0</b></div>
     <p class="cart-soon" id="cart-ship-note" data-i18n="ship_note">Shipping within the U.S. Ships in 1–2 business days.</p>
+    <p class="intl-min" id="intl-min" role="status" hidden></p>
     <button type="button" class="btn btn-wa" id="cart-wa" data-i18n="cart_wa">Send order via WhatsApp</button>
     <div class="pp-box" id="pp-box" hidden>
       <p class="pp-or" data-i18n="pp_or">or pay now</p>
@@ -704,13 +717,15 @@ body.noscroll{overflow:hidden}
   Object.assign(I18N.es,{"pp_price_changed": "Los precios cambiaron desde que abriste la página. Recárgala y revisa tu carrito antes de pagar.", "pp_item_changed": "Uno de los artículos ya no está disponible o cambió. Recarga la página y revisa tu carrito.", "pp_declined": "PayPal rechazó ese método de pago. Elige otro para continuar.", "pp_pending": "PayPal está revisando el pago. Te confirmaremos cuando se acredite.", "pp_pending_short": "pago en revisión por PayPal"});
   Object.assign(I18N.es,{"test_bar": "MODO PRUEBA: estás viendo productos de prueba. Las estadísticas no cuentan.", "test_exit": "Salir del modo prueba"});
   Object.assign(I18N.es,{"news_btn": "Noticias", "news_fab": "Noticias nuevas", "news_title": "Noticias", "news_close": "Cerrar noticias", "news_empty": "Todavía no hay noticias.", "news_new": "Nuevo", "news_new_count": "{n} nueva(s)", "wl_open": "Quiero estar en la lista de espera", "wl_intro": "Déjanos tus datos y te avisamos cuando lo tengamos. No es un pedido pagado: confirmaremos precio y disponibilidad contigo.", "wl_name": "Tu nombre", "wl_contact": "WhatsApp o correo", "wl_contact_ph": "Ej.: (555) 123-4567 o tu@correo.com", "wl_items": "¿Qué te interesa?", "wl_qty": "Cantidad aproximada", "wl_note": "Nota (opcional)", "wl_note_ph": "Ej.: collar con medalla de la Virgen", "wl_consent": "Acepto que me contacten sobre este pedido.", "wl_send": "Anotarme", "wl_sending": "Enviando…", "wl_ok": "¡Listo! Estás en la lista. Te contactaremos cuando lo tengamos.", "wl_err_name": "Escribe tu nombre.", "wl_err_contact": "Escribe un WhatsApp o un correo válido.", "wl_err_items": "Elige al menos un producto.", "wl_err_qty": "La cantidad debe ser entre 1 y 99.", "wl_err_consent": "Marca la casilla para que podamos contactarte.", "wl_err_send": "No se pudo enviar. Inténtalo de nuevo o escríbenos por WhatsApp."});
+  Object.assign(I18N.es,{"dest_l": "Enviar a", "dest_us": "Estados Unidos", "dest_intl": "Otro país", "dest_intl_short": "internacional", "ship_note_intl": "Envío internacional. Los impuestos o aranceles de tu país los paga quien recibe. Despacho en 1–2 días hábiles.", "intl_min_msg": "Para envíos fuera de EE. UU., el pedido mínimo es {min}. Te faltan {left}.", "intl_min_short": "Para envíos fuera de EE. UU. no se alcanza el pedido mínimo.", "intl_off": "Por ahora no hacemos envíos fuera de EE. UU. Escríbenos por WhatsApp.", "intl_mismatch": "Tu dirección en PayPal es de fuera de EE. UU. Elige «Otro país» en el carrito y vuelve a pagar. No se te cobró nada.", "us_address_intl": "Tu dirección en PayPal es de EE. UU. Elige «Estados Unidos» en el carrito y vuelve a pagar. No se te cobró nada."});
+  Object.assign(I18N.en,{"dest_l": "Ship to", "dest_us": "United States", "dest_intl": "Another country", "dest_intl_short": "international", "ship_note_intl": "International shipping. Any taxes or duties in your country are paid by the recipient. Ships in 1–2 business days.", "intl_min_msg": "For shipping outside the U.S., the minimum order is {min}. You need {left} more.", "intl_min_short": "Orders shipping outside the U.S. have not reached the minimum.", "intl_off": "We don't ship outside the U.S. right now. Message us on WhatsApp.", "intl_mismatch": "Your PayPal address is outside the U.S. Choose “Another country” in the cart and pay again. You were not charged.", "us_address_intl": "Your PayPal address is in the U.S. Choose “United States” in the cart and pay again. You were not charged."});
   Object.assign(I18N.en,{"news_btn": "News", "news_fab": "New news", "news_title": "News", "news_close": "Close news", "news_empty": "No news yet.", "news_new": "New", "news_new_count": "{n} new", "wl_open": "Join the waiting list", "wl_intro": "Leave your details and we will let you know when we have it. This is not a paid order: we will confirm price and availability with you.", "wl_name": "Your name", "wl_contact": "WhatsApp or email", "wl_contact_ph": "E.g. (555) 123-4567 or you@email.com", "wl_items": "What are you interested in?", "wl_qty": "Approximate quantity", "wl_note": "Note (optional)", "wl_note_ph": "E.g. necklace with a Virgin Mary medal", "wl_consent": "I agree to be contacted about this request.", "wl_send": "Sign me up", "wl_sending": "Sending…", "wl_ok": "Done! You are on the list. We will contact you when we have it.", "wl_err_name": "Please enter your name.", "wl_err_contact": "Please enter a valid WhatsApp number or email.", "wl_err_items": "Choose at least one item.", "wl_err_qty": "Quantity must be between 1 and 99.", "wl_err_consent": "Please check the box so we can contact you.", "wl_err_send": "Could not send. Please try again or message us on WhatsApp."});
   Object.assign(I18N.en,{"test_bar": "TEST MODE: you are seeing test items. Stats are not counted.", "test_exit": "Exit test mode"});
   Object.assign(I18N.en,{"pp_price_changed": "Prices changed since you opened the page. Please reload it and review your cart before paying.", "pp_item_changed": "One of the items is no longer available or has changed. Please reload the page and review your cart.", "pp_declined": "PayPal declined that payment method. Please choose another one to continue.", "pp_pending": "PayPal is reviewing the payment. We'll confirm once it clears.", "pp_pending_short": "payment under PayPal review"});
   Object.assign(I18N.en,{"cart_soon": "Prefer to pay with Zelle? Message us on WhatsApp.", "pp_or": "or pay now with PayPal, Venmo or card", "pp_test": "Test mode: no real charges are made.", "pp_done_h": "Thank you! We received your payment", "pp_done_p": "Your order number is:", "pp_done_n": "To coordinate shipping, send us your order details via WhatsApp.", "pp_wa": "Send details via WhatsApp", "pp_err": "The payment could not be completed. Please try again or send your order via WhatsApp.", "pp_cancel": "Payment canceled. Your cart is still saved.", "pp_paid": "*PAID with PayPal* - Order:", "pp_load_err": "PayPal is not available right now. You can send your order via WhatsApp."});
   var CATS={"pruebas": {"es": "Pruebas", "en": "Tests"}, "todo": {"es": "Todo", "en": "All"}, "rosarios": {"es": "Rosarios", "en": "Rosaries"}, "pulseras": {"es": "Pulseras", "en": "Bracelets"}, "agua": {"es": "Agua de Lourdes", "en": "Lourdes water"}, "sets": {"es": "Sets", "en": "Sets"}, "bolsos": {"es": "Bolsos y accesorios", "en": "Bags & accessories"}};
   // Los productos y ajustes se editan desde el panel /admin (data/products.json y data/settings.json)
-  var NEWS=[], newsLast=null, TESTS={active:false}, TEST_MODE=false, TEST_CODE='', PAYPAL_ID='', PAYPAL_MODE='sandbox', ppLoaded=false, ppPaid=null, products=[], byId={}, WHATSAPP='', SHIPPING=5, CAMPAIGNS=[], KIT_ID='4479161090';
+  var INTL={enabled:false,min:0,ship:null}, DEST='us', NEWS=[], newsLast=null, TESTS={active:false}, TEST_MODE=false, TEST_CODE='', PAYPAL_ID='', PAYPAL_MODE='sandbox', ppLoaded=false, ppPaid=null, products=[], byId={}, WHATSAPP='', SHIPPING=5, CAMPAIGNS=[], KIT_ID='4479161090';
   /* ---------- Estadísticas (GoatCounter, sin cookies). Se activa con el código en /admin → Ajustes ---------- */
   function track(name,title){ if(TEST_MODE) return; try{ if(window.goatcounter&&window.goatcounter.count) window.goatcounter.count({path:name,title:title||name,event:true}); }catch(e){} }
   function initStats(code){
@@ -789,7 +804,10 @@ body.noscroll{overflow:hidden}
   function linePrice(l){if(l.art){var d=artDeal(l);return d?d.price:0;} var p=byId[l.id];return effPrice(p,(l.v!=null&&p.variants)?l.v:null);}
   function lineName(l){if(l.art){var ap=artProduct(l);return (ap?ap.name[lang]:'')+' ['+t('agreed_price')+', '+t('code_word')+' '+l.code+']';} var p=byId[l.id];return p.name[lang]+(l.v!=null&&p.variants?' — '+p.variants[l.v].label[lang]:'')+(p.promo?' ['+t('offer_word')+' '+p.promo.name[lang]+' -'+p.promo.pct+'%]':'');}
   function count(){return cart.reduce(function(s,l){return s+l.q;},0);}
-  function shipNow(){ return (TEST_MODE&&TESTS.no_shipping&&cart.length&&cart.every(function(l){return !l.art&&byId[l.id]&&byId[l.id].isTest;}))?0:SHIPPING; }
+  function onlyTestLines(){ return TEST_MODE&&cart.length&&cart.every(function(l){return !l.art&&byId[l.id]&&byId[l.id].isTest;}); }
+  function isIntl(){ return INTL.enabled&&DEST==='intl'; }
+  function shipNow(){ if(onlyTestLines()&&TESTS.no_shipping) return 0; return isIntl()?INTL.ship:SHIPPING; }
+  function intlShort(){ return isIntl()&&cart.length&&Math.round(subtotal()*100)<Math.round(INTL.min*100)?Math.round((INTL.min-subtotal())*100)/100:0; }
   function subtotal(){return cart.reduce(function(s,l){return s+linePrice(l)*l.q;},0);}
   function addToCart(id,v){
     var hit=cart.filter(function(l){return l.id===id&&l.v===v;})[0];
@@ -948,14 +966,20 @@ body.noscroll{overflow:hidden}
     qsa('#cart-items .rm').forEach(function(b){b.addEventListener('click',function(){setQty(+b.getAttribute('data-i'),0);});});
     var wa=document.getElementById('cart-wa');
     wa.hidden=!WHATSAPP;
-    document.getElementById('pp-box').hidden=!(PAYPAL_ID&&cart.length);
+    var sd=document.getElementById('ship-dest'); sd.hidden=!INTL.enabled;
+    qsa('#ship-dest input').forEach(function(r){ r.checked=(r.value===(isIntl()?'intl':'us')); });
+    var short=intlShort(), im=document.getElementById('intl-min');
+    im.hidden=!short; if(short) im.textContent=t('intl_min_msg').replace('{min}',money(INTL.min)).replace('{left}',money(short));
+    document.getElementById('cart-ship-note').textContent=isIntl()?t('ship_note_intl'):t('ship_note');
+    wa.disabled=!!short;
+    document.getElementById('pp-box').hidden=!(PAYPAL_ID&&cart.length)||!!short;
     document.getElementById('pp-test').hidden=PAYPAL_MODE!=='sandbox';
   }
   function orderMessage(){
     var lines=cart.map(function(l){return '• '+l.q+' × '+lineName(l)+' ('+money(linePrice(l))+') = '+money(linePrice(l)*l.q);});
     var note=document.getElementById('cart-note').value.trim();
     var gift=document.getElementById('cart-gift').checked, gm=document.getElementById('cart-gift-msg').value.trim();
-    return t('wa_order')+'\n\n'+lines.join('\n')+'\n\n'+t('subtotal')+': '+money(subtotal())+'\n'+t('ship_line')+': '+money(shipNow())+
+    return t('wa_order')+'\n\n'+lines.join('\n')+'\n\n'+t('subtotal')+': '+money(subtotal())+'\n'+t('ship_line')+(isIntl()?' ('+t('dest_intl_short')+')':'')+': '+money(shipNow())+
       '\n'+t('total')+': '+money(subtotal()+shipNow())+
       (gift?'\n\n*'+t('gift_line')+'*'+(gm?'\n'+t('gift_card')+': '+gm:''):'')+
       (note?'\n\n'+t('note')+': '+note:'');
@@ -981,7 +1005,7 @@ body.noscroll{overflow:hidden}
   function ppFail(err){
     var code=err&&err.code;
     console.error('Error de PayPal:',code||err);
-    toast(code==='price_changed'?t('pp_price_changed'):(code==='sold_out'||code==='unknown_product'||code==='deal_invalid'||code==='deal_expired'||code==='bad_variant')?t('pp_item_changed'):t('pp_err'));
+    toast(code==='below_intl_min'?t('intl_min_short'):code==='intl_disabled'?t('intl_off'):code==='intl_mismatch'?t('intl_mismatch'):code==='us_address_intl'?t('us_address_intl'):code==='price_changed'?t('pp_price_changed'):(code==='sold_out'||code==='unknown_product'||code==='deal_invalid'||code==='deal_expired'||code==='bad_variant')?t('pp_item_changed'):t('pp_err'));
     track('paypal-error/'+(code||'desconocido'),'Error en pago PayPal: '+(code||'desconocido'));
   }
   function loadPayPal(){
@@ -997,8 +1021,9 @@ body.noscroll{overflow:hidden}
         style:{layout:'vertical',shape:'pill',label:'pay',height:45},
         createOrder:function(){
           if(!cart.length) throw new Error('Carrito vacío');
+          if(intlShort()){ var se=new Error('below_intl_min'); se.code='below_intl_min'; ppFail(se); se.handled=true; throw se; }
           track('pago-paypal-inicio','Inicio de pago PayPal ('+count()+' art.)');
-          return ppPost('/api/paypal/create-order',{lines:ppLines(),lang:lang,expected:Math.round(subtotal()*100)/100,tc:TEST_MODE?TEST_CODE:''})
+          return ppPost('/api/paypal/create-order',{lines:ppLines(),lang:lang,expected:Math.round(subtotal()*100)/100,tc:TEST_MODE?TEST_CODE:'',dest:isIntl()?'intl':'us'})
             .then(function(j){ return j.id; })
             .catch(function(e){ ppFail(e); e.handled=true; throw e; });
         },
@@ -1045,7 +1070,8 @@ body.noscroll{overflow:hidden}
   }
 
   /* ---------- Noticias y lista de espera (data/news.json, se edita en /admin → Noticias) ---------- */
-  var NEWS_KEY='news_seen_v1';
+  var NEWS_KEY='news_seen_v1', WL_KEY='wl_joined_v1';
+  function joinedNews(){ try{ var v=JSON.parse(localStorage.getItem(WL_KEY)||'[]'); return Array.isArray(v)?v:[]; }catch(e){ return []; } }
   function seenNews(){ try{ var v=JSON.parse(localStorage.getItem(NEWS_KEY)||'[]'); return Array.isArray(v)?v:[]; }catch(e){ return []; } }
   function nTxt(it,k){ return lang==='es'?(it[k+'_es']||it[k+'_en']||''):(it[k+'_en']||it[k+'_es']||''); }
   function setupNews(nj){
@@ -1055,13 +1081,15 @@ body.noscroll{overflow:hidden}
     updateNewsBtn(); renderNews();
   }
   function unseen(){ var s=seenNews(); return NEWS.filter(function(it){ return s.indexOf(it.id)<0; }); }
+  // Destella mientras haya una noticia con lista de espera a la que la persona no se anotó, o una noticia sin lista que no ha visto.
+  function pendingNews(){ var s=seenNews(), j=joinedNews(); return NEWS.filter(function(it){ return wlItems(it).length?j.indexOf(it.id)<0:s.indexOf(it.id)<0; }); }
   function updateNewsBtn(){
-    var b=document.getElementById('news-btn'), n=unseen().length;
+    var b=document.getElementById('news-btn'), n=pendingNews().length;
     b.classList.toggle('has-new',n>0); b.querySelector('.news-dot').hidden=!n;
     b.setAttribute('aria-label',t('news_btn')+(n?' ('+t('news_new_count').replace('{n}',n)+')':''));
     document.getElementById('news-fab').hidden=!n;
   }
-  function wlItems(it){ return (it.waitlist||[]).map(function(w){ return lang==='es'?(w.es||w.en||''):(w.en||w.es||''); }).filter(Boolean).slice(0,30); }
+  function wlItems(it){ return (it.waitlist||[]).map(function(w){ var es=w.es||w.en||''; return {value:es,label:lang==='es'?es:(w.en||es)}; }).filter(function(o){return o.value;}).slice(0,30); }
   function renderNews(){
     var box=document.getElementById('news-list'); if(!box) return;
     if(!NEWS.length){ box.innerHTML='<p class="news-empty">'+esc(t('news_empty'))+'</p>'; return; }
@@ -1083,7 +1111,7 @@ body.noscroll{overflow:hidden}
       '<p class="news-text">'+esc(t('wl_intro'))+'</p>'+
       '<label>'+esc(t('wl_name'))+'<input type="text" name="nombre" maxlength="80" autocomplete="name" required></label>'+
       '<label>'+esc(t('wl_contact'))+'<input type="text" name="contacto" maxlength="120" autocomplete="tel" required placeholder="'+esc(t('wl_contact_ph'))+'"></label>'+
-      '<fieldset class="wl-opts"><legend>'+esc(t('wl_items'))+'</legend>'+opts.map(function(o){ return '<label class="wl-check"><input type="checkbox" name="interes" value="'+esc(o)+'"> '+esc(o)+'</label>'; }).join('')+'</fieldset>'+
+      '<fieldset class="wl-opts"><legend>'+esc(t('wl_items'))+'</legend>'+opts.map(function(o){ return '<label class="wl-check"><input type="checkbox" name="interes" value="'+esc(o.value)+'"> '+esc(o.label)+'</label>'; }).join('')+'</fieldset>'+
       '<label>'+esc(t('wl_qty'))+'<input type="number" name="cantidad" min="1" max="99" inputmode="numeric" value="1"></label>'+
       '<label>'+esc(t('wl_note'))+'<textarea name="nota" maxlength="400" rows="2" placeholder="'+esc(t('wl_note_ph'))+'"></textarea></label>'+
       '<label class="wl-hp" aria-hidden="true">No llenar<input type="text" name="bot-field" tabindex="-1" autocomplete="off"></label>'+
@@ -1130,7 +1158,9 @@ body.noscroll{overflow:hidden}
     btn.disabled=true; say('wl_sending');
     fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body}).then(function(r){
       if(!r.ok) throw new Error('HTTP '+r.status);
-      say('wl_ok','ok'); [].forEach.call(f.querySelectorAll('input,textarea'),function(x){ if(x.type==='checkbox') x.checked=false; else if(x.name!=='cantidad') x.value=''; });
+      say('wl_ok','ok');
+      try{ var jn=joinedNews(), nid=f.getAttribute('data-news'); if(jn.indexOf(nid)<0){ jn.push(nid); localStorage.setItem(WL_KEY,JSON.stringify(jn.slice(-200))); } }catch(x){}
+      updateNewsBtn(); [].forEach.call(f.querySelectorAll('input,textarea'),function(x){ if(x.type==='checkbox') x.checked=false; else if(x.name!=='cantidad') x.value=''; });
       track('lista-espera/'+f.getAttribute('data-news'),'Lista de espera: '+picks.length+' producto(s)');
     }).catch(function(err){ console.error('Lista de espera: no se pudo enviar',err); say('wl_err_send','err'); track('lista-espera-error','Error al enviar lista de espera'); })
       .then(function(){ btn.disabled=false; });
@@ -1267,6 +1297,10 @@ body.noscroll{overflow:hidden}
     promoBar(assignPromos());
     WHATSAPP=String((res[1]&&res[1].whatsapp)||'').replace(/\D/g,'');
     initStats(res[1]&&res[1].goatcounter);
+    (function(st){ var mn=parseFloat(st.intl_min), sh=parseFloat(st.intl_shipping);
+      INTL={enabled:st.intl_enabled===true&&Number.isFinite(sh)&&sh>=0,min:Number.isFinite(mn)&&mn>0?mn:0,ship:Number.isFinite(sh)&&sh>=0?sh:null};
+      try{ DEST=(INTL.enabled&&localStorage.getItem('ship_dest')==='intl')?'intl':'us'; }catch(e){ DEST='us'; }
+    })(res[1]||{});
     PAYPAL_ID=String((res[1]&&res[1].paypal_client_id)||'').trim(); PAYPAL_MODE=(res[1]&&res[1].paypal_mode==='live')?'live':'sandbox';
     if(res[1]&&res[1].shipping_cost!=null&&!isNaN(parseFloat(res[1].shipping_cost))) SHIPPING=Math.max(0,parseFloat(res[1].shipping_cost));
     cart=cart.filter(function(l){ if(l&&l.art){ if(artDeal(l)){l.q=1;return true;} return false; } var p=byId[l.id];return p&&p.status!=='agotado'&&l.q>0&&(l.v==null||(p.variants&&p.variants[l.v]));}); saveCart();
@@ -1302,7 +1336,13 @@ body.noscroll{overflow:hidden}
   drawer.querySelector('.cart-close').addEventListener('click',closeCart);
   overlay.addEventListener('click',closeCart);
   document.getElementById('cart-keep').addEventListener('click',closeCart);
+  document.getElementById('ship-dest').addEventListener('change',function(e){
+    if(!e.target||e.target.name!=='ship-dest') return;
+    DEST=e.target.value==='intl'?'intl':'us'; try{ localStorage.setItem('ship_dest',DEST); }catch(x){}
+    track('envio/'+DEST,'Destino de envío: '+DEST); renderCart();
+  });
   document.getElementById('cart-wa').addEventListener('click',function(){
+    if(intlShort()){ toast(t('intl_min_short')); return; }
     track('pedido-whatsapp','Pedido por WhatsApp ('+count()+' art., '+money(subtotal()+shipNow())+')');
     window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(orderMessage()),'_blank','noopener');
   });

@@ -21,7 +21,7 @@ export async function handle(req, { data = DATA, now = Date.now(), fetchImpl } =
 
   let priced;
   try {
-    priced = priceCart(data, body.lines, { lang: body.lang === "es" ? "es" : "en", now, testCode: typeof body.tc === "string" ? body.tc.slice(0, 64) : "" });
+    priced = priceCart(data, body.lines, { lang: body.lang === "es" ? "es" : "en", now, testCode: typeof body.tc === "string" ? body.tc.slice(0, 64) : "", dest: body.dest === "intl" ? "intl" : (body.dest == null || body.dest === "us" ? "us" : String(body.dest)) });
   } catch (e) {
     if (e instanceof PricingError) return json(422, { error: e.code, line: e.detail ?? null });
     logError("create/pricing", e); return json(500, { error: "server_error" });
