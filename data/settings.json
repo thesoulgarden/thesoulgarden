@@ -4,5 +4,6 @@
   "inventory_url": "https://docs.google.com/spreadsheets/d/1W9Bh7k82YZ8Bi-PSAOU50lyv8LUhrqYsQRZEEupPV0g/edit?gid=1495011686#gid=1495011686",
   "shipping_cost": 5,
   "paypal_client_id": "BAAaMajlGOBW4xp-ZejqJGOyNNRN10DlVMVaIPMw9lxXofYajxsUZjCUBVwAZWWjBaSP2uMTA9Ux4kAM1Y",
-  "paypal_mode": "live"
+  "paypal_mode": "live",
+  "cats_zelle_help": true
 }
