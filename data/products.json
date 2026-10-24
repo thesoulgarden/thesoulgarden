@@ -76,7 +76,46 @@
       "desc_en": "Red crystal beads with medal and crucifix. Perfect for First Communion or baptism.",
       "id": "4444608989",
       "desc_es": "Cuentas rojas de cristal con medalla y crucifijo. Ideal para Primera Comunión o bautizo.",
-      "name_en": "Crystal rosary keychain"
+      "name_en": "Crystal rosary keychain",
+      "imgs": [
+        "/img/productos/llavero-cristal-rojo-bolso.jpg",
+        "/img/productos/llavero-cristal-rosado.jpg"
+      ],
+      "variants": [
+        {
+          "label_es": "Rojo",
+          "label_en": "Red",
+          "price": 28,
+          "img": "/img/productos/llavero-cristal-rojo-bolso.jpg"
+        },
+        {
+          "label_es": "Rosado",
+          "label_en": "Pink",
+          "price": 28,
+          "img": "/img/productos/llavero-cristal-rosado.jpg"
+        }
+      ]
+    },
+    {
+      "id": "rosario-azul-verde",
+      "cat": "rosarios",
+      "status": "disponible",
+      "nuevo": true,
+      "price": 25,
+      "name_es": "Rosario azul verdoso con crucifijo rosa",
+      "name_en": "Blue-green rosary with pink crucifix",
+      "desc_es": "Cuentas azul verdoso con cuentas rosadas, Medalla Milagrosa y crucifijo rosa.",
+      "desc_en": "Blue-green beads with pink accents, Miraculous Medal and pink crucifix.",
+      "img": "/img/productos/rosario-azul-verde-1.jpg",
+      "imgs": [
+        "/img/productos/rosario-azul-verde-1.jpg",
+        "/img/productos/rosario-azul-verde-2.jpg",
+        "/img/productos/rosario-azul-verde-3.jpg",
+        "/img/productos/rosario-azul-verde-4.jpg",
+        "/img/productos/rosario-azul-verde-5.jpg",
+        "/img/productos/rosario-azul-verde-6.jpg",
+        "/img/productos/rosario-azul-verde-7.jpg"
+      ]
     },
     {
       "name_es": "Rosario con la Virgen María y la Cruz",
@@ -103,6 +142,57 @@
       "name_en": "Pocket rosary with Miraculous Medal"
     },
     {
+      "id": "decenario-llavero",
+      "cat": "rosarios",
+      "status": "disponible",
+      "nuevo": true,
+      "price": 15,
+      "name_es": "Decenario llavero con Medalla Milagrosa",
+      "name_en": "Miraculous Medal decade keychain",
+      "desc_es": "Decenario con mosquetón y pompón, ideal para el bolso o las llaves.",
+      "desc_en": "Decade rosary with clasp and pom-pom, perfect for your bag or keys.",
+      "img": "/img/productos/decenario-rosado.jpg",
+      "imgs": [
+        "/img/productos/decenario-rosado.jpg",
+        "/img/productos/decenario-rojo.jpg",
+        "/img/productos/decenario-negro.jpg",
+        "/img/productos/decenario-perlas-crucifijo.jpg",
+        "/img/productos/decenario-perlas-cruz-blanca.jpg"
+      ],
+      "variants": [
+        {
+          "label_es": "Rosado",
+          "label_en": "Pink",
+          "price": 15,
+          "img": "/img/productos/decenario-rosado.jpg"
+        },
+        {
+          "label_es": "Rojo",
+          "label_en": "Red",
+          "price": 15,
+          "img": "/img/productos/decenario-rojo.jpg"
+        },
+        {
+          "label_es": "Negro",
+          "label_en": "Black",
+          "price": 15,
+          "img": "/img/productos/decenario-negro.jpg"
+        },
+        {
+          "label_es": "Perlas con crucifijo",
+          "label_en": "Pearls with crucifix",
+          "price": 15,
+          "img": "/img/productos/decenario-perlas-crucifijo.jpg"
+        },
+        {
+          "label_es": "Perlas con cruz blanca",
+          "label_en": "Pearls with white cross",
+          "price": 15,
+          "img": "/img/productos/decenario-perlas-cruz-blanca.jpg"
+        }
+      ]
+    },
+    {
       "name_es": "Llavero rosario de cuentas con pompón",
       "img": "/img/productos/llavero-cuentas.jpg",
       "etsy_url": "https://www.etsy.com/listing/4444395672",
@@ -112,7 +202,39 @@
       "desc_en": "Pastel beads with religious charms.",
       "id": "4444395672",
       "desc_es": "Cuentas en tonos pastel con dijes religiosos.",
-      "name_en": "Beaded rosary keychain with pom-pom"
+      "name_en": "Beaded rosary keychain with pom-pom",
+      "imgs": [
+        "/img/productos/llavero-pompon-verde.jpg",
+        "/img/productos/llavero-pompon-aqua.jpg",
+        "/img/productos/llavero-pompon-vino.jpg",
+        "/img/productos/llavero-pompon-lavanda.jpg"
+      ],
+      "variants": [
+        {
+          "label_es": "Verde",
+          "label_en": "Green",
+          "price": 20,
+          "img": "/img/productos/llavero-pompon-verde.jpg"
+        },
+        {
+          "label_es": "Aqua",
+          "label_en": "Aqua",
+          "price": 20,
+          "img": "/img/productos/llavero-pompon-aqua.jpg"
+        },
+        {
+          "label_es": "Vino",
+          "label_en": "Wine",
+          "price": 20,
+          "img": "/img/productos/llavero-pompon-vino.jpg"
+        },
+        {
+          "label_es": "Lavanda",
+          "label_en": "Lavender",
+          "price": 20,
+          "img": "/img/productos/llavero-pompon-lavanda.jpg"
+        }
+      ]
     },
     {
       "name_es": "Pulsera rosario Medalla Milagrosa",

@@ -56,6 +56,7 @@ collections:
                   - { label: "Agotado", value: agotado }
               - { label: "Mostrar etiqueta \"Nuevo\"", name: nuevo, widget: boolean, default: false, required: false }
               - { label: "Foto", name: img, widget: image, hint: "Foto cuadrada, idealmente de 800 a 1200 px." }
+              - { label: "Más fotos (opcional)", name: imgs, widget: list, required: false, field: { label: "Foto", name: foto, widget: image }, hint: "Se muestran como miniaturas en la ficha del producto." }
               - { label: "Enlace en Etsy (opcional)", name: etsy_url, widget: string, required: false }
               - label: "Opciones con precio distinto (opcional)"
                 name: variants
@@ -66,6 +67,7 @@ collections:
                   - { label: "Opción (español)", name: label_es, widget: string }
                   - { label: "Opción (inglés)", name: label_en, widget: string }
                   - { label: "Precio (USD)", name: price, widget: number, value_type: float, min: 0, step: 0.5 }
+                  - { label: "Foto de la opción (opcional)", name: img, widget: image, required: false, hint: "Se muestra al elegir esta opción. Súbela también en Más fotos para que aparezca en las miniaturas." }
 
   - name: ofertas
     label: Ofertas
@@ -630,6 +632,8 @@ collections:
         format: json
         fields:
           - { label: "WhatsApp (con código de país, ej.: +19294133312)", name: whatsapp, widget: string, required: false }
+          - { label: "TikTok (enlace del perfil)", name: tiktok_url, widget: string, required: false, pattern: ["^(https://(www\\.)?tiktok\\.com/@[\\w.]+/?)?$", "Debe ser como https://www.tiktok.com/@usuario"], hint: "Déjalo vacío para ocultar TikTok en la página." }
+          - { label: "Facebook (enlace del perfil o página)", name: facebook_url, widget: string, required: false, pattern: ["^(https://(www\\.)?facebook\\.com/[\\w.\\-/?=]+)?$", "Debe empezar con https://www.facebook.com/"], hint: "Déjalo vacío para ocultar Facebook en la página." }
           - { label: "Costo de envío en EE. UU. (USD, 0 = gratis)", name: shipping_cost, widget: number, value_type: float, min: 0, step: 0.5, default: 5, required: false }
           - { label: "Código de GoatCounter (estadísticas)", name: goatcounter, widget: string, required: false, hint: "Solo el código, por ejemplo thesoulgarden (de thesoulgarden.goatcounter.com). Déjalo vacío para desactivar." }
           - { label: "Envíos internacionales: activados", name: intl_enabled, widget: boolean, default: false, required: false, hint: "Muestra en el carrito la opción Enviar a: Estados Unidos / Otro país. Necesita también el costo de envío internacional." }
